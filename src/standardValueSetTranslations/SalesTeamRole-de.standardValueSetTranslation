@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Account Executive</masterLabel>
+        <translation><!-- Account Executive --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Channel Manager</masterLabel>
+        <translation><!-- Channel Manager --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Competitive Expert</masterLabel>
+        <translation>Mitbewerber-Experte</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Executive Sponsor</masterLabel>
+        <translation><!-- Executive Sponsor --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Industry Specialist</masterLabel>
+        <translation>Branchen-Spezialist</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Opportunity Owner</masterLabel>
+        <translation>Opportunity-Inhaber</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Sales Manager</masterLabel>
+        <translation>Vertriebs-Manager</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Service Contact</masterLabel>
+        <translation>Service-Mitarbeiter</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

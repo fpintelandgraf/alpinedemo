@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Pay Cycle --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Pay Cycle --></value>
+    </caseValues>
+    <fields>
+        <label><!-- End Date --></label>
+        <name>End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payroll System --></label>
+        <name>Payroll_System__c</name>
+        <relationshipLabel><!-- Pay Cycles --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Processed --></label>
+        <name>Processed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Year --></label>
+        <name>Year__c</name>
+    </fields>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>Pay Cycle Layout</layout>
+        <sections>
+            <label><!-- Useful Links --></label>
+            <section>Useful Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Pay Cycle Name --></nameFieldLabel>
+    <validationRules>
+        <errorMessage>Os ciclos de pagamento processados não podem ser alterados. Reinicie o ciclo de pagamento para editar campos.</errorMessage>
+        <name>Processed_pay_cycles_cannot_be_changed</name>
+    </validationRules>
+    <webLinks>
+        <label>Criar Arquivo de Extrato</label>
+        <name>Create_Extract_File</name>
+    </webLinks>
+    <webLinks>
+        <label>Resumo do Ciclo de Pagamento</label>
+        <name>Pay_Cycle_Summary_Report</name>
+    </webLinks>
+    <webLinks>
+        <label>Processar Ciclo de Pagamento</label>
+        <name>Process_Pay_Cycle_2</name>
+    </webLinks>
+    <webLinks>
+        <label>Redefinir o Ciclo de Pagamento</label>
+        <name>Reset_Pay_Cycle_2</name>
+    </webLinks>
+</CustomObjectTranslation>

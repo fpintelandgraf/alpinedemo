@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Interaction Analysis</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Interaction Analyses</value>
+    </caseValues>
+    <fields>
+        <label><!-- Analyzed Object ID --></label>
+        <name>Analyzed_Object_ID__c</name>
+    </fields>
+    <fields>
+        <help><!-- Type of object analyzed for this --></help>
+        <label><!-- Analyzed Object --></label>
+        <name>Analyzed_Object__c</name>
+    </fields>
+    <fields>
+        <label><!-- Case --></label>
+        <name>Case__c</name>
+        <relationshipLabel><!-- Interaction Analyses --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Prediction Conf 1 --></label>
+        <name>Prediction_Conf_1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prediction Conf 2 --></label>
+        <name>Prediction_Conf_2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prediction Conf 3 --></label>
+        <name>Prediction_Conf_3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prediction Result 1 --></label>
+        <name>Prediction_Result_1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prediction Result 2 --></label>
+        <name>Prediction_Result_2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prediction Result 3 --></label>
+        <name>Prediction_Result_3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prediction Value --></label>
+        <name>Prediction_Value__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

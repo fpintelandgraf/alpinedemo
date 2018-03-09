@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EntitlementProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <SObjectType>WorkOrder</SObjectType>
+    <active>true</active>
+    <businessHours>24/7 Follow-The-Sun Service</businessHours>
+    <description>Premium Field Service</description>
+    <entryStartDateField>WorkOrder.CreatedDate</entryStartDateField>
+    <exitCriteriaFilterItems>
+        <field>WorkOrder.IsClosed</field>
+        <operation>equals</operation>
+        <value>true</value>
+    </exitCriteriaFilterItems>
+    <milestones>
+        <milestoneCriteriaFilterItems>
+            <field>WorkOrder.Priority</field>
+            <operation>equals</operation>
+            <value>Low, Medium, High, Critical</value>
+        </milestoneCriteriaFilterItems>
+        <milestoneName>First Response</milestoneName>
+        <minutesToComplete>10</minutesToComplete>
+        <useCriteriaStartTime>false</useCriteriaStartTime>
+    </milestones>
+    <milestones>
+        <milestoneCriteriaFilterItems>
+            <field>WorkOrder.Priority</field>
+            <operation>equals</operation>
+            <value>Low, Medium, High, Critical</value>
+        </milestoneCriteriaFilterItems>
+        <milestoneName>Tech Assigned</milestoneName>
+        <minutesToComplete>40</minutesToComplete>
+        <useCriteriaStartTime>false</useCriteriaStartTime>
+    </milestones>
+    <milestones>
+        <milestoneCriteriaFilterItems>
+            <field>WorkOrder.Priority</field>
+            <operation>equals</operation>
+            <value>Low, Medium, High, Critical</value>
+        </milestoneCriteriaFilterItems>
+        <milestoneName>Tech Onsite</milestoneName>
+        <minutesToComplete>480</minutesToComplete>
+        <useCriteriaStartTime>false</useCriteriaStartTime>
+    </milestones>
+    <milestones>
+        <milestoneCriteriaFilterItems>
+            <field>WorkOrder.Priority</field>
+            <operation>equals</operation>
+            <value>Low, Medium, High, Critical</value>
+        </milestoneCriteriaFilterItems>
+        <milestoneName>Work Order Closed</milestoneName>
+        <minutesToComplete>540</minutesToComplete>
+        <useCriteriaStartTime>false</useCriteriaStartTime>
+    </milestones>
+</EntitlementProcess>

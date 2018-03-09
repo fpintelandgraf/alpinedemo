@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <interviewLabel>Partner Registration {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Partner Registration</label>
+    <processType>Flow</processType>
+    <recordCreates>
+        <name>Create_Lead</name>
+        <label>Create_Lead</label>
+        <locationX>180</locationX>
+        <locationY>210</locationY>
+        <connector>
+            <targetReference>Thank_You</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Email</field>
+            <value>
+                <elementReference>Partner_Email</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>FirstName</field>
+            <value>
+                <elementReference>Partner_First_Name</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>LastName</field>
+            <value>
+                <elementReference>Partner_Last_Name</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Lead</object>
+    </recordCreates>
+    <screens>
+        <name>Register</name>
+        <label>Register</label>
+        <locationX>177</locationX>
+        <locationY>94</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Create_Lead</targetReference>
+        </connector>
+        <fields>
+            <name>Partner_First_Name</name>
+            <dataType>String</dataType>
+            <fieldText>First Name</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Partner_Last_Name</name>
+            <dataType>String</dataType>
+            <fieldText>Last Name</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Partner_Email</name>
+            <dataType>String</dataType>
+            <fieldText>Email</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+    </screens>
+    <screens>
+        <name>Thank_You</name>
+        <label>Thank You</label>
+        <locationX>182</locationX>
+        <locationY>330</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>Partner_Text</name>
+            <fieldText>Thank you, we&apos;ll get in touch shortly!</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+    </screens>
+    <startElementReference>Register</startElementReference>
+</Flow>

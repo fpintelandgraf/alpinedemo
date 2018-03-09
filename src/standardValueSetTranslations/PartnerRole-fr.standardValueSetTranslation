@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Advertiser</masterLabel>
+        <translation>Publicitaire</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Agency</masterLabel>
+        <translation>Agence</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Broker</masterLabel>
+        <translation>Courtier</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Consultant</masterLabel>
+        <translation><!-- Consultant --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Contractor</masterLabel>
+        <translation>Sous-Traitant</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Dealer</masterLabel>
+        <translation>Revendeur</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Developer</masterLabel>
+        <translation>Développeur</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Distributor</masterLabel>
+        <translation>Distributeur</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Institution</masterLabel>
+        <translation><!-- Institution --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Lawyer</masterLabel>
+        <translation>Avocat</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Lender</masterLabel>
+        <translation>Prêteur</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Parent</masterLabel>
+        <translation><!-- Parent --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Spouse</masterLabel>
+        <translation>Epouse</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Supplier</masterLabel>
+        <translation>Fournisseur</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>System Integrator</masterLabel>
+        <translation>Intégrateur</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>VAR/Reseller</masterLabel>
+        <translation>VAR/Revendeur</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

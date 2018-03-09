@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>取引先インサイト</value>
+    </caseValues>
+    <fields>
+        <label>年間収益(大)</label>
+        <name>Annual_Revenue_Big__c</name>
+    </fields>
+    <fields>
+        <label>年間収益(小)</label>
+        <name>Annual_Revenue_Small__c</name>
+    </fields>
+    <fields>
+        <label>社員(大)</label>
+        <name>Employees_Big__c</name>
+    </fields>
+    <fields>
+        <label>社員(小)</label>
+        <name>Employees_Small__c</name>
+    </fields>
+    <fields>
+        <label>純利益</label>
+        <name>Net_Income__c</name>
+    </fields>
+    <fields>
+        <label>取引先</label>
+        <name>RelatedAccount__c</name>
+        <relationshipLabel><!-- Account Insights --></relationshipLabel>
+    </fields>
+    <nameFieldLabel>取引先インサイト名</nameFieldLabel>
+</CustomObjectTranslation>

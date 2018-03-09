@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"> 
+<html> 
+<head> 
+<script type="text/javascript" src="/js/functions.js"></script> 
+<script src="/soap/ajax/10.0/connection.js"></script> 
+<style type="text/css"> 
+#cmComponent2 { 
+font-family: arial; 
+font-size: 12px; 
+} 
+a { 
+color: #333333; 
+font-size:11px; 
+} 
+a:hover { 
+text-decoration: underline; 
+font-size:11px; 
+} 
+</style> 
+
+</head> 
+
+<body> 
+
+<script> 
+var queryResult, count1, count2; 
+
+//specify the SOQL for your first Current Stat - you need to modify this for your needs 
+queryResult=sforce.connection.query("Select count()from Opportunity where LeadSource='Deal Registration' AND RecordTypeId='0126A0000007Gq2' AND ownerid='{!User.Id}'"); 
+//queryResult=sforce.connection.query("Select count()from Opportunity where LeadSource='Deal Registration' AND Registration_Expiration__c=NEXT_N_DAYS:30 AND RecordTypeId='0126A0000007Gq2' AND ownerid='{!User.Id}'"); 
+if(queryResult.size > 0)
+{count1 = queryResult.size; }
+else
+{count1=0;}
+
+//specify the SOQL for your second Current Stat - you need to modify this for your needs 
+queryResult=sforce.connection.query("Select count()from Lead where IsConverted=FALSE AND ownerid='{!User.Id}'"); 
+if(queryResult.size > 0)
+{count2 = queryResult.size; }
+else{count2 = 0;}
+
+
+</script> 
+
+<div id="cmComponent2"> 
+<table> 
+<tr> 
+<!-- Replace URL with the URL to the list view you want --> 
+<td><a href="/006?fcf=00B6A000004F9w7" target="_parent">Deal Regs Expiring in Next 30 Days</a></td> 
+<td style="font-size: 10px;text-align: right; padding-left: 2px;"><script>document.write(count1);</script></td> 
+</tr> 
+<tr> 
+<!-- Replace URL with the URL to the list view you want --> 
+<td><a href="/00Q?fcf=00B6A000004F9w6" target="_parent">My Active Leads</a></td>
+<td style="font-size: 10px; text-align: right; padding-left: 2px;"><script>document.write(count2);</script></td> 
+</tr> 
+</table> 
+</div> 
+
+</body> 
+</html>

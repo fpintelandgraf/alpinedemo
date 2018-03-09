@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataCategoryGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <dataCategory>
+        <dataCategory>
+            <label>Wind Generation</label>
+            <name>WindGeneration</name>
+        </dataCategory>
+        <dataCategory>
+            <label>Energy Storage</label>
+            <name>EnergyStorage</name>
+        </dataCategory>
+        <dataCategory>
+            <label>Services</label>
+            <name>Services</name>
+        </dataCategory>
+        <label>All</label>
+        <name>All</name>
+    </dataCategory>
+    <description>Cirrus-specific products.</description>
+    <label>Product</label>
+    <objectUsage>
+        <object>KnowledgeArticleVersion</object>
+    </objectUsage>
+</DataCategoryGroup>

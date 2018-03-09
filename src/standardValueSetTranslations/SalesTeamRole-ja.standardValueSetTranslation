@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Account Executive</masterLabel>
+        <translation>アカウントマネージャー</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Channel Manager</masterLabel>
+        <translation>チャンネルマネージャー</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Competitive Expert</masterLabel>
+        <translation>競合対策エキスパート</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Executive Sponsor</masterLabel>
+        <translation>重役スポンサー</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Industry Specialist</masterLabel>
+        <translation>リード獲得者</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Opportunity Owner</masterLabel>
+        <translation>商談所有者</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Sales Manager</masterLabel>
+        <translation>営業マネージャー</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Service Contact</masterLabel>
+        <translation>サポート担当</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

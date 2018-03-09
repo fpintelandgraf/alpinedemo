@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>Contact</layout>
+        <sections>
+            <label>Adresse</label>
+            <section>Address</section>
+        </sections>
+        <sections>
+            <label>Nützliche Links</label>
+            <section>Useful Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Contact Community View</layout>
+        <sections>
+            <label>Adresse</label>
+            <section>Address</section>
+        </sections>
+        <sections>
+            <label>Ansprüche</label>
+            <section>Entitlements</section>
+        </sections>
+        <sections>
+            <label>Notizen</label>
+            <section>Notes</section>
+        </sections>
+        <sections>
+            <label>Nützliche Links</label>
+            <section>Useful Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Pardot Contact</layout>
+        <sections>
+            <label>Adresse</label>
+            <section>Address</section>
+        </sections>
+        <sections>
+            <label>Ansprüche</label>
+            <section>Entitlements</section>
+        </sections>
+        <sections>
+            <label>Notizen</label>
+            <section>Notes</section>
+        </sections>
+        <sections>
+            <label><!-- Pardot Information --></label>
+            <section>Pardot Information</section>
+        </sections>
+        <sections>
+            <label><!-- Pardot Nurturing Campaigns --></label>
+            <section>Pardot Nurturing Campaigns</section>
+        </sections>
+        <sections>
+            <label>Nützliche Links</label>
+            <section>Useful Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Partner Contact</layout>
+        <sections>
+            <label>Adresse</label>
+            <section>Address</section>
+        </sections>
+        <sections>
+            <label>Offene Partner Opportunities</label>
+            <section>Open Partner Opportunities</section>
+        </sections>
+        <sections>
+            <label>Nützliche Links</label>
+            <section>Useful Links</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- New Case --></label>
+        <name>Contact_New_Case</name>
+    </quickActions>
+    <quickActions>
+        <label>Generelle Anfrage</label>
+        <name>GeneralInquiry</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Log in as --></label>
+        <name>Log_in_as</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Technical Issue --></label>
+        <name>Technical_Issue</name>
+    </quickActions>
+</CustomObjectTranslation>

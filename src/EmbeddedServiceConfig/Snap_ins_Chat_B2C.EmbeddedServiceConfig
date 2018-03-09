@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmbeddedServiceConfig xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>Snap-ins Chat B2C</masterLabel>
+    <site>0DM6A0000005WLV</site>
+</EmbeddedServiceConfig>

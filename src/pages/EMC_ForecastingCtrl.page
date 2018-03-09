@@ -1,0 +1,550 @@
+<apex:page contentType="application/javascript">
+    function ForecastingCtrl($scope, $route, $routeParams, $timeout, SFDC, Mixpanel){
+        $scope.params = $route.current.params;
+        $scope.view = 'periods';
+        $scope.showEdit = false;
+        $scope.delta = 10;
+        $scope.periods, $scope.rootUser, $scope.children, $scope.users, $scope.forecastingItems;
+        $scope.suggestedValue;
+        
+        $scope.showReasonPane = false;
+        
+        $scope.selectedPrediction, $scope.selectedPeriod, $scope.selectedPredictionReason = null;
+        $scope.trends = [];
+        
+        $scope.init = function(){
+            $scope.showLoading(true)
+            
+            $scope.getPeriods()
+            .then(function(res){
+                return $scope.getForecastTypeId();
+            })
+            .then(function(res){
+                console.log(res);
+                return new Promise(function(resolve,reject){
+                    try {
+                        //Will always return unless ForecastingType.DeveloperName is changed.
+                        $scope.forecastingTypeId = res.data.records[0].Id;
+                        $scope.$apply();
+                        resolve();
+                    } catch(err){
+                        reject(err);
+                    }
+                })
+            })
+            .then(function(res){
+                return $scope.getRootUser()
+            })
+            .then(function(res){
+                return $scope.getForecastingItems(res)
+            })
+            .then(function(res){
+                return $scope.getPredictions()
+            })
+            .then(function(res){
+                $scope.showLoading(false)
+            })
+        }
+        
+        $scope.getPeriods = function(){
+            return new Promise(function(resolve,reject){
+                try{
+                    let queryString = [
+                        "Select Id, FullyQualifiedLabel, StartDate",
+                        "From Period Where Type = 'Month'",
+                        "AND (StartDate &lt;= Next_N_MONTHS:4 AND StartDate &gt;= LAST_N_MONTHS:4)",
+                        "Order By StartDate ASC"
+                    ];
+                    
+                    SFDC.query(queryString.join(' '))
+                    .then(function(res){
+                        $scope.periods = res.data.records;
+                        $scope.$apply();
+                        resolve($scope.periods);
+                        /* Might re-implement for future use of all components being independently created and destroyed to increase efficiency (cont.)*/
+                        /* as well as increasing manageability of the code by breaking it apart */
+                        /*for(let index of records.keys()){
+                            let newScope = $scope.$new(true);
+                            newScope.data = records[index];
+                            let element = '&lt;period-component period="data" class="slds-size_1-of-4 slds-m-vertical_x-small"/&gt;'
+                            let parentElement = angular.element(document.getElementById('periods'));
+                            parentElement.append($compile(element)(newScope));
+                        }*/
+                    })
+                } catch(err) {
+                    console.log('ERROR:MainController:getPeriods', evt);
+                    reject(err);
+                }
+            });
+        }
+        
+        $scope.getForecastTypeId = function(){
+            let queryString = "Select Id From ForecastingType Where DeveloperName = 'OpportunityRevenue'";
+            return SFDC.query(queryString)
+        }
+        
+        $scope.getRootUser = function(){
+            return new Promise(function(resolve,reject){
+                let rootUserId = $scope.params.userId ? $scope.params.userId : '';
+                
+                remote.getRootUser(rootUserId, function(res,evt){
+                    if(evt.status){
+                        console.log('SUCCESS:ForecastingCtrl:getRootUsers', res);
+                        $scope.rootUser = res.root;
+                        $scope.children = res.children;
+                        
+                        let users = [res.root, ...res.children];
+                        let usersMap = {};
+                        
+                        users.map(function(user){
+                            if(res.hasChildren.hasOwnProperty(user.UserRoleId)){
+                                user['hasChildren'] = true;
+                            }
+                            usersMap[user.Id] = user;
+                        });
+                        $scope.users = usersMap;
+                        
+                        $scope.$apply();
+                        
+                        resolve([res.root,...res.children]);
+                    } else {
+                        console.log('ERROR:ForecastingCtrl:getRootUsers', evt);
+                        reject();
+                    }
+                })
+            })
+        }
+        
+        $scope.getForecastingItems = function(){
+            return new Promise(function(resolve,reject){
+                let userIds = Object.keys($scope.users);
+                let periodIds = $scope.periods.map(function(period){ return period.Id })
+                let query = [
+                    'Select Id, ForecastCategoryName, ForecastAmount, OwnerId, PeriodId, Period.FullyQualifiedLabel, Period.StartDate',
+                    'From ForecastingItem',
+                    'Where OwnerId IN (\'' + userIds.join("','") + '\')',
+                    'And PeriodId IN (\'' + periodIds.join("','") + '\')',
+                    'And ForecastingType.DeveloperName = \'OpportunityRevenue\''
+                ]
+                let queryString = query.join(' ');
+                
+                SFDC.query(queryString)
+                .then(function(res){
+                    let forecastItems = res.data.records;
+                    let rootUser = $scope.rootUser;
+                    let users = $scope.users;
+                    
+                    forecastItems.map(function(forecastItem){
+                        if(users.hasOwnProperty(forecastItem.OwnerId)){
+                            if(users[forecastItem.OwnerId].Periods &amp;&amp; users[forecastItem.OwnerId].Periods[forecastItem.PeriodId]){
+                                users[forecastItem.OwnerId].Periods[forecastItem.PeriodId][forecastItem.ForecastCategoryName] = forecastItem;
+                            } else if(users[forecastItem.OwnerId].Periods) {
+                                users[forecastItem.OwnerId].Periods[forecastItem.PeriodId] = {}
+                                users[forecastItem.OwnerId].Periods[forecastItem.PeriodId][forecastItem.ForecastCategoryName] = forecastItem;
+                            } else {
+                                users[forecastItem.OwnerId]['Periods'] = [];
+                                users[forecastItem.OwnerId].Periods[forecastItem.PeriodId] = {}
+                                users[forecastItem.OwnerId].Periods[forecastItem.PeriodId][forecastItem.ForecastCategoryName] = forecastItem;
+                            }
+                        }
+                    })
+                    
+                    $scope.$apply();
+                    resolve(res)
+                })
+                .catch(function(err){
+                    reject(err)
+                });
+            })
+        }
+        
+        $scope.getPredictions = function(){
+            return new Promise(function(resolve,reject){
+                let userIds = Object.keys($scope.users);
+                let periodIds = $scope.periods.map(function(period){ return period.Id })
+                
+                let query = [
+                    'Select Id, Amount, AmountHigherBound, AmountLowerBound, PeriodId, ForecastOwnerId',
+                    'From ForecastingPrediction',
+                    'Where ForecastOwnerId IN (\'' + userIds.join("','") + '\')',
+                    'And PeriodId IN (\'' + periodIds.join("','") + '\')'
+                ]
+                let queryString = query.join(' ')
+                
+                SFDC.query(queryString)
+                .then(function(res){
+                    let predictions = res.data.records;
+                    let users = $scope.users
+                    predictions.map(function(prediction){
+                        if(users.hasOwnProperty(prediction.ForecastOwnerId)){
+                            if(users[prediction.ForecastOwnerId].Periods &amp;&amp; users[prediction.ForecastOwnerId].Periods[prediction.PeriodId]){
+                                users[prediction.ForecastOwnerId].Periods[prediction.PeriodId]['Prediction'] = prediction;
+                            } else if(users[prediction.ForecastOwnerId].Periods) {
+                                users[prediction.ForecastOwnerId].Periods[prediction.PeriodId] = {}
+                                users[prediction.ForecastOwnerId].Periods[prediction.PeriodId]['Prediction'] = prediction;
+                            } else {
+                                users[prediction.ForecastOwnerId]['Periods'] = [];
+                                users[prediction.ForecastOwnerId].Periods[prediction.PeriodId] = {}
+                                users[prediction.ForecastOwnerId].Periods[prediction.PeriodId]['Prediction'] = prediction;
+                            }
+                        }
+                    })
+                    return resolve(res);
+                })
+                .catch(function(err){
+                    console.log("ERROR:getPredictions",err);
+                    return reject(err);
+                });
+            })
+        }
+        
+        $scope.setPrediction = function(user, userPeriod, period){
+            console.log('setPrediction', user, userPeriod, period);
+            $scope.showEdit = true;
+            let selectedPrediction = userPeriod['Prediction'] ? userPeriod['Prediction'] : new ForecastingPrediction(user.Id, $scope.forecastingTypeId, period.StartDate);
+            let suggestedValue = Object.keys(userPeriod).reduce(function(value, key){
+                if(key != 'Prediction'){
+                    return value + (userPeriod[key].ForecastAmount * ForecaseMultipliers[key]);
+                } else {
+                    return value;
+                }
+            }, 0)
+            
+            //Set default delta
+            if(!selectedPrediction.Id){
+                $scope.delta = 10;
+                selectedPrediction.Amount = Math.round(suggestedValue * 100)/100;
+                selectedPrediction.AmountHigherBound = Math.round(selectedPrediction.Amount * (1 + $scope.delta/100) * 100)/100;
+                selectedPrediction.AmountLowerBound = Math.round(selectedPrediction.Amount * (1 - $scope.delta/100) * 100)/100;
+            } else {
+                $scope.delta = Math.round((selectedPrediction.AmountHigherBound/selectedPrediction.Amount - 1) * 100);
+                
+                $timeout(function() {
+                    $scope.$apply();
+                },0, false)
+            }
+            $scope.selectedPrediction = selectedPrediction;
+            $scope.selectedPeriod = period;
+            $scope.selectedUserPeriod = userPeriod;
+            $scope.selectedUser = user;
+            $scope.selectedPredictionReason = null;
+            $scope.showReasonPane = null;
+            $scope.suggestedValue = Math.round(suggestedValue * 100)/100;
+            
+            console.log(selectedPrediction);
+            
+            $scope.getPredictionReasons(selectedPrediction.Id);
+        }
+    
+        $scope.upsertPrediction = function(){
+            let prediction = angular.copy($scope.selectedPrediction);
+            let dateNow = new Date();
+            
+            console.log('AsOfDate', dateNow);
+    
+            prediction["AsOfDate"] = `${dateNow.getFullYear()}-${dateNow.getMonth() + 1}-12`;
+            prediction["ForecastingTypeId"] = $scope.forecastingTypeId;
+    
+            console.log('Prediction', prediction);
+    
+            SFDC.upsert('ForecastingPrediction', prediction, ["PeriodId", "AsOfDate", "ForecastOwnerId", "StartDate", "ForecastingTypeId"], ["AsOfDate"])
+            .then(function(res){
+                console.log('Upsert Prediction', res);
+                let recordId = res.data.id
+                if(recordId){
+                    $scope.selectedPrediction.Id = recordId;
+                    $scope.selectedUserPeriod['Prediction'] = $scope.selectedPrediction;
+                    console.log($scope.selectedUserPeriod)
+                    $scope.$apply();
+                }
+                $scope.createToast('Prediction upserted!', 'success');
+            })
+            .then(function(){
+                return $scope.getPredictionTrends()
+            })
+            .then(function(res){
+                console.log('Deleting Trends', res);
+                return $scope.deletePredictionTrends(res);
+            })
+            /*.then(function(){
+                let actualTrend = Object.assign({}, prediction);
+                delete actualTrend.Id;
+                actualTrend["ForecastingPredictionTrendType"] = 'Actual';
+                return SFDC.upsert('ForecastingPredictionTrend', actualTrend, [], ["PeriodId", "StartDate"])
+            })
+            .then(function(){
+                prediction["ForecastingPredictionTrendType"] = 'Actual';
+                let predictedTrend = Object.assign({}, prediction);
+                delete predictedTrend.Id;
+                predictedTrend["ForecastingPredictionTrendType"] = 'Predicted';
+                return SFDC.upsert('ForecastingPredictionTrend', predictedTrend, [], ["PeriodId", "StartDate"])
+            })*/
+            .then(function(){
+                return $scope.upsertActualTrends();
+            })
+            .then(function(){
+                return $scope.upsertPredictionTrends();
+            })
+            .then(function(){
+                return $scope.getPredictionElements()
+            })
+            .then(function(res){
+                return $scope.deletePredictionElements(res);
+            })
+            .then(function(){
+                return $scope.upsertPredictionElements();
+            })
+            .then(function(){
+                Mixpanel.sendEvent('Predictive Forecasting', {action: 'Upsert Prediction'})
+            })
+            .catch(function(err){
+                $scope.createToast('Prediction upsert failed!', 'error');
+            })
+        }
+        
+        $scope.getPredictionTrends = function(){
+
+            let periodId = $scope.selectedPeriod.Id;
+            
+            let queryString = [
+                "Select Id",
+                "From ForecastingPredictionTrend"
+            ]
+            
+            return SFDC.query(queryString.join(' '))
+        }
+
+        $scope.deletePredictionTrends = function(query){
+            let promises = [];
+            let predictionTrends = query.data.records;
+
+            $scope.createToast('Deleting Old Trends', 'success');
+
+            angular.forEach(predictionTrends, function(predictionTrend){
+                promises.push(SFDC.delete("ForecastingPredictionTrend", predictionTrend.Id))
+            })
+
+            return Promise.all(promises)
+        }
+
+        $scope.upsertActualTrends = function(){
+            let promises = [];
+            
+            let prediction = angular.copy($scope.selectedPrediction);
+            let forecastingTypeId = $scope.forecastingTypeId;
+            let today = new Date();
+            let currentDay = today.getDate();
+            let lastDay = new Date(today.getFullYear(), today.getMonth()+1, 0).getDate();
+            let previousAmount;
+            
+            $scope.createToast('Creating Actual Trends', 'success');
+            
+            for(let dayIndex = lastDay; dayIndex >= 1; dayIndex--){
+                let trend = angular.copy($scope.selectedPrediction);
+                let amount; 
+                if(dayIndex == lastDay) {
+                    amount = prediction.Amount;
+                    previousAmount = amount;
+                    continue;
+                }
+                if(dayIndex > currentDay){
+                    amount = previousAmount * .9;
+                    previousAmount = amount;
+                    continue;
+                }
+                if(dayIndex &lt;= currentDay) { 
+                    amount = previousAmount * .9;
+                    previousAmount = amount
+                }
+    
+                trend["AsOfDate"] = `${today.getFullYear()}-${today.getMonth() + 1}-${dayIndex}`;
+                trend["ForecastingTypeId"] = forecastingTypeId;
+                delete trend.Id;
+    
+                trend["ForecastingPredictionTrendType"] = 'Actual';
+                trend.Amount = amount
+                trend.AmountLowerBound = amount;
+                trend.AmountHigherBound = amount;
+                promises.push(SFDC.upsert("ForecastingPredictionTrend", trend, [], ["PeriodId", "StartDate"]));
+            }
+            
+            return Promise.all(promises)
+        }
+    
+        $scope.upsertPredictionTrends = function(){
+            let promises = [];
+            
+            let prediction = angular.copy($scope.selectedPrediction);
+            let forecastingTypeId = $scope.forecastingTypeId;
+            let today = new Date();
+            let currentDay = today.getDate();
+            let lastDay = new Date(today.getFullYear(), today.getMonth()+1, 0).getDate();
+            let previousAmount;
+            
+            $scope.createToast('Creating Prediction Trends', 'success');
+            
+            for(let dayIndex = lastDay; dayIndex >= currentDay; dayIndex--){
+                let trend = angular.copy($scope.selectedPrediction);
+                let amount; 
+                if(dayIndex == lastDay) {
+                    amount = prediction.Amount;
+                    previousAmount = amount
+                }
+                if(dayIndex != lastDay) { 
+                    amount = previousAmount * .9
+                    previousAmount = amount
+                } 
+    
+                trend["AsOfDate"] = `${today.getFullYear()}-${today.getMonth() + 1}-${dayIndex}`;
+                trend["ForecastingTypeId"] = forecastingTypeId;
+                delete trend.Id;
+
+                trend["ForecastingPredictionTrendType"] = 'Predicted';
+                trend.Amount = amount;
+                trend.AmountHigherBound = Math.round(amount * (1 + $scope.delta/100) * 100)/100;
+                trend.AmountLowerBound = Math.round(amount * (1 - $scope.delta/100) * 100)/100;
+                promises.push(SFDC.upsert("ForecastingPredictionTrend", trend, [], ["PeriodId", "StartDate"]));
+            }
+            
+            return Promise.all(promises)
+        }
+
+        $scope.getPredictionElements = function(){
+            let periodId = $scope.selectedPeriod.Id;
+            
+            let queryString = [
+                "Select Id",
+                "From ForecastingPredictionElement Where PeriodId = '" + periodId + "'"
+            ]
+            
+            return SFDC.query(queryString.join(' '));
+        }
+
+
+        $scope.deletePredictionElements = function(query){
+            let promises = [];
+            let predictionElements = query.data.records;
+
+            $scope.createToast('Deleting Old Elements', 'success');
+
+            angular.forEach(predictionElements, function(predictionElement){
+                promises.push(SFDC.delete("ForecastingPredictionElement", predictionElement.Id))
+            })
+
+            return Promise.all(promises)
+        }
+
+        $scope.upsertPredictionElements = function(){
+            let promises = [];
+
+            let period = angular.copy($scope.selectedPeriod);
+            let prediction = angular.copy($scope.selectedPrediction);
+
+            let elements = {}
+
+            elements["Prediction"] = prediction.Amount;
+            elements["Closed"] = prediction.Amount * .5;
+            elements["PulledIn"] = prediction.Amount * .25;
+            elements["AmountChanges"] = prediction.Amount * -.25;
+            elements["InPipeAndWillBeWon"] = prediction.Amount * .3;
+            elements["NewDealsThatWillBeWon"] = prediction.Amount * .2;
+
+            Object.keys(elements).map(function(chartElement){
+                let element = {'ChartElement': chartElement, 'Amount': elements[chartElement]}
+                element['ForecastingPredictionId'] = prediction.Id;
+                promises.push(SFDC.upsert("ForecastingPredictionElement", element, [], []));
+            })
+
+            return Promise.all(promises);
+        }
+
+        $scope.getPredictionReasons = function(predictionId){
+            console.log('getPredictionReasons', predictionId)
+            
+            if(predictionId){
+                let queryString = [
+                    "Select Id, ForecastingPredictionId, PredictionReasonCode, PredictionReasonText, Score, TrendType",
+                    "From ForecastingPredictionReason Where ForecastingPredictionId = '" + predictionId + "'"
+                ];
+                
+                SFDC.query(queryString.join(' '))
+                .then(function(res){
+                    $scope.reasons = res.data.records;
+                    $scope.$apply();
+                })
+            } else {
+                $scope.reasons = [];
+            }
+        }
+        
+        $scope.setPredictionReason = function(existingReason){
+            $scope.showReasonPane = true;
+            
+            let predictionReason = existingReason ? existingReason : new ForecastingPredictionReason($scope.selectedPrediction.Id);
+            console.log('setPredictionReason', predictionReason);
+            $scope.selectedPredictionReason = predictionReason;
+        }
+        
+        $scope.clearPredictionReason = function(){
+            $scope.showReasonPane = false;
+            $scope.selectedPredictionReason = null;
+        }
+        
+        $scope.upsertPredictionReason = function(){
+            let predictionReason = angular.copy($scope.selectedPredictionReason);
+            console.log(predictionReason);
+            
+            SFDC.upsert('ForecastingPredictionReason', predictionReason, ['PeriodId', 'ForecastOwnerId','ForecastingTypeId', 'ForecastingPredictionId'], [])
+            .then(function(res){
+                console.log('upsertPrediction', res);
+                let recordId = res.data.id
+                if(recordId){
+                    predictionReason['Id'] = recordId;
+                    $scope.reasons.push(predictionReason);
+                }
+                $scope.selectedPredictionReason = null;
+                $scope.showReasonPane = false;
+                $scope.$apply();
+                $scope.createToast('Prediction reason upserted!', 'success');
+            })
+            .then(function(){
+                Mixpanel.sendEvent('Predictive Forecasting', {action: 'Upsert Prediction Reason'})
+            })
+            .catch(function(err){
+                $scope.createToast('Prediction reason upsert failed!', 'error');
+            })
+        }
+        
+        $scope.deletePredictionReason = function(index, reasonId){
+            if(confirm('Do you want to delete this prediction reason?')){
+                SFDC.delete('ForecastingPredictionReason', reasonId)
+                .then(function(res){
+                    $scope.reasons.splice(index, 1);
+                    $scope.$apply();
+                })
+                .then(function(){
+                    Mixpanel.sendEvent('Predictive Forecasting', {action: 'Delete Prediction Reason'})
+                })
+                .catch(function(err){
+                    $scope.createToast('Prediction reason upsert failed!', 'error');
+                })
+            }
+        }
+        
+        $scope.$watch('delta', function(oldVal, newVal){
+            if(oldVal &amp;&amp; oldVal != newVal){
+                $scope.selectedPrediction.AmountHigherBound = Math.round($scope.selectedPrediction.Amount * (1 + $scope.delta/100) * 100)/100;
+                $scope.selectedPrediction.AmountLowerBound = Math.round($scope.selectedPrediction.Amount * (1 - $scope.delta/100) * 100)/100;
+            }
+        })
+        
+        $scope.$watch('selectedPrediction.Amount', function(oldVal, newVal){
+            if(oldVal &amp;&amp; oldVal != newVal){
+                $scope.selectedPrediction.AmountHigherBound = Math.round($scope.selectedPrediction.Amount * (1 + $scope.delta/100) * 100)/100;
+                $scope.selectedPrediction.AmountLowerBound = Math.round($scope.selectedPrediction.Amount * (1 - $scope.delta/100) * 100)/100;
+            }
+        })
+        
+        $scope.init();
+    } 
+</apex:page>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Critical</masterLabel>
+        <translation>Kritisk</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>High</masterLabel>
+        <translation>Hög</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Low</masterLabel>
+        <translation>Låg</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Medium</masterLabel>
+        <translation>Medium</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

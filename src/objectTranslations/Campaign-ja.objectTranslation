@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>Campaign Layout</layout>
+        <sections>
+            <label>キャンペーンチャート</label>
+            <section>Campaign Charts</section>
+        </sections>
+        <sections>
+            <label>キャンペーン結果</label>
+            <section>Campaign Results</section>
+        </sections>
+        <sections>
+            <label>関連リンク</label>
+            <section>Useful Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Parent Campaign Layout</layout>
+        <sections>
+            <label>計画</label>
+            <section>Hierarchy Planning</section>
+        </sections>
+        <sections>
+            <label>階層内の情報</label>
+            <section>Hierarchy Results</section>
+        </sections>
+        <sections>
+            <label>関連リンク</label>
+            <section>Useful Links</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

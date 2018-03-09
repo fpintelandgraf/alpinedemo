@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>richTextValue</name>
+                <value>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;b style=&quot;font-size: 16px;&quot;&gt;CERTIFIED PARTNER&amp;nbsp;EXPERTISE!&lt;/b&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;Certifications are the hallmark of our top&amp;nbsp;ecosystem partners. Your partner tier is determined by sales success&amp;nbsp;and&amp;nbsp;the number of certified individuals at your company. Access the best training courses and certification content here!&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;a href=&quot;/partnercentral/s/collateral&quot; target=&quot;null&quot;&gt;&lt;img class=&quot;sfdcCbImage&quot; src=&quot;https://sdomaster--livepreview.na78.force.com/book-77516.png&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://developer.salesforce.com/trailhead/&quot; target=&quot;null&quot;&gt;&lt;img class=&quot;sfdcCbImage&quot; src=&quot;https://sdomaster--livepreview.na78.force.com/lms-850966.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;</value>
+            </componentInstanceProperties>
+            <componentName>forceCommunity:richTextInline</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>filterName</name>
+                <value>00B6A000004F9sdUAS</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>layout</name>
+                <value>FULL</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>pageSize</name>
+                <value>10</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>scope</name>
+                <value>Certification__c</value>
+            </componentInstanceProperties>
+            <componentName>forceCommunity:objectHome</componentName>
+        </componentInstances>
+        <name>content</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>channel</name>
+                <value>CustomChannel1</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>title</name>
+                <value>Training Recommendations</value>
+            </componentInstanceProperties>
+            <componentName>forceCommunity:recommendations</componentName>
+        </componentInstances>
+        <name>sidebar</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <name>header</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <name>footer</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <masterLabel>Training + Certification</masterLabel>
+    <pageTemplate>siteforce:sldsTwoCol84Layout</pageTemplate>
+    <type>CommAppPage</type>
+</FlexiPage>

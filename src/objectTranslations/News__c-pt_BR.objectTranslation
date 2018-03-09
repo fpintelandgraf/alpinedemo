@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- News --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- News --></value>
+    </caseValues>
+    <fields>
+        <label><!-- News Headline --></label>
+        <name>News_Headline__c</name>
+    </fields>
+    <fields>
+        <label><!-- News Text --></label>
+        <name>News_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Publication Date --></label>
+        <name>Publication_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Publication --></label>
+        <name>Publication__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation>Aprovado</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Review</masterLabel>
+            <translation>Em Revisão</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Published to Website</masterLabel>
+            <translation>Publicado no Site</translation>
+        </picklistValues>
+    </fields>
+    <gender><!-- Feminine --></gender>
+    <nameFieldLabel><!-- News Name --></nameFieldLabel>
+</CustomObjectTranslation>

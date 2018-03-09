@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>商談パイプラインスナップショット</value>
+    </caseValues>
+    <fields>
+        <label>取引先</label>
+        <name>Account__c</name>
+    </fields>
+    <fields>
+        <label>金額</label>
+        <name>Amount__c</name>
+    </fields>
+    <fields>
+        <label>完了日</label>
+        <name>Close_Date__c</name>
+    </fields>
+    <fields>
+        <label>商談名</label>
+        <name>Opportunity_Name__c</name>
+    </fields>
+    <fields>
+        <label>商談所有者</label>
+        <name>Opportunity_Owner__c</name>
+    </fields>
+    <fields>
+        <label>実行日</label>
+        <name>Run_Date__c</name>
+    </fields>
+    <fields>
+        <label>フェーズ</label>
+        <name>Stage__c</name>
+    </fields>
+    <nameFieldLabel>商談パイプラインスナップショット名</nameFieldLabel>
+</CustomObjectTranslation>

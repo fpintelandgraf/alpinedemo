@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ChannelLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <enabledChannels>Email</enabledChannels>
+    <label>Article Fields for Email_Cirrus</label>
+    <layoutItems>
+        <field>Details__c</field>
+    </layoutItems>
+</ChannelLayout>

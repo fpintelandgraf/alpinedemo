@@ -1,0 +1,105 @@
+<script type="text/javascript">
+    
+    	var totalDays = 0;
+    	var remainingDays = 0;
+    	var type;
+    
+    	function setupPage(mode) {
+    		type = mode;
+    		if ((type == 'process' && "{!Pay_Cycle__c.Processed__c}" == "") || (type == 'reset' && "{!Pay_Cycle__c.Processed__c}" != "")) { 
+	    		//function contains all code to execute after page is rendered
+				var state = { //state that you need when the callback is called
+					output : document.getElementById("bodyDiv"),
+					startTime : new Date().getTime()
+				};
+				
+				var callback = {
+					//call layoutResult if the request is successful
+					onSuccess: layoutResults,
+					//call callailed if the api request fails
+					onFailure: callFailed,
+					source: state
+				};
+								
+				//create a date object
+				var endDate = new Date('{!Pay_Cycle__c.End_Date__c}');
+				
+				var soql;
+				if(type == 'process') soql = "Select count() from Requested_Day__c where (Pay_Cycle__c = null) and ((Time_Off_Request__r.Status__c = 'Approved') or (Time_Off_Request__r.Status__c = 'Processed')) and (Time_Off_Request__r.Payroll_System__c = '{!Pay_Cycle__c.Payroll_SystemId__c}') and (Requested_Day__c <= " + getSfdcDate(endDate) + ") and (IsDeleted = false) and (Do_not_include_in_Pay_Cycle__c = false)";
+				else soql = "Select count() from Requested_Day__c where (Pay_Cycle__c = '{!Pay_Cycle__c.Id}')  and (IsDeleted = false)"
+				//do the query
+				sforce.connection.query(soql, callback);
+    			
+    			document.getElementById("bodyDiv").innerHTML = "Processing...";
+    				
+    		} else {
+				if(type == 'process') document.getElementById("bodyDiv").innerHTML="<h3>This Pay Cycle has already been processed, and must be reset before it can be processed again.<h3>";
+				else document.getElementById("bodyDiv").innerHTML="<h3>This Pay Cycle has not yet been processed, and so it cannot be reset.<h3>";				
+				document.getElementById("bodyDiv").innerHTML += "<div class=\"buttons\"><input type=\"button\" onclick=\"window.close();\" value=\"Close\" class=\"btn\"></div>";
+			}
+    	}
+    	
+    	function getSfdcDate(date) {
+    	    var year  = date.getFullYear();
+    	    var month = date.getMonth() < 9 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1);
+    	    var date  = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+    	    return year + "-" + month + "-" + date;
+    	}
+    	
+    	function layoutResults(queryResult, source){
+    	
+   			totalDays = queryResult.size;
+   			
+   			if(totalDays == 0) {
+   				if(type == 'process') document.getElementById("bodyDiv").innerHTML =  "No approved requests within the date range for this pay cycle";
+   				else document.getElementById("bodyDiv").innerHTML =  "There are no processed requests to reset";
+   				document.getElementById("bodyDiv").innerHTML += "<div class=\"buttons\"><input type=\"button\" onclick=\"window.close();\" value=\"Close\" class=\"btn\"></div>";
+   			} else {
+   				document.getElementById("bodyDiv").innerHTML = totalDays + " Total Days To be Processed";
+   				document.getElementById("progressContainer").style.display = "block";
+				//now loop until we've processed them all
+				remainingDays = totalDays;
+				process();
+    		}
+    	}
+    	
+    	function process() {
+    	
+    		var state = { //state that you need when the callback is called
+				output : document.getElementById("bodyDiv"),
+				startTime : new Date().getTime()
+			};
+    		var callback = {
+				//call layoutResult if the request is successful
+				onSuccess: updateProgress,
+				//call callailed if the api request fails
+				onFailure: callFailed,
+				source: state
+			};
+			
+			var webServiceName = "reset_pay_cycle";
+    		if(type == 'process') webServiceName = "process_pay_cycle";
+    		sforce.apex.execute("pto_web_services", webServiceName, {a:"{!Pay_Cycle__c.Id}" },callback)
+
+    	}
+    	
+    	function updateProgress(result) {
+    	    remainingDays -= result;
+    		document.getElementById("progressIMG").width = 200 * ((totalDays - remainingDays)/totalDays);
+    		if(remainingDays > 0) window.setTimeout(process, 100); 
+    		else {
+							
+    			document.getElementById("progressIMG").width = 200;
+    			window.opener.location.reload(true)
+				if(type == 'process') document.getElementById("bodyDiv").innerHTML = "<h3>Pay Cycle has been successfully processed</h3>";
+				else document.getElementById("bodyDiv").innerHTML = "<h3>Pay Cycle has been successfully reset</h3>";
+				document.getElementById("bodyDiv").innerHTML += "<div class=\"buttons\"><input type=\"button\" onclick=\"window.close();\" value=\"Close\" class=\"btn\"></div>";
+				document.getElementById("progressContainer").style.display = "none";
+    		}
+    	
+    	}
+    	
+    	function callFailed(error, source) {
+			source.output.innerHTML = "An error has occurred: " + error;
+    	}
+    </script>

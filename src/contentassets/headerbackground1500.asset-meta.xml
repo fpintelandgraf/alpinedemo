@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentAsset xmlns="http://soap.sforce.com/2006/04/metadata">
+    <language>en_US</language>
+    <masterLabel>headerbackground1500</masterLabel>
+    <relationships/>
+    <versions>
+        <version>
+            <number>1</number>
+            <pathOnClient>headerbackground-1500.png</pathOnClient>
+        </version>
+    </versions>
+</ContentAsset>

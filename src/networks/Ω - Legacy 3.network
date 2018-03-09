@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Network xmlns="http://soap.sforce.com/2006/04/metadata">
+    <allowMembersToFlag>false</allowMembersToFlag>
+    <branding>
+        <loginFooterText>Cirrus</loginFooterText>
+        <loginLogo>Communities_Shared_Document_Folder/CirrusLogo_copy_png.png</loginLogo>
+        <primaryColor>#39A9E5</primaryColor>
+        <primaryComplementColor>#222222</primaryComplementColor>
+        <quaternaryColor>#2F2F2F</quaternaryColor>
+        <quaternaryComplementColor>#FFFFFF</quaternaryComplementColor>
+        <secondaryColor>#51606E</secondaryColor>
+        <tertiaryColor>#DDE4E9</tertiaryColor>
+        <tertiaryComplementColor>#222222</tertiaryComplementColor>
+        <zeronaryColor>#2F2F2F</zeronaryColor>
+        <zeronaryComplementColor>#FFFFFF</zeronaryComplementColor>
+    </branding>
+    <changePasswordTemplate>unfiled$public/CommunityChangePasswordEmailTemplate</changePasswordTemplate>
+    <description>This site is no longer used.</description>
+    <emailSenderAddress>sdo@salesforce.com</emailSenderAddress>
+    <emailSenderName>(Deprecated) Consumer Community</emailSenderName>
+    <enableGuestChatter>false</enableGuestChatter>
+    <enableInvitation>false</enableInvitation>
+    <enableKnowledgeable>false</enableKnowledgeable>
+    <enableNicknameDisplay>false</enableNicknameDisplay>
+    <enablePrivateMessages>false</enablePrivateMessages>
+    <enableReputation>false</enableReputation>
+    <enableSiteAsContainer>false</enableSiteAsContainer>
+    <forgotPasswordTemplate>unfiled$public/CommunityForgotPasswordEmailTemplate</forgotPasswordTemplate>
+    <networkMemberGroups>
+        <profile>Admin</profile>
+    </networkMemberGroups>
+    <picassoSite>Legacy_3_C</picassoSite>
+    <selfRegistration>false</selfRegistration>
+    <sendWelcomeEmail>false</sendWelcomeEmail>
+    <site>Legacy_3</site>
+    <status>DownForMaintenance</status>
+    <tabs>
+        <customTab>Consumer_Home</customTab>
+        <customTab>Live_Agent_Service</customTab>
+        <defaultTab>01r6A000000AuL8</defaultTab>
+    </tabs>
+    <urlPathPrefix>consumersdep</urlPathPrefix>
+    <welcomeTemplate>unfiled$public/CommunityWelcomeEmailTemplate</welcomeTemplate>
+</Network>

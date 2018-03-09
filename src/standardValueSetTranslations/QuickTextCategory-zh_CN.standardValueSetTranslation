@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Closings</masterLabel>
+        <translation>撤防</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>FAQ</masterLabel>
+        <translation>常问问题</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Greetings</masterLabel>
+        <translation>问候</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

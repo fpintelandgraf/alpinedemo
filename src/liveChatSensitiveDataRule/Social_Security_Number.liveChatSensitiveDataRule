@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LiveChatSensitiveDataRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionType>Replace</actionType>
+    <enforceOn>7</enforceOn>
+    <isEnabled>false</isEnabled>
+    <pattern>\b(((?!219-09-9999|078-05-1120)(?!666|000|9\d{2})\d{3}-(?!00)\d{2}-(?!0{4})\d{4}))\b</pattern>
+    <replacement>###-##-####</replacement>
+</LiveChatSensitiveDataRule>

@@ -1,0 +1,278 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML>
+<head>
+<link href="/dCSS/Theme2/default/common.css" type="text/css" media="handheld,print,projection,screen,tty,tv"  rel="stylesheet" >
+<link href="/sCSS/9.0/1172698507000/Theme2/00D6A000001SUwV/0056A000000elny/dCustom.css" type="text/css" media="handheld,print,projection,screen,tty,tv"  rel="stylesheet" >
+<style type="text/css" media="screen">div.visible { display: visible; } div.hidden { display: none; }</style>
+
+<script src="/soap/ajax/9.0/connection.js" type="text/javascript"></script>
+<script>
+
+	//Window error handling
+	window.onerror = function ( strErr, strURL, strLineNumber ) {	
+		if(strURL=="")
+			strURL=document.location.href + "\n";
+		var strMess =  "Error:\n";
+		strMess += "URL: " + strURL + "\n";
+		if(strLineNumber!=0)
+			strMess += "<br>nline number: " + strLineNumber + "\n";
+		strMess += "<br>Error Message: " + strErr + "\n";
+		logError(strMess);
+	}
+		
+	function main() {
+		var retVal=true;
+		//Validate that a value exists in the partner account field for the lead and opportunity object
+		var visibleOnLead = true;
+		var visibleOnOppty = true;
+		var partnerAccount = true;	//
+		partnerAccount = checkIfPartnerEnabled();
+		if ( partnerAccount) {
+			 visibleOnLead = checkForPartnerAcccount("Lead");            //Comment this line out if you have the fields enabled for all users
+			 visibleOnOppty = checkForPartnerAcccount("Opportunity");	//Comment this line out if you have the fields enabled for all users
+			if(visibleOnLead && visibleOnOppty) {
+					retVal = updateScorecard();
+			} else {
+				var message="The 'Partner Account' field is not visible/ available on the following object(s): ";
+				if(!visibleOnLead)
+					message += " Lead ";
+				if(!visibleOnOppty)
+					message += " Opportunity";
+				message += "\nThe scorecard cannot be created without access to this field ";
+				alert(message);
+			}
+		}
+		
+		if(retVal) {
+			//Return to the account
+			parent.location.href = "/{!Account.Id}";
+		}
+  	}
+
+	function checkForPartnerAcccount(objectName) {
+		try {
+			var result = sforce.connection.describeSObject(objectName);
+			var hasPartnerAccount = false;
+			for (var i=0; i<result.fields.length; i++) {
+				var field = result.fields[i];
+				if(field.name == "PartnerAccountId") {
+					hasPartnerAccount = true;
+					break;
+				}
+			}
+		} catch(error) {
+			logError(error);
+		}
+		return hasPartnerAccount;
+	}
+	
+	function checkIfPartnerEnabled() {
+		var partnerEnabled = false;
+		try {
+			var result = sforce.connection.describeSObject("Account");
+			var prmEnabled = false;
+			for (var i=0; i<result.fields.length; i++) {
+				var field = result.fields[i];
+				if(field.name == "IsPartner") {
+					prmEnabled = true;
+					break;
+				}
+			}
+		} catch(error) {
+			logError(error);
+		}
+		if (! prmEnabled) {
+			alert("Your org is not PRM enabled.\nScorecards are created for Partner Accounts in a PRM enabled org only.");
+			return partnerEnabled;
+		}
+		
+		var query = "Select IsPartner From Account where id='{!Account.Id}'";
+		try {
+			var qr = sforce.connection.query(query);
+			if (qr != null && qr.size > 0) {
+				partnerEnabled = qr.getArray("records")[0].getBoolean("IsPartner");
+			}
+		} catch(error) {
+			logError(error);
+		}
+
+		if (! partnerEnabled) {
+			alert("This Account is not enabled as a Partner.\nScorecards are created for Partner Accounts in a PRM enabled org only.");
+		}
+		
+		return partnerEnabled;
+	}
+
+	function updateScorecard() {
+		var retVal = true;
+		try {
+			//All queries are constrained by the partner id
+
+			var whereClause = " and partneraccountid = '{!Account.Id}'";
+	
+			//Create an account object and set the properties of the scorecard fields
+			var accountRec = new sforce.SObject("Account");
+			accountRec.Id = "{!Account.Id}";
+
+			//Number Open Opportunities
+			accountRec.Number_Open_Opportunities__c = updateScorecardValue("select count() from opportunity where IsClosed = false " + whereClause, accountRec.Number_Open_Opportunities__c, "count");
+
+			//Number Closed Opportunities
+			accountRec.Number_Closed_Opportunities__c = updateScorecardValue("select count() from opportunity where IsClosed = true " + whereClause, accountRec.Number_Closed_Opportunities__c, "count");
+	
+			//Number Closed Won
+			accountRec.Number_Closed_Won_Opportunities__c = updateScorecardValue("select count() from opportunity where IsWon = true " + whereClause, accountRec.Number_Closed_Won_Opportunities__c, "count");
+			
+			//Number Closed Lost
+			accountRec.Number_Closed_Lost_Opportunities__c = updateScorecardValue("select count() from opportunity where IsWon = false and IsClosed = true "  + whereClause, accountRec.Number_Closed_Lost_Opportunities__c, "count");
+			
+			//Value Open Opportunties
+			accountRec.Value_Open_Opportunties__c= updateScorecardValue("select id, amount from opportunity where IsClosed = false and amount != null " + whereClause, accountRec.Value_Open_Opportunties__c, "sum", "Amount");
+
+			//Value Closed Won Opportunties
+			accountRec.Value_Closed_Won_Opportunties__c = updateScorecardValue("select id, amount from opportunity where IsClosed = true and IsWon = true and amount != null " + whereClause, accountRec.Value_Closed_Won_Opportunties__c, "sum", "Amount");
+			
+			//Value Closed Won Opportunties This Year
+			accountRec.YTD_Revenue_Generated__c = updateScorecardValue("select id, amount from opportunity where CloseDate = THIS_YEAR and IsClosed = true and IsWon = true and amount != null " + whereClause, accountRec.YTD_Revenue_Generated__c, "sum", "Amount");
+	
+			//Value Closed Won Opportunties Last Year
+			accountRec.Last_Year_Revenue_Generated__c = updateScorecardValue("select id, amount from opportunity where CloseDate = LAST_YEAR and IsClosed = true and IsWon = true and amount != null " + whereClause, accountRec.Last_Year_Revenue_Generated__c, "sum", "Amount");
+	
+			//Number Leads All Time 
+			accountRec.Number_Leads_Total__c = updateScorecardValue("select count() from lead where id != null " + whereClause, accountRec.Number_Leads_Total__c, "count");
+	
+			//Number Converted Leads 
+			accountRec.Number_Leads_Converted__c = updateScorecardValue("select count() from lead where isconverted = true " + whereClause, accountRec.Number_Leads_Converted__c, "count");
+	
+			//Number Active Leads 
+			accountRec.Number_Leads_Active__c = updateScorecardValue("select count() from lead where isconverted = false " + whereClause, accountRec.Number_Leads_Active__c, "count");
+	
+			//Update the last updates scorecard date
+			accountRec.Scorecard_Last_Updated__c = new Date();
+			
+			//Save the scorecard changes
+			updateAccountRec(accountRec);
+		} catch(error) {
+			logError(error);
+			retVal = false;
+		}
+		return retVal;
+	}
+	
+	function updateScorecardValue(sql, field, operatorType, sumField) {
+		//Execute the SOCL statement for the scorecard metric/ field to be updated
+		try {
+			
+			var qr = sforce.connection.query(sql);
+			
+			records = qr.getArray("records");
+						
+			//var qr = executeQuery(sql);
+			if(qr != null) {
+				switch (operatorType) {
+					case "count":
+						if(qr.done)
+							field = qr.size;
+						else
+							field = 0;
+						break;
+					case "sum":
+						var runningTotal = 0.00;
+						var tmpVal = 0.00; 
+						if (qr != null && qr.size > 0) {
+							var done = false;
+							while (done == false) {
+									for (var i=0;i<records.length;i++) {
+										tmpVal = parseFloat(records[i].get(sumField));
+										if (isNaN(tmpVal))
+											tmpVal=0.00; 	
+										runningTotal = parseFloat(runningTotal) + parseFloat(tmpVal); 
+									}
+								if (qr.done) {
+									done = true;
+								} else {
+									//Get more records
+									qr = sforceClient.queryMore(qr.queryLocator);
+								}
+							}
+						}
+						field = runningTotal;
+						break;
+				}
+			} //any bad query is handled by executeQuery
+		} catch(error) {
+			logError(error);
+		}
+		return field;
+	}
+
+	function updateAccountRec(accountRec) {
+		var arrRecords = new Array();
+		arrRecords.push(accountRec);
+		try {
+			var updateResult = sforce.connection.update(arrRecords);
+			if (!updateResult[0].getBoolean("success")) 
+				logError(updateResult[0]);
+		} catch(error) {
+			logError(error);
+		}
+    }
+
+	function logError(error) {
+    	document.getElementById('processingBar').className = "hidden";
+		document.getElementById("output").innerHTML = "";
+		document.getElementById("output").innerHTML = "An error has occurred: " + error;
+	}
+
+	function executeQuery(sql) {
+		try {
+			var qr = sforce.connection.query(sql);
+		} catch(error) {
+			alert(error);
+		}
+		return qr;
+	}
+	
+	function queryFailed(error, source) {
+		source.output.innerHTML = "An error has occurred: " + error;
+	}
+	
+	function returnToAccoount() {
+		parent.location.href = "/{!Account.Id}";
+	}
+</script>
+</head>
+
+<BODY class="account overviewPage" onload="main()">
+ <DIV class=bPageTitle>
+ <DIV class="ptBody secondaryPalette">
+ <DIV class=content><IMG class=pageTitleIcon alt=JobProfile  src="/s.gif">
+ <H1 class=pageType>Partner Scorecard<SPAN class=titleSeparatingColon>:</SPAN></H1>
+ <H2 class=pageDescription>Processing Page</H2>
+ </DIV></DIV></DIV>
+
+<DIV class="bPageBlock secondaryPalette">
+ <DIV class=pbBody>
+
+<div id="processingBar" class="visible">
+	<br>
+	<table width="100%"><tr><td align=center><span class="moduleTitle" id="processingmessage">Processing...Please Wait</span></td></tr>
+			<tr><td>&nbsp;</td></tr><tr><td align=center><img src="/img/waiting_dots.gif" border="0" width=156 height=34></td></tr>
+	</table>
+</div> 
+
+<DIV class=pbSubsection>
+<form name=scorecard>
+	<div id="ResultsHolder"></div>
+	<div id="output"> </div>
+</form>
+ </DIV></DIV></div>
+<table width="100%">
+	<tr>
+		<td align=center>
+			<input class=btn name="cancel" value="  Cancel " onclick="returnToAccoount()" size="7"  >
+		</td>
+	</tr>
+</table>
+</BODY>
+</HTML>

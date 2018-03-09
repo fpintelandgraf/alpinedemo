@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Next Business Day</masterLabel>
+        <translation>Próximo dia Útil</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Overnight</masterLabel>
+        <translation>Sedex 10</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Pick Up</masterLabel>
+        <translation>Retirada na Agência</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Rush</masterLabel>
+        <translation>Expeditado</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

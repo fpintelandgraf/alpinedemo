@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Referral --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Referral --></value>
+    </caseValues>
+    <fields>
+        <label>ID do Candidato</label>
+        <name>Candidate_ID__c</name>
+    </fields>
+    <fields>
+        <label>Email</label>
+        <name>Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- First Name --></label>
+        <name>First_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Job --></label>
+        <name>Job__c</name>
+        <relationshipLabel><!-- Referrals --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Last Name --></label>
+        <name>Last_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Phone --></label>
+        <name>Phone__c</name>
+    </fields>
+    <fields>
+        <label>Status</label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Created</masterLabel>
+            <translation>Criada</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hired</masterLabel>
+            <translation>Contratado</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Hired</masterLabel>
+            <translation>Não Contratado</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Offer</masterLabel>
+            <translation>Oferta</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reviewing</masterLabel>
+            <translation>Revisão</translation>
+        </picklistValues>
+    </fields>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>Referral Layout</layout>
+        <sections>
+            <label><!-- Contact Info --></label>
+            <section>Contact Info</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Candidate --></nameFieldLabel>
+</CustomObjectTranslation>

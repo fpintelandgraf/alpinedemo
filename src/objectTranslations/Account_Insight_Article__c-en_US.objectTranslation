@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Account Insight Article</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Account Insight Articles</value>
+    </caseValues>
+    <fields>
+        <label><!-- Article Text --></label>
+        <name>Article_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Account Insight --></label>
+        <name>InsightGroup__c</name>
+        <relationshipLabel><!-- Account Insight Articles --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- News Agency --></label>
+        <name>News_Agency__c</name>
+    </fields>
+    <fields>
+        <label><!-- Order --></label>
+        <name>Order__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

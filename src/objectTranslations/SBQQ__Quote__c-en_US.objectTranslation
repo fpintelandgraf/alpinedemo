@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>FSL Quote Layout</layout>
+        <sections>
+            <label><!-- Discount Information --></label>
+            <section>Discount Information</section>
+        </sections>
+        <sections>
+            <label><!-- Document Options --></label>
+            <section>Document Options</section>
+        </sections>
+        <sections>
+            <label><!-- Quote Analysis --></label>
+            <section>Quote Analysis</section>
+        </sections>
+        <sections>
+            <label><!-- Recalculating --></label>
+            <section>Recalculating</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Partner Quote Layout</layout>
+        <sections>
+            <label><!-- Discount Information --></label>
+            <section>Discount Information</section>
+        </sections>
+        <sections>
+            <label><!-- Document Options --></label>
+            <section>Document Options</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

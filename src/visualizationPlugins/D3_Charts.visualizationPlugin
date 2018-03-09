@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VisualizationPlugin xmlns="http://soap.sforce.com/2006/04/metadata">
+    <developerName>D3_Charts</developerName>
+    <icon>NVD3Ico</icon>
+    <masterLabel>D3 Charts</masterLabel>
+    <visualizationResources>
+        <file>nvd3</file>
+        <rank>1</rank>
+        <type>js</type>
+    </visualizationResources>
+    <visualizationResources>
+        <file>nvd3Css</file>
+        <rank>2</rank>
+        <type>css</type>
+    </visualizationResources>
+    <visualizationResources>
+        <file>stackedAreaAdapter</file>
+        <rank>3</rank>
+        <type>js</type>
+    </visualizationResources>
+    <visualizationResources>
+        <file>d3</file>
+        <rank>0</rank>
+        <type>js</type>
+    </visualizationResources>
+    <visualizationTypes>
+        <developerName>AreaChart</developerName>
+        <icon>stackedAreaIco</icon>
+        <masterLabel>AreaChart</masterLabel>
+        <scriptBootstrapMethod>renderStackedAreaChart</scriptBootstrapMethod>
+    </visualizationTypes>
+</VisualizationPlugin>

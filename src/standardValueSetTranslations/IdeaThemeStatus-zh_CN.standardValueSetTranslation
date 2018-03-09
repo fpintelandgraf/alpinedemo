@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Archived</masterLabel>
+        <translation>存档</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Closed</masterLabel>
+        <translation>关闭</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>New</masterLabel>
+        <translation>新</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

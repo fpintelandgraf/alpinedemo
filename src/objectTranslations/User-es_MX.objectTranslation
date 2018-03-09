@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>User Profile Layout</layout>
+        <layoutType>UserAlt</layoutType>
+        <sections>
+            <label>Acerca de</label>
+            <section>About</section>
+        </sections>
+        <sections>
+            <label><!-- About Me --></label>
+            <section>About Me</section>
+        </sections>
+        <sections>
+            <label>Contacto</label>
+            <section>Contact</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

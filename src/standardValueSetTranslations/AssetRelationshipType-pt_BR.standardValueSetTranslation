@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Crossgrade</masterLabel>
+        <translation>Crossgrade</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Replacement</masterLabel>
+        <translation>Reposição</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Upgrade</masterLabel>
+        <translation>Upgrade</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

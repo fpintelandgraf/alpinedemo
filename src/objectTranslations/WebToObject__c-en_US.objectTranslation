@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Form</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Forms Fast</value>
+    </caseValues>
+    <fields>
+        <label><!-- Active --></label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- BckColor --></label>
+        <name>BckColor__c</name>
+    </fields>
+    <fields>
+        <label><!-- BckUrl --></label>
+        <name>BckUrl__c</name>
+    </fields>
+    <fields>
+        <label><!-- BtnColor --></label>
+        <name>BtnColor__c</name>
+    </fields>
+    <fields>
+        <label><!-- CampaignId --></label>
+        <name>CampaignId__c</name>
+    </fields>
+    <fields>
+        <label><!-- FormBckColor --></label>
+        <name>FormBckColor__c</name>
+    </fields>
+    <fields>
+        <label><!-- HeadColor --></label>
+        <name>HeadColor__c</name>
+    </fields>
+    <fields>
+        <label><!-- HoverBtnColor --></label>
+        <name>HoverBtnColor__c</name>
+    </fields>
+    <fields>
+        <label><!-- LabelColor --></label>
+        <name>LabelColor__c</name>
+    </fields>
+    <fields>
+        <label><!-- LogoUrl --></label>
+        <name>LogoUrl__c</name>
+    </fields>
+    <fields>
+        <label><!-- Nickname --></label>
+        <name>Nickname__c</name>
+    </fields>
+    <fields>
+        <label><!-- Object --></label>
+        <name>Object__c</name>
+    </fields>
+    <fields>
+        <label><!-- OrgId --></label>
+        <name>OrgId__c</name>
+    </fields>
+    <fields>
+        <label><!-- Recaptcha --></label>
+        <name>Recaptcha__c</name>
+    </fields>
+    <fields>
+        <label><!-- RecordTypeId --></label>
+        <name>RecordTypeId__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record Info --></label>
+        <name>Record_info__c</name>
+    </fields>
+    <nameFieldLabel>Form Name</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

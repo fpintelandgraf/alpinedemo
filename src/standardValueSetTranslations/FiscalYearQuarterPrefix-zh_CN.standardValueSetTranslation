@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>FQ</masterLabel>
+        <translation><!-- FQ --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Q</masterLabel>
+        <translation><!-- Q --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Quarter</masterLabel>
+        <translation>25美分硬币</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Trimester</masterLabel>
+        <translation>三个月</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>FSL LEX Work Order Layout</layout>
+        <sections>
+            <label>Cím</label>
+            <section>Address</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>FSL Partner Page Layout</layout>
+        <sections>
+            <label>Cím</label>
+            <section>Address</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Accept/Reject --></label>
+        <name>Accept_Reject</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Change Status --></label>
+        <name>ChangeStatus</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- New Work Order Line Item --></label>
+        <name>CreateWOLI</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Create Product Request --></label>
+        <name>Create_Product_Request</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Create Quote --></label>
+        <name>Create_Quote</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- SendEmail --></label>
+        <name>SendEmail</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Time Entry --></label>
+        <name>Time_Entry</name>
+    </quickActions>
+</CustomObjectTranslation>

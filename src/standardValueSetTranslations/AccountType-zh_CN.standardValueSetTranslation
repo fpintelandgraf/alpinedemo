@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Enterprise</masterLabel>
+        <translation>企业</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Mid-Market</masterLabel>
+        <translation>中端市场</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Small Business</masterLabel>
+        <translation>小型企业</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

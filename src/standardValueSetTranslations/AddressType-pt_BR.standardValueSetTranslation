@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Billing</masterLabel>
+        <translation>Cobrança</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Home</masterLabel>
+        <translation>Casa</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Mailing</masterLabel>
+        <translation>Envio</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Shipping</masterLabel>
+        <translation>Remessa</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Documentation Issue</masterLabel>
+        <translation>Dokumentation / Hilfe</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Existing problem</masterLabel>
+        <translation>Bekanntes Problem</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Feature Request</masterLabel>
+        <translation><!-- Feature Request --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Hardware Issue</masterLabel>
+        <translation>Hardware</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Mail delivery issue</masterLabel>
+        <translation>Zustellung</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>New problem</masterLabel>
+        <translation>Unbekanntes Problem</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Problem Resolved</masterLabel>
+        <translation>Problem behoben</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Software Issue</masterLabel>
+        <translation>Software</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

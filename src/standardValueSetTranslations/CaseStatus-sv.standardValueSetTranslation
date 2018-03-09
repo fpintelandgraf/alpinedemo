@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Attention</masterLabel>
+        <translation><!-- Attention --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Closed</masterLabel>
+        <translation>Stängd</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Closed in Community</masterLabel>
+        <translation>Stängd i portal</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Escalated</masterLabel>
+        <translation>Eskalerad</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>New</masterLabel>
+        <translation>Nytt</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>On Hold</masterLabel>
+        <translation>Väntar</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Response Received</masterLabel>
+        <translation><!-- Response Received --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Waiting on Customer</masterLabel>
+        <translation>Väntar på kund</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Warning</masterLabel>
+        <translation><!-- Warning --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Working</masterLabel>
+        <translation>Arbetar</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

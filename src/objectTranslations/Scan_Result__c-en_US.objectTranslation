@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Scan Result</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Scan Results</value>
+    </caseValues>
+    <fields>
+        <label><!-- Count --></label>
+        <name>Count__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shelf Scan --></label>
+        <name>Shelf_Scan__c</name>
+        <relationshipLabel><!-- Scan Results --></relationshipLabel>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

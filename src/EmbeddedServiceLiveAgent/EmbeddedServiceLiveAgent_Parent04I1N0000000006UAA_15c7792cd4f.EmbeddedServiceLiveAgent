@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmbeddedServiceLiveAgent xmlns="http://soap.sforce.com/2006/04/metadata">
+    <embeddedServiceConfig>04I6A000000CakP</embeddedServiceConfig>
+    <liveChatButton>5736A000000bzo9</liveChatButton>
+    <liveChatDeployment>5726A000000c9A9</liveChatDeployment>
+    <masterLabel>EmbeddedServiceLiveAgent_Parent04I1N0000000006UAA_15c7792cd4f</masterLabel>
+</EmbeddedServiceLiveAgent>

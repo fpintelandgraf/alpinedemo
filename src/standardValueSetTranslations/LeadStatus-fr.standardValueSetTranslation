@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Approved</masterLabel>
+        <translation>Approuvé</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Draft</masterLabel>
+        <translation>Brouillon</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>New</masterLabel>
+        <translation>Ouvert</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Pending</masterLabel>
+        <translation>En attente</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Qualified - Convert</masterLabel>
+        <translation>Qualifié - Converti</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Rejected</masterLabel>
+        <translation>Rejeté</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Submitted</masterLabel>
+        <translation>Soumise</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Unqualified</masterLabel>
+        <translation>Archivé</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Working</masterLabel>
+        <translation>Travail en cours</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

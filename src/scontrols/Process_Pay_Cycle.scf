@@ -1,0 +1,22 @@
+<html>
+<head>
+	<link  href="/sCSS/8.0/Theme2/default/common.css" media="handheld,print,projection,screen,tty,tv" rel="stylesheet" type="text/css" />
+	<link  href="/css/assistive.css" media="aural,braille,embossed" rel="stylesheet" type="text/css" />
+	<link  href="/sCSS/8.0/Theme2/allCustom.css" media="handheld,print,projection,screen,tty,tv" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="/js/functions.js"></script>
+    <script src="/soap/ajax/8.0/connection.js" type="text/javascript"></script>
+	<script src="/soap/ajax/8.0/apex.js" type="text/javascript"></script>
+    {!INCLUDE($SControl.Progress_Meter_Snippet)}
+    {!INCLUDE($SControl.Pay_Cycle_Process_CSS)}
+</head>
+<body class="customTab41 detailPage">
+<div class="bodyDiv"><table id="bodyTable" class="outer" style="width:100%"><tbody><tr><td id="bodyCell"><div class="bPageTitle"><div class="ptBody secondaryPalette">
+<div class="customContent"><img src="/s.gif" alt="Pay Cycle" class="pageTitleIcon" title="Pay Cycle"/><h1 class="pageType">Process Pay Cycle<span  class="titleSeparatingColon">:</span></h1><h2 class="pageDescription">{!Pay_Cycle__c.Name}</h2></div></div></div>
+<div id="bodyDiv">
+	<h3>Are you sure you want to process this Pay Cycle?</h3>
+	<div class="buttons"><input type="button" onclick="setupPage('process');" value="Yes" class="btn">&nbsp;<input type="button" onclick="window.close();" value="No" class="btn"></div>
+</div>
+<div id="progressContainer" class="progressContainer"><img src="/s.gif" height="20px" width="0px" id="progressIMG" style="background-color:black;"></div>
+</div></td></tr></tbody></table></div>
+</body>
+</html>

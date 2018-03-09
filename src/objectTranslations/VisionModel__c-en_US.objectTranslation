@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Vision Model</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Vision Models</value>
+    </caseValues>
+    <fields>
+        <help><!-- Don&apos;t show predictions with probabilities below this number.  Will show all if blank --></help>
+        <label><!-- Cutoff Percentage --></label>
+        <name>Cutoff_Percentage__c</name>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <help><!-- the ID on for this model on the Einstein APIs --></help>
+        <label><!-- EinsteinID --></label>
+        <name>EinsteinID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Einstein Trained Model ID --></label>
+        <name>Einstein_Trained_Model_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Update --></label>
+        <name>Last_Update__c</name>
+    </fields>
+    <fields>
+        <help><!-- Einstein will reply with the best guess, and if this box is checked, additional possible classifications --></help>
+        <label><!-- Show alternative classifications --></label>
+        <name>Show_alternative_classifications__c</name>
+    </fields>
+    <layouts>
+        <layout>Vision Model Layout</layout>
+        <sections>
+            <label><!-- Results Configuration --></label>
+            <section>Results Configuration</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Create Label --></label>
+        <name>Create_Label</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Train --></label>
+        <name>Train</name>
+    </quickActions>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

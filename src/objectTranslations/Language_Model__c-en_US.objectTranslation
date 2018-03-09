@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Language Model</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Language Models</value>
+    </caseValues>
+    <fields>
+        <label><!-- Einstein Dataset Id --></label>
+        <name>Einstein_Dataset_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Einstein Model Id --></label>
+        <name>Einstein_Model_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Model Type --></label>
+        <name>Model_Type__c</name>
+        <picklistValues>
+            <masterLabel>Intent</masterLabel>
+            <translation><!-- Intent --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sentiment</masterLabel>
+            <translation><!-- Sentiment --></translation>
+        </picklistValues>
+    </fields>
+    <quickActions>
+        <label><!-- Train Model --></label>
+        <name>Train_Model</name>
+    </quickActions>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

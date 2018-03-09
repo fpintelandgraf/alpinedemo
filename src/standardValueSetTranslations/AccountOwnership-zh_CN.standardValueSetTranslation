@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Other</masterLabel>
+        <translation>其他</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Private</masterLabel>
+        <translation>私人</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Public</masterLabel>
+        <translation>上市</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Subsidiary</masterLabel>
+        <translation>辅助者</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

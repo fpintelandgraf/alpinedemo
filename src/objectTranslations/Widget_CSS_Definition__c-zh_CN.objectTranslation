@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Widget CSS Definition --></value>
+    </caseValues>
+    <fields>
+        <label><!-- CSS --></label>
+        <name>CSS__c</name>
+    </fields>
+    <fields>
+        <label>颜色</label>
+        <name>Color__c</name>
+    </fields>
+    <fields>
+        <label>显示标签</label>
+        <name>Display_Label__c</name>
+    </fields>
+    <nameFieldLabel><!-- Widget_Definition Name --></nameFieldLabel>
+</CustomObjectTranslation>

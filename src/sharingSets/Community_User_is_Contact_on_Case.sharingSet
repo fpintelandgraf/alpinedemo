@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <accessMappings>
+        <accessLevel>Edit</accessLevel>
+        <object>Case</object>
+        <objectField>Contact</objectField>
+        <userField>Contact</userField>
+    </accessMappings>
+    <name>Community User is Contact on Case</name>
+    <profiles>*Customer Community - Members</profiles>
+    <profiles>CSPLite</profiles>
+    <profiles>Community Member - Login-based</profiles>
+    <profiles>Customer Community Login User</profiles>
+    <profiles>Customer Community User</profiles>
+    <profiles>High Volume Customer Portal User</profiles>
+    <profiles>HighVolumePortal</profiles>
+    <profiles>PlatformPortal</profiles>
+</SharingSet>

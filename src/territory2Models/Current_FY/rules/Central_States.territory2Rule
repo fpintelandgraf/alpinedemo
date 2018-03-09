@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Territory2Rule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <name>All accounts in the central region</name>
+    <objectType>Account</objectType>
+    <ruleItems>
+        <field>Account.BillingState</field>
+        <operation>equals</operation>
+        <value>AL,AR,IL,IN,IA,KS,KY,LA,MI,MN,MS,MO,NE,ND,OH,OK,SD,TN,TX,WI </value>
+    </ruleItems>
+</Territory2Rule>

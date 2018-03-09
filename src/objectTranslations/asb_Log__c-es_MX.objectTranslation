@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Log --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Log --></value>
+    </caseValues>
+    <fields>
+        <help><!-- The category of the logged event. --></help>
+        <label>Categoria</label>
+        <name>Category__c</name>
+        <picklistValues>
+            <masterLabel>DML</masterLabel>
+            <translation><!-- DML --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>General</masterLabel>
+            <translation><!-- General --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Search</masterLabel>
+            <translation>Buscar</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- The data captured in the logged event. --></help>
+        <label>Dato</label>
+        <name>Data__c</name>
+    </fields>
+    <fields>
+        <help><!-- Details of the exception thrown in the logged event. --></help>
+        <label>Excepción</label>
+        <name>Exception__c</name>
+    </fields>
+    <fields>
+        <help><!-- Severity of the logged event. --></help>
+        <label>Severidad</label>
+        <name>Severity__c</name>
+        <picklistValues>
+            <masterLabel>Error</masterLabel>
+            <translation><!-- Error --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Info</masterLabel>
+            <translation><!-- Info --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Warning</masterLabel>
+            <translation>Advertencia</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- A unique ID for the particular type of error. Can be used to track how often the error occurs. --></help>
+        <label><!-- Stack Trace ID --></label>
+        <name>StackTraceId__c</name>
+    </fields>
+    <gender><!-- Masculine --></gender>
+    <layouts>
+        <layout>Log Layout</layout>
+        <sections>
+            <label>Detalles</label>
+            <section>Details</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Log Number --></nameFieldLabel>
+</CustomObjectTranslation>

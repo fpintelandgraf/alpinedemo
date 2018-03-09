@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Territory2Rule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <name>France Assignments</name>
+    <objectType>Account</objectType>
+    <ruleItems>
+        <field>Account.BillingCountry</field>
+        <operation>equals</operation>
+        <value>FR,France</value>
+    </ruleItems>
+</Territory2Rule>

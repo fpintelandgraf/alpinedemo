@@ -1,0 +1,199 @@
+<html>
+<head>
+
+<link  href="/sCSS/8.0/1169686455000/Theme2/default/elements.css" media="handheld,print,projection,screen,tty,tv" rel="stylesheet" type="text/css" />
+<link  href="/sCSS/8.0/1169686455000/Theme2/default/common.css" media="handheld,print,projection,screen,tty,tv" rel="stylesheet" type="text/css" />
+<link  href="/sCSS/8.0/1169686455000/Theme2/default/homeCalendar.css" media="handheld,print,projection,screen,tty,tv" rel="stylesheet" type="text/css" />
+<link  href="/sCSS/8.0/1169686455000/Theme2/default/dashboard.css" media="handheld,print,projection,screen,tty,tv" rel="stylesheet" type="text/css" />
+<link  href="/sCSS/8.0/1169686455000/Theme2/default/BanElem.css" media="handheld,print,projection,screen,tty,tv" rel="stylesheet" type="text/css" />
+<link  href="/css/assistive.css" media="aural,braille,embossed" rel="stylesheet" type="text/css" />
+<link  href="/sCSS/8.0/1170570660000/Theme2/00D6A000001SUwW/0056A000000elnz/dCustom.css" media="handheld,print,projection,screen,tty,tv" rel="stylesheet" type="text/css" />
+<style type="text/css">
+
+body {
+	background-color: #F3F3EC;
+}
+
+.main {
+}
+ 
+.header {
+	border: 0px;
+	height: 30px;
+}
+ 
+.month {
+	font:bold 10px verdana;
+	padding: 5px;
+}
+
+.daysofweek {
+	background-color:gray;
+	font:bold 10px verdana;
+	color:white;
+}
+
+.wholeday {
+	background-color: #F3F3EC;
+	font-size: 10px;
+	font-family:verdana;
+	color:black;
+	height: 25px;
+	text-align: left;
+	valign: top;
+}
+
+.days {
+    padding: 2px;
+	background-color: #E2E2D1;
+	height: 16px;
+	font-weight: bold;
+}
+
+.today {
+    background-color: #CDC68D;
+	xcolor: red;
+}
+
+.holder {
+	background-color: #F3F3EC;
+	font-size: 10px;
+	font-family:verdana;
+	color:black;
+	width: 150px;
+	height: 40px;
+	text-align: left;
+	valign: top;
+	padding: 6px;
+}
+
+.highlight {
+	background-color: #D4D4D4;
+}
+
+.holidayBlock {
+	background-color: #B6624F;
+	height: 10px;
+	width: 10px;
+}
+
+.leaveBlock {
+	background-color: #6699CC;
+	height: 10px;
+	width: 10px;
+}
+
+.pendingBlock {
+	background-color: #FFCC33;
+	height: 10px;
+	width: 10px;
+}
+
+#detail {
+	padding-left: 2px;
+	padding-right: 2px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	border: solid black 1px;
+	background-color: #ffffCC;
+	font-family: Arial;
+	font-size: 10px;
+	z-index: 50;
+	display: none;
+}
+
+.detailLabel {
+	font-size: 11px;
+	text-align: right;
+	font-weight: bold;
+	vertical-align: top;
+	white-space: nowrap;
+}
+
+.detailText {
+	font-size: 11px;
+	text-align: left;
+	vertical-align: top;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+</style>
+
+<script type="text/javascript" src="/js/functions.js"></script>
+<script type="text/javascript" src="/soap/ajax/8.0/connection.js"></script>
+<script type="text/javascript" src="/soap/ajax/8.0/apex.js"></script> 
+<script type="text/javascript" src="/servlet/servlet.Integration?lid=01N6A0000001MOu"></script>
+<script type="text/javascript" src="/dJS/en/1170289429000/library.js"></script>
+<script type="text/javascript" src="/appex/calendar/lib/context.js"></script>
+
+<script type="text/javascript">
+
+var entityId;
+var calendar;
+var employeeNumbers;
+
+function init(){
+
+	var curdate;
+
+    var context = new Context();
+	entityId = context.getParameter("eid");
+    if (entityId){
+        var soql = "Select t.Start_Date__c, t.Employee_Number__c From Time_Off_Request__c t Where t.Id = '"+entityId+"'";
+	    var qr = sforce.connection.query(soql);
+	    var recs = qr.getArray("records");
+	    if (recs && recs.length == 1){
+	        curdate = recs[0].getDate("Start_Date__c");
+	        employeeNumbers = [recs[0].get("Employee_Number__c")];
+	    }
+    }
+
+	if (!curdate){
+	    curdate = new Date();
+	}
+	
+	// default to my direct reports
+	if (!employeeNumbers){
+        var userInfo = sforce.connection.getUserInfo(); 
+        var userId = userInfo.get("userId");
+        
+        employeeNumbers = [];
+        var soql = "Select u.Employee_Number__c From User u Where Id = '"+userId+"' OR Manager_PTO__c = '"+userId+"'";
+	    var qr = sforce.connection.query(soql);
+	    var recs = qr.getArray("records");
+	    for (var i = 0; i < recs.length; i++){
+                if (recs[i].get("Employee_Number__c") != null) {
+	            employeeNumbers.push(recs[i].get("Employee_Number__c"));
+                }
+	    }
+	}
+
+    var el = document.getElementById("calendar");
+    calendar = new Calendar(el, curdate, "main", "month", "daysofweek", "days", 1);
+
+    calendar.display(curdate, employeeNumbers, entityId);
+    resizeIframe("01N6A0000001MOn", 400);
+}
+
+function resizeIframe(sControlId, height) {
+    var iframe = parent.document.getElementById(sControlId);
+    if (iframe != undefined){
+        iframe.style.height = height + 'px';
+    }
+}
+
+</script>
+
+</head>
+
+<body onload="init()">
+<center>
+<div id="calendar"></div>
+<div id="detail"></div>
+</center>
+
+</body>
+</html>

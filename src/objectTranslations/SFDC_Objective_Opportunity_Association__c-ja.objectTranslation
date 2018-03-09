@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>目標 - 商談関連</value>
+    </caseValues>
+    <fields>
+        <label><!-- Objective --></label>
+        <name>Objective__c</name>
+        <relationshipLabel><!-- Opportunities --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Opportunity --></label>
+        <name>Opportunity__c</name>
+        <relationshipLabel><!-- Channel Plan Objectives --></relationshipLabel>
+    </fields>
+    <nameFieldLabel>目標 - 商談関連</nameFieldLabel>
+</CustomObjectTranslation>

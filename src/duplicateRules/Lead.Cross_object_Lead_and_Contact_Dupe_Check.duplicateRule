@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DuplicateRule xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <actionOnInsert>Block</actionOnInsert>
+    <actionOnUpdate>Block</actionOnUpdate>
+    <alertText>One or more duplicate records have been detected (leads and/or contacts). The &quot;Save&quot; button will not work -- please use an existing record instead.</alertText>
+    <description>Blocks duplicate leads from being created or edited when the record matches an existing lead or contact record.</description>
+    <duplicateRuleFilter xsi:nil="true"/>
+    <duplicateRuleMatchRules>
+        <matchRuleSObjectType>Lead</matchRuleSObjectType>
+        <matchingRule>Standard_Lead_Match_Rule_v1_0</matchingRule>
+        <objectMapping xsi:nil="true"/>
+    </duplicateRuleMatchRules>
+    <duplicateRuleMatchRules>
+        <matchRuleSObjectType>Contact</matchRuleSObjectType>
+        <matchingRule>Standard_Contact_Match_Rule_v1_1</matchingRule>
+        <objectMapping>
+            <inputObject>Lead</inputObject>
+            <mappingFields>
+                <inputField>Company</inputField>
+                <outputField>AccountId</outputField>
+            </mappingFields>
+            <mappingFields>
+                <inputField>Email</inputField>
+                <outputField>Email</outputField>
+            </mappingFields>
+            <mappingFields>
+                <inputField>FirstName</inputField>
+                <outputField>FirstName</outputField>
+            </mappingFields>
+            <mappingFields>
+                <inputField>LastName</inputField>
+                <outputField>LastName</outputField>
+            </mappingFields>
+            <mappingFields>
+                <inputField>City</inputField>
+                <outputField>MailingCity</outputField>
+            </mappingFields>
+            <mappingFields>
+                <inputField>Street</inputField>
+                <outputField>MailingStreet</outputField>
+            </mappingFields>
+            <mappingFields>
+                <inputField>PostalCode</inputField>
+                <outputField>MailingPostalCode</outputField>
+            </mappingFields>
+            <mappingFields>
+                <inputField>Phone</inputField>
+                <outputField>Phone</outputField>
+            </mappingFields>
+            <mappingFields>
+                <inputField>Title</inputField>
+                <outputField>Title</outputField>
+            </mappingFields>
+            <outputObject>Contact</outputObject>
+        </objectMapping>
+    </duplicateRuleMatchRules>
+    <isActive>false</isActive>
+    <masterLabel>Cross-object Lead and Contact Dupe Check</masterLabel>
+    <securityOption>BypassSharingRules</securityOption>
+    <sortOrder>1</sortOrder>
+</DuplicateRule>

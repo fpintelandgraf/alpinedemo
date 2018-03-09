@@ -1,0 +1,123 @@
+<apex:page title="Platform Events Launcher" standardController="Platform_Events_Page__c" extensions="PlatformEventsCtrl" showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" >
+    <apex:slds ></apex:slds>
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"/>
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-sanitize.js"/>
+    
+    <style>
+        html {
+        height: 100%;
+        }
+        
+        .slds-page-header {
+        position: relative;
+        z-index: 10000 !important;
+        background-color:rgba(244, 246, 249, 0.3) !important;
+        color:#000000 !important;
+        }
+        
+        .slds-box {
+        background-color:rgba(244, 246, 249, 0.3);
+        color:#FFFFFF !important;
+        }
+        
+        .slds-notify_container {
+        left: 50% !important; 
+        transform:translateX(-50%)
+        }
+
+    </style>
+    
+    <script>
+    var remote = PlatformEventsCtrl;
+    var PlatformEventsPage = {
+        Id: '{!Platform_Events_Page__c.Id}',
+        Name: '{!Platform_Events_Page__c.Name}',
+        Subtitle__c: '{!Platform_Events_Page__c.Subtitle__c}',
+        Background_URL__c: '{!Platform_Events_Page__c.Background_URL__c}'
+    }
+    
+    document.body.style.background = "#999 url('" + PlatformEventsPage.Background_URL__c + "') no-repeat fixed center center"
+    document.body.style.backgroundSize = 'cover';
+    
+    var app = angular.module('PlatformEventsApp', [])
+    
+    .controller('MainCtrl', function($scope){
+        $scope.PlatformEventsPage = PlatformEventsPage;
+        $scope.status = 'Press to launch platform event';
+        $scope.buttons = [];
+        $scope.getButtons = function(){
+        	remote.getButtons(PlatformEventsPage.Id, function(res,evt){
+            	if(evt.status){
+                    $scope.buttons = res;
+                    $scope.$apply();
+                } else {
+                	console.log('ERROR:getButtons', evt);
+                }
+            },{escape:false})
+        }
+        
+        $scope.publishNotification = function(message){
+            $scope.status = 'Sending event';
+            remote.publishNotification(message, function(res,evt){
+            	if(evt.status){
+                    $scope.status = 'Successfully published';
+                    $scope.$apply();
+                } else {
+                    $scope.status = 'Event encountered an error';
+                    $scope.$apply();
+                	console.log('ERROR:publishNotification', evt);
+                }
+            })
+        }
+        
+        console.log($scope.PlatformEventsPage);
+        $scope.getButtons()
+    })
+    </script>
+    
+    <body ng-app="PlatformEventsApp" ng-controller="MainCtrl" class="slds" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <div class="slds-page-header">
+            <div class="slds-grid">
+                <div class="slds-col slds-has-flexi-truncate">
+                    <div class="slds-media slds-media--center slds-no-space slds-grow">
+                        <div class="slds-media__body">
+                            <p class="slds-page-header__title slds-truncate slds-align-middle" title="Salesforce React Integration">{{PlatformEventsPage.Name}}</p>
+                            <p class="page-header__info">{{PlatformEventsPage.Subtitle__c}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-col--padded slds-no-flex slds-grid slds-align-middle">
+                </div>
+            </div>
+        </div>
+        
+        <div>
+            <div class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <div class="slds-box">
+                        <p class="slds-text-heading--medium slds-m-bottom--medium slds-text-align--center">{{status}}</p>
+                        <div class="slds-align--absolute-center">
+                            <button ng-repeat="button in buttons" class="slds-button slds-button--brand" ng-click="publishNotification(button.Message__c)" type="button">
+                                <svg aria-hidden="true" class="slds-button__icon--stateful slds-button__icon--left">
+                                    <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#announcement')}"></use>
+                                </svg>{{button.Name}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    
+        
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    
+    ga('create', 'UA-46606102-1', 'auto');
+    ga('send', 'pageview');
+    
+    </script>
+</apex:page>

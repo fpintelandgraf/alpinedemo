@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ManagedTopics xmlns="http://soap.sforce.com/2006/04/metadata">
+    <managedTopic>
+        <fullName>Professional Community.Featured:Events</fullName>
+        <managedTopicType>Featured</managedTopicType>
+        <name>Events</name>
+        <parentName></parentName>
+        <position>1</position>
+        <topicDescription>Discuss our latest Conferencing products and questions here!</topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Professional Community.Featured:Getting Started</fullName>
+        <managedTopicType>Featured</managedTopicType>
+        <name>Getting Started</name>
+        <parentName></parentName>
+        <position>0</position>
+        <topicDescription>This is a great topic to discuss any boardroom audio/visual needs!</topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Professional Community.Featured:Philanthropy</fullName>
+        <managedTopicType>Featured</managedTopicType>
+        <name>Philanthropy</name>
+        <parentName></parentName>
+        <position>3</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Professional Community.Featured:Regions</fullName>
+        <managedTopicType>Featured</managedTopicType>
+        <name>Regions</name>
+        <parentName></parentName>
+        <position>5</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Professional Community.Featured:Sustainability</fullName>
+        <managedTopicType>Featured</managedTopicType>
+        <name>Sustainability</name>
+        <parentName></parentName>
+        <position>4</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Professional Community.Featured:Technology</fullName>
+        <managedTopicType>Featured</managedTopicType>
+        <name>Technology</name>
+        <parentName></parentName>
+        <position>2</position>
+        <topicDescription>Discuss our latest Projector line and your questions here!</topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Professional Community.Navigational:Events</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Events</name>
+        <parentName></parentName>
+        <position>1</position>
+        <topicDescription>Discuss our latest Conferencing products and questions here!</topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Professional Community.Navigational:Getting Started</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Getting Started</name>
+        <parentName></parentName>
+        <position>0</position>
+        <topicDescription>This is a great topic to discuss any boardroom audio/visual needs!</topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Professional Community.Navigational:Philanthropy</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Philanthropy</name>
+        <parentName></parentName>
+        <position>3</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Professional Community.Navigational:Sustainability</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Sustainability</name>
+        <parentName></parentName>
+        <position>4</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Professional Community.Navigational:Technology</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Technology</name>
+        <parentName></parentName>
+        <position>2</position>
+        <topicDescription>Discuss our latest Projector line and your questions here!</topicDescription>
+    </managedTopic>
+</ManagedTopics>

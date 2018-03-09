@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>KCS Article</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>KCSArticle</value>
+    </caseValues>
+    <fields>
+        <label><!-- Cause --></label>
+        <name>Cause__c</name>
+    </fields>
+    <fields>
+        <label><!-- Environment --></label>
+        <name>Environment__c</name>
+    </fields>
+    <fields>
+        <label><!-- Issue --></label>
+        <name>Issue__c</name>
+    </fields>
+    <fields>
+        <label><!-- Resolution --></label>
+        <name>Resolution__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

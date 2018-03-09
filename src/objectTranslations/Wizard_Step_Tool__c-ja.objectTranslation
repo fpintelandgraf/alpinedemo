@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>SDO ウィザードステップツール</value>
+    </caseValues>
+    <fields>
+        <label><!-- Advanced Information --></label>
+        <name>Advanced_Information__c</name>
+    </fields>
+    <fields>
+        <label><!-- External ID --></label>
+        <name>External_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Instructions --></label>
+        <name>Instructions__c</name>
+    </fields>
+    <fields>
+        <label><!-- SDO Tool --></label>
+        <name>SDO_Tool__c</name>
+        <relationshipLabel><!-- SDO Wizard Step Tools --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Tool Order --></label>
+        <name>Tool_Order__c</name>
+    </fields>
+    <fields>
+        <label><!-- Wizard Step --></label>
+        <name>Wizard_Step__c</name>
+        <relationshipLabel><!-- SDO Wizard Step Tools --></relationshipLabel>
+    </fields>
+    <nameFieldLabel>SDO ウィザードステップツール名</nameFieldLabel>
+</CustomObjectTranslation>

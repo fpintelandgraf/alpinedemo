@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>ScheduledTSDetails</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>ScheduledTSDetails</value>
+    </caseValues>
+    <fields>
+        <label><!-- CurrentBatchProcessId --></label>
+        <name>CurrentBatchProcessId__c</name>
+    </fields>
+    <fields>
+        <label><!-- CurrentNodeIndex --></label>
+        <name>CurrentNodeIndex__c</name>
+    </fields>
+    <fields>
+        <label><!-- DaysToShift --></label>
+        <name>DaysToShift__c</name>
+    </fields>
+    <fields>
+        <label><!-- DetailJson --></label>
+        <name>DetailJson__c</name>
+    </fields>
+    <fields>
+        <label><!-- End Date --></label>
+        <name>End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Errors --></label>
+        <name>Errors__c</name>
+    </fields>
+    <fields>
+        <label><!-- JobStatus --></label>
+        <name>JobStatus__c</name>
+    </fields>
+    <fields>
+        <label><!-- QueueProcessId --></label>
+        <name>QueueProcessId__c</name>
+    </fields>
+    <fields>
+        <label><!-- Started Date --></label>
+        <name>Started_Date__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

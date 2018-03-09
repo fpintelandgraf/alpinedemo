@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Installed</masterLabel>
+        <translation>導入済み</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Obsolete</masterLabel>
+        <translation>廃止</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Purchased</masterLabel>
+        <translation>購入済</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Registered</masterLabel>
+        <translation>登録済</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Shipped</masterLabel>
+        <translation>配送済</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

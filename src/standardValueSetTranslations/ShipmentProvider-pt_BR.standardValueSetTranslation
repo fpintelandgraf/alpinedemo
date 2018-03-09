@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>FedEx</masterLabel>
+        <translation>Fedex</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>UPS</masterLabel>
+        <translation>UPS</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>USPS</masterLabel>
+        <translation>Sedex</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

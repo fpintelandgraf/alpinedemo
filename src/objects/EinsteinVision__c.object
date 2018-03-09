@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <description>defines credentials and endpoints for the predictive vision service</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>CertFile__c</fullName>
+        <defaultValue>&quot;einstein_platform&quot;</defaultValue>
+        <description>the Salesforce file name where your certificate is stored.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>the Salesforce file name where your certificate is stored.  Use this if you signed up and downloaded a .pem file (typical names are &quot;predictive_services&quot; and &quot;einstein_platform&quot;</inlineHelpText>
+        <label>CertFile</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CertName__c</fullName>
+        <description>the Salesforce name of your security certificate.  (PKS method)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>the Salesforce name of your security certificate.  Use this if you signed up for Einstein very early and have an Einstein-related security certificate in Setup&gt;Security&gt;Certificate and Key Management</inlineHelpText>
+        <label>CertName</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EinsteinUsername__c</fullName>
+        <description>Email that you used to sign up for the Eintstein predictive vision service.  If you signed in with your Salesforce org, it&apos;s the email address (not necessarily the username) on your user.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Email that you used to sign up for the Eintstein predictive vision service.  If you signed in with your Salesforce org, it&apos;s the email address (not necessarily the username) on your user.</inlineHelpText>
+        <label>EinsteinUsername</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>LocalEinsteinUser__c</fullName>
+        <description>the salesforce userid (not username) of the user that you want to respond as Einstein</description>
+        <externalId>false</externalId>
+        <inlineHelpText>the salesforce userid (not username) of the user that you want to respond as Einstein</inlineHelpText>
+        <label>LocalEinsteinUser</label>
+        <length>18</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TokenExpirationTime__c</fullName>
+        <defaultValue>3600</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>how long should the token (JWT) be valid for?</inlineHelpText>
+        <label>TokenExpirationTime</label>
+        <precision>18</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>certificateIssuer__c</fullName>
+        <description>issuer domain for the certificate you created.  Default instructions have this going to developer.force.com</description>
+        <externalId>false</externalId>
+        <label>certificateIssuer</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>EinsteinVision</label>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Cold Call</masterLabel>
+        <translation>冷拨</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Community</masterLabel>
+        <translation>社区</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Data.com</masterLabel>
+        <translation><!-- Data.com --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Inbound Call</masterLabel>
+        <translation>呼入电话</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Marketing Event</masterLabel>
+        <translation>营销事件</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Partner</masterLabel>
+        <translation>伙伴</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Referral</masterLabel>
+        <translation>推荐</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Salesforce IoT</masterLabel>
+        <translation><!-- Salesforce IoT --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Social Media</masterLabel>
+        <translation>社交媒体</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Website</masterLabel>
+        <translation>网站</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

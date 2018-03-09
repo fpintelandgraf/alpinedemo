@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>FSL Service Appointment Feed Based</layout>
+        <sections>
+            <label>ที่อยู่</label>
+            <section>Address</section>
+        </sections>
+        <sections>
+            <label><!-- Complex Work --></label>
+            <section>Complex Work</section>
+        </sections>
+        <sections>
+            <label>คอนโซลผู้จัดส่ง</label>
+            <section>Dispatcher Console</section>
+        </sections>
+        <sections>
+            <label>ข้อจำกัดด้านเวลา</label>
+            <section>Time Constraints</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Add Resource --></label>
+        <name>Add_Resource</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Change Appointment Status --></label>
+        <name>Change_Appointment_Status</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Running Late --></label>
+        <name>Running_Late</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- SendEmail --></label>
+        <name>SendEmail</name>
+    </quickActions>
+</CustomObjectTranslation>

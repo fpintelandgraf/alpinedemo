@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>Order Layout - Standard</layout>
+        <sections>
+            <label>客户信息</label>
+            <section>Customer Information</section>
+        </sections>
+        <sections>
+            <label>订购脚本</label>
+            <section>Order Script</section>
+        </sections>
+        <sections>
+            <label>相关</label>
+            <section>Related To</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Order Layout - eCommerce</layout>
+        <sections>
+            <label>客户信息</label>
+            <section>Customer Information</section>
+        </sections>
+        <sections>
+            <label>订购脚本</label>
+            <section>Order Script</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>bannerText</name>
+                <value>Become an expert. Find new customers. Grow your business.</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>bannerTextWithKnowledge</name>
+                <value>Explore other &lt;a href=&quot;javascript:void(0)&quot; class=&quot;headlineArticles&quot;&gt;articles&lt;/a&gt; and &lt;a href=&quot;javascript:void(0)&quot; class=&quot;headlineDiscussions&quot;&gt;discussions&lt;/a&gt; on this topic.</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>bannerTextWithoutKnowledge</name>
+                <value>Explore other &lt;a href=&quot;javascript:void(0)&quot; class=&quot;headlineDiscussions&quot;&gt;discussions&lt;/a&gt; on this topic.</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>pageType</name>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>showSubTopics</name>
+                <value>true</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>title</name>
+                <value>Welcome to Partner Central</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>uniqueNameOrId</name>
+            </componentInstanceProperties>
+            <componentName>forceCommunity:headline</componentName>
+        </componentInstances>
+        <name>header</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>channel</name>
+                <value>DefaultChannel</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>title</name>
+                <value>Recommended for You</value>
+            </componentInstanceProperties>
+            <componentName>forceCommunity:recommendations</componentName>
+        </componentInstances>
+        <name>featured</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>richTextValue</name>
+                <value>&lt;h2 style=&quot;text-align: center;&quot;&gt;Channel Program Overview&lt;/h2&gt;&lt;div class=&quot;sfdcCbVideoContainer&quot;&gt;&lt;iframe class=&quot;sfdcCbVideo&quot; allowfullscreen=&quot;true&quot; frameborder=&quot;0&quot; width=&quot;100%&quot; src=&quot;https://www.youtube.com/embed/a9Ad-0hAzz0&quot;&gt;&lt;/iframe&gt;&lt;/div&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;</value>
+            </componentInstanceProperties>
+            <componentName>forceCommunity:richTextInline</componentName>
+        </componentInstances>
+        <name>content</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>richTextValue</name>
+                <value>&lt;h2&gt;Become a Cirrus Partner&lt;/h2&gt;&lt;p&gt;Cirrus&apos; new partner program offers unparallelled benefits, from tiered discounts 7 rebates to in-depth product training. Our partners drive the majority of our customer success and innovation. Among the benefits:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Comarketing funds&lt;/li&gt;&lt;li&gt;Quality leads from Cirrus&lt;/li&gt;&lt;li&gt;Easy deal registration&lt;/li&gt;&lt;li&gt;Self-service quoting&lt;/li&gt;&lt;li&gt;Direct collaboration with Cirrus technical staff&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;Interested in becoming a Cirrus partner? &lt;a href=&quot;./login/SelfRegister&quot; target=&quot;null&quot;&gt;Apply today&lt;/a&gt;!&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;Already a Cirrus partner? &lt;a href=&quot;./login&quot; target=&quot;null&quot;&gt;Login here&lt;/a&gt;.&lt;/p&gt;</value>
+            </componentInstanceProperties>
+            <componentName>forceCommunity:richTextInline</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>channel</name>
+                <value>DefaultChannel</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>title</name>
+                <value>Take Action!</value>
+            </componentInstanceProperties>
+            <componentName>forceCommunity:recommendations</componentName>
+        </componentInstances>
+        <name>sidebar</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>channel</name>
+                <value>DefaultChannel</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>title</name>
+            </componentInstanceProperties>
+            <componentName>forceCommunity:recommendations</componentName>
+        </componentInstances>
+        <name>sidebarAlt</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <name>footer</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <masterLabel>Home_Home: Guest Users</masterLabel>
+    <pageTemplate>siteforce:sldsTwoCol48Layout</pageTemplate>
+    <type>CommAppPage</type>
+</FlexiPage>

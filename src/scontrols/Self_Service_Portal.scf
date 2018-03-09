@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<title>{!$Organization.Name} - Self-Service Support Portal Login</title>
+
+
+<META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8">
+<style type="text/css">
+
+table {
+margin-left:20px;
+font: 12px Verdana, Arial, sans-serif;
+}
+
+table caption {
+text-align:left;
+}
+
+body {
+background-color:#fff;
+border:0;margin:0;
+}
+
+h1 {
+font: 22px verdana, arial, sans-serif normal;
+margin-bottom:5px;
+}
+
+
+
+form input {
+font: 12px Verdana, Arial, sans-serif;
+width:275px;
+height:16px;
+_height:20px;
+color: #000;
+border:1px solid #A7A6AA;
+float:left;
+padding:3px 1px 2px 1px;
+_padding:0;
+margin:0;
+}
+
+form label {
+font: 12px Verdana, Arial, sans-serif;
+}
+
+form select {
+font: 12px Verdana, Arial, sans-serif;
+width:275px;
+height:20px;
+_height:24px;
+color: #000;
+border:1px solid #A7A6AA;
+float:right;
+padding:2px 1px 3px 0px;
+margin:0 4px 0 0;
+
+}
+
+.multiselectpl {
+height:75px;
+}
+
+form #submit {
+font: 12px Verdana, Arial, sans-serif;
+padding-bottom:5px;
+padding-left:0;
+padding-right:0;
+padding-top:1px;
+height:20px;
+width:75px;
+float:left;
+}
+
+form textarea {
+font: 12px Verdana, Arial, sans-serif;
+width:275px;
+color: #000;
+padding:3px 1px 2px 1px;
+border:1px solid #A7A6AA;
+height:100px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+
+<table border="0" align="center" style="margin-left:auto;margin-right:auto;">
+<caption>
+</caption>
+<tbody>
+<tr>
+
+
+<td colspan="3"><img src="/resource/1235015810000/UCIBanner"  /></td>
+</tr>
+<tr>
+<td align="left" valign="top">
+
+<!-- if the company's web site has content in its left column, paste that content here -->
+
+<!-- make sure the left column content ends here -->
+
+
+</td>
+<td valign="top">
+
+
+<!-- if the company's web site has content in its middle column above the Web2Lead form, paste that content here -->
+
+<h1>{!$Organization.Name} Self-Service Support Portal</h1>
+With the Self-Service Portal, you can view and log new Cases and search our Knowledge Base. Enter your login details below.<br/><br/><br/>
+<sup style="color:#ff0000;">*</sup> indicates a required field.</span>
+<br/><br/>
+
+
+<!-- make sure the middle column content ends here -->
+
+
+
+<!-- BEGIN SSP Login FORM -->
+
+<FORM ACTION="https://na1.salesforce.com/sserv/login.jsp" METHOD="POST">
+<INPUT TYPE="HIDDEN" NAME="orgId" VALUE="00D6A000001hw0E">
+
+<table>
+
+<tr>
+<td align="right" valign="top" style="padding:2px 5px 0 0;"><label for="un"><sup style="color:#ff0000;">*</sup>Username</label></td><td><input id="un" maxlength="80" name="un" size="20" type="text" value="lb@united.com" /></td>
+</tr>
+
+<tr>
+<td align="right" valign="top" style="padding:2px 5px 0 0;"><label for="pw"><sup style="color:#ff0000;">*</sup>Password</label></td>
+<td><input id="pw" maxlength="80" name="pw" size="20" type="password" value="password" /></td>
+</tr>
+
+<tr>
+<td align="right" valign="top"></td>
+<td align="left">
+<input type="submit" id="submit" name="submit" value="Login"></td>
+</tr>
+
+
+</table>
+
+</form>
+
+
+
+<!-- END SSP Login FORM -->
+
+
+
+</td>
+<td align="right" valign="top">
+
+<!-- if the company's web site has content in its right column, paste that content here -->
+
+
+
+<!-- make sure the right column content ends here -->
+
+</td>
+</tr>
+<tr>
+<td colspan="3" align="center">
+
+
+
+<!-- paste the company's footer starting here -->
+
+<hr style="color:#999;height:1px;background-color:#999;border:0;margin:15px 0 10px 0;padding:0;" />
+
+&copy; 2008 {!$Organization.Name}
+
+<!-- make sure the footer content ends here -->
+
+
+</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

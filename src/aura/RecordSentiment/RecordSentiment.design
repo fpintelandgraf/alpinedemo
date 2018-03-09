@@ -1,0 +1,4 @@
+<design:component >
+	 <design:attribute name="modelId" label="Model Id" required="true" default="CommunitySentiment"/>
+     <design:attribute name="fieldName" label="Field to be Analyzed" required="true"/>
+</design:component>

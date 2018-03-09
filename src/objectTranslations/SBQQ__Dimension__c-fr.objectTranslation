@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Dimension de prix</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Dimensions de prix</value>
+    </caseValues>
+    <gender>Feminine</gender>
+    <nameFieldLabel>Nom de la dimension</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

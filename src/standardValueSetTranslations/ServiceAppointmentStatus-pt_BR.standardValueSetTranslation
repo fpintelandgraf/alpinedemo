@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Canceled</masterLabel>
+        <translation>Cancelado</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Cannot Complete</masterLabel>
+        <translation>Não pôde Concluir</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Completed</masterLabel>
+        <translation>Concluído</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Dispatched</masterLabel>
+        <translation>Despachado</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>In Progress</masterLabel>
+        <translation>Em Andamento</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>NewDispatched</masterLabel>
+        <translation>Novo Despachado</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>None</masterLabel>
+        <translation>Nenhum</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Scheduled</masterLabel>
+        <translation>Programado</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Travel</masterLabel>
+        <translation>Viagem</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

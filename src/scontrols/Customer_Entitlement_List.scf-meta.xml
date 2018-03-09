@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scontrol xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contentSource>HTML</contentSource>
+    <description>Display Entitlements on Contact Page</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Customer Entitlement List</name>
+    <supportsCaching>true</supportsCaching>
+</Scontrol>

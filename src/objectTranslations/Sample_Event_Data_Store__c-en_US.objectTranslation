@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Sample Event Data Store</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Sample Event Data Store</value>
+    </caseValues>
+    <fields>
+        <label><!-- Asset --></label>
+        <name>Asset__c</name>
+        <relationshipLabel><!-- Sample Event Data Store --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Humidity --></label>
+        <name>Humidity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Temperature --></label>
+        <name>Temperature__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

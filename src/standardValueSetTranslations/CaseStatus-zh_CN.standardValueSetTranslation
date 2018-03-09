@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Attention</masterLabel>
+        <translation>注意</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Closed</masterLabel>
+        <translation>关闭</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Closed in Community</masterLabel>
+        <translation>封闭社区</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Escalated</masterLabel>
+        <translation>升级</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>New</masterLabel>
+        <translation>新</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>On Hold</masterLabel>
+        <translation>等候接听</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Response Received</masterLabel>
+        <translation>收到响应</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Waiting on Customer</masterLabel>
+        <translation>等待客户</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Warning</masterLabel>
+        <translation>警告</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Working</masterLabel>
+        <translation>加工</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

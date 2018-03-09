@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Platform Events Button</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Platform Events Buttons</value>
+    </caseValues>
+    <fields>
+        <label><!-- Message --></label>
+        <name>Message__c</name>
+    </fields>
+    <fields>
+        <label><!-- Order --></label>
+        <name>Order__c</name>
+    </fields>
+    <fields>
+        <label><!-- Platform Events Page --></label>
+        <name>Platform_Events_Page__c</name>
+        <relationshipLabel><!-- Platform Events Buttons --></relationshipLabel>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

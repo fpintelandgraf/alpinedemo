@@ -1,0 +1,323 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html> <head>
+<title>Contact Entitlements List</title>
+
+<link href="/dCSS/Theme2/default/common.css" type="text/css" rel="stylesheet" media="handheld,print,projection,screen,tty,tv" >
+<link href="/dCSS/Theme2/default/custom.css" type="text/css" rel="stylesheet" media="handheld,print,projection,screen,tty,tv" >
+<style type="text/css"rel="stylesheet" >
+.handy { cursor: pointer; }
+
+.customContactList {
+    background-color: rgb(243, 243, 236);
+    border-top-color: rgb(86, 69, 140);
+    border-right-color: rgb(86, 69, 140);
+    border-bottom-color: rgb(86, 69, 140);
+    border-left-color: rgb(86, 69, 140);
+}
+</style>
+
+<html>
+<head>
+    <script type="text/javascript" src="/js/functions.js"></script>
+    <script src="/soap/ajax/8.0/connection.js"></script>
+    <script language="javascript">
+
+var supportProgramIds = new Array();
+var entitlements = new Array();
+
+function pageInit() { // and login
+    pb = document.getElementById("mainpageblock");
+    populateFilters();
+    drawEntitlements();
+}
+
+function makeRow(atts) {
+    if (isIE5 || isIE) {
+        var trTag = "<TR ";
+        for (key in atts) {
+            trTag += key + "=\"" + atts[key] + "\"";
+        }
+        trTag += ">";
+        var ret = document.createElement(trTag);
+    } else {
+        var tr = document.createElement("TR");
+        for (key in atts) {
+            tr.setAttribute(key, atts[key]);
+        }
+        var ret = tr;
+    }
+    ret.active = false;
+    return ret;
+}
+
+function makeTable() {
+    var table = document.createElement("table");
+    table.className = "list";
+    table.width = "95%";
+    table.border = "0";
+    table.cellspacing = "0";
+    table.cellpadding = "0";
+    var tbody = document.createElement("tbody");
+    table.appendChild(tbody);
+    table.even = true;
+    table.tbody =tbody;
+    return table
+}
+
+function createTag(parent, name, keyvalPairs) {
+    //alert("type of " + typeof(keyvalPairs))
+    var el = document.createElement(name);
+    for (key in keyvalPairs) {
+        el.setAttribute(key, keyvalPairs[key]);
+    }
+    parent.appendChild(el);
+    return el;
+}
+
+function populateFilters()
+{
+    var programFilter = '<select id="ProgramFilter" name="ProgramFilter" tabindex="5" onChange="filter(this)"><option value="All">All</option>';
+
+    var programQuery = "Select Id, (Select Support_Program__c, Support_Program__r.Name from c.Program_Contacts__r) from Contact c where c.Id='{!Contact.Id}'";
+    var programResult = sforce.connection.query(programQuery);
+
+    if (programResult!=null && programResult.size > 0) {
+        var contact = programResult.getArray('records')[0];
+        //There should only be one contact returned, so we'll iterate on the Program Contacts reference.
+        if (contact.Program_Contacts__r!=null) {
+            var progIter = new sforce.QueryResultIterator(contact.Program_Contacts__r);
+            while (progIter.hasNext()) {
+                var programContact = progIter.next();
+                if (programContact!=null && programContact.Support_Program__c!=null) {
+                    programFilter+='<option value="'+programContact.Support_Program__c+'">'+programContact.Support_Program__r.Name+'</option>';
+
+                    supportProgramIds.push(programContact.Support_Program__c);
+                }
+            }
+        }
+    }
+
+    programFilter += '</select>';
+
+    var programSpan = document.getElementById('ProgramSpan');
+    programSpan.innerHTML = programFilter;
+}
+
+function filter(selectEl) {
+    drawEntitlements(selectEl.options[selectEl.selectedIndex].value);
+}
+
+function drawEntitlements(supportProgramId) {
+    document.getElementById("maintable").innerHTML = "";
+
+    var entitlementWhereClause = '';
+
+    if (supportProgramId!=null && supportProgramId!="" && supportProgramId!="All") {
+        entitlementWhereClause += "where e.Support_Program__c='"+supportProgramId+"'";
+    } else if (supportProgramIds.length>0) {
+        entitlementWhereClause += "where (";
+        for (var i = 0; i<supportProgramIds.length; i++) {
+            entitlementWhereClause += "Support_Program__c='"+supportProgramIds[i]+"'";
+            if (i<supportProgramIds.length-1) {
+                entitlementWhereClause += " or ";
+            }
+        }
+        entitlementWhereClause += ")";
+    } else {
+        document.getElementById("maintable").innerHTML="No entitlements found for this contact.";
+        return;
+    }
+
+    var entitlementQuery = "Select e.Case_Pack__c, e.Cases_Remaining__c, e.Business_Hours__c,"+
+                            "e.Name, e.Id, e.Support_Program__c, e.Support_Program__r.Contract__c,"+
+                            "e.Support_Program__r.Contract__r.ContractNumber, e.Support_Program__r.Name,"+
+                            "e.Support_Program__r.P1_Resolution_hours__c, e.Support_Program__r.P1_Response_hours__c,"+
+                            "e.Support_Program__r.P2_Resolution_hours__c, e.Support_Program__r.P2_Response_hours__c,"+
+                            "e.Support_Program__r.P3_Resolution_hours__c, e.Support_Program__r.P3_Response_hours__c,"+
+                            "e.Support_Program__r.P4_Resolution_hours__c, e.Support_Program__r.P4_Response_hours__c,"+
+                            "e.Support_Program__r.P5_Resolution_hours__c, e.Support_Program__r.P5_Response_hours__c,"+
+                            "e.Support_Program__r.Id from Entitlement__c e "+entitlementWhereClause+" Order By e.Name";
+
+    var entitlementsResult = sforce.connection.query(entitlementQuery);
+
+    if (entitlementsResult!=null && entitlementsResult.size > 0) {
+        var ta = makeTable()
+        var th = makeRow([]);
+        th.active == false;
+        ta.tbody.appendChild(th);
+
+        createTag(th,"th").innerHTML="Support Program";
+        createTag(th,"th").innerHTML="Entitlement Name";
+        createTag(th,"th").innerHTML="Contract";
+        createTag(th,"th").innerHTML="Business Hours";
+        createTag(th,"th").innerHTML="Cases Remaining";
+        createTag(th,"th").innerHTML=" ";
+
+        var i = 0;
+        var entIter = new sforce.QueryResultIterator(entitlementsResult);
+        while (entIter.hasNext()) {
+            var entitlement = entIter.next();
+
+            //Store the entitlement object in case we need to decrement it later...
+            entitlements.push(entitlement);
+
+            var atts = new Object();
+            if (i==0) { // skin stuff
+                atts["class"] = "even first";
+            } else if (ta.even == true) {
+                atts["class"] = "even";
+            } else {
+                atts["class"] = "odd";
+            }
+            ta.even = !ta.even;
+
+            atts["onmouseout"] = "if (typeof(hiOff) != 'undefined' && this.active == false){hiOff(this);}";
+            atts["onmouseover"] = "if (typeof(hiOn) != 'undefined'){hiOn(this);}";
+            //atts["onclick"] = "clickOppConCall(this);"; // search
+            //atts["class"] = "handy";
+            var tr = makeRow(atts);
+            tr.active == true;
+
+            //tr.opp = op;
+            ta.tbody.appendChild(tr);
+
+            createTag(tr,"td",[]).innerHTML = '<a target="main" href="/'+entitlement.Support_Program__c+'">'+entitlement.Support_Program__r.Name+'</a>';
+            createTag(tr,"td",[]).innerHTML = entitlement.Name;
+            createTag(tr,"td",[]).innerHTML = '<a target="main" href="/'+entitlement.Support_Program__r.Contract__c+'">'+entitlement.Support_Program__r.Contract__r.ContractNumber+'</a>';
+            createTag(tr,"td",[]).innerHTML = entitlement.Business_Hours__c;
+
+            var createNewCases = entitlement.Case_Pack__c=='true' && entitlement.Cases_Remaining__c==0;
+
+            var casesRemaining = entitlement.Cases_Remaining__c!=null?entitlement.Cases_Remaining__c.substring(0,entitlement.Cases_Remaining__c.length-2):"N/A";
+            createTag(tr,"td",[]).innerHTML = entitlement.Case_Pack__c=='true'?casesRemaining:'N/A';
+
+            buttonTd = createTag(tr,"td",[]);
+            var newCaseCall;
+            var buttonLabel;
+            if (createNewCases) {
+                newCaseCall = "addCasesToEntitlement('"+entitlement.Id+"','"+entitlement.Name+"','"+entitlement.Support_Program__c+"','"+entitlement.Support_Program__r.Name+"');";
+                buttonLabel = " Renew Entitlement And Create New Case ";
+            } else {
+                 newCaseCall = "newCaseFromEntitlement('"+entitlement.Id+"','"+entitlement.Name+"','"+entitlement.Support_Program__c+"','"+entitlement.Support_Program__r.Name+"');";
+                 buttonLabel = " New Case From Entitlement ";
+            }
+            buttonTd.innerHTML = '<input value="'+buttonLabel+'"  class="btn" name="newCase" onclick="'+newCaseCall+'" title="New Case From Entitlement" type="button" />';
+
+            i++;
+        }
+
+        document.getElementById("maintable").appendChild(ta);
+    } else {
+        document.getElementById("maintable").innerHTML="No entitlements found.";
+    }
+}
+
+//Finds an entitlement in the list by its ID
+function getEntitlementById(entitlementId) {
+    for (var nEnt = 0; nEnt<entitlements.length; nEnt++) {
+        var currentEntitlement = entitlements[nEnt];
+        if (currentEntitlement.Id == entitlementId) {
+            return currentEntitlement;
+        }
+    }
+}
+
+function addCasesToEntitlement(entitlementId, entitlementName, programId, programName)
+{
+    var opp = new sforce.SObject("Opportunity");
+    opp.Name = "{!Account.Name} - Renewed Entitlement: "+entitlementName+" - $2400";
+    opp.AccountId = '{!Account.Id}';
+    opp.Type = 'Case Pack Renewal';
+    opp.Amount = '2400';
+    opp.ForecastCategory = 'Closed';
+    opp.StageName = 'Closed Won';
+    opp.CloseDate = new Date();
+
+    try {
+        var result = sforce.connection.create([opp]);
+    } catch (error) {
+        alert(error);
+    }
+
+    if (!result[0].getBoolean("success")) {
+        alert('Unable to create new Opportunity.  Error: '+result[0].message);
+    }
+
+    var selectedEntitlement = getEntitlementById(entitlementId);
+    //Set the case pack to its full value in memory -- we'll decrement it and update it to SFDC after the case is created in newCaseFromEntitlement.
+    selectedEntitlement.Cases_Remaining__c = 12;
+
+    newCaseFromEntitlement(entitlementId, entitlementName, programId, programName);
+}
+
+function newCaseFromEntitlement(entitlementId, entitlementName, programId, programName) {
+    //Decrement the entitlement
+    var selectedEntitlement = getEntitlementById(entitlementId);
+
+    //Create the case
+    var caseObj = new sforce.SObject("Case");
+    caseObj.ContactId = '{!Contact.Id}';
+    //caseObj.AccountId = '{!Account.Id}';
+    caseObj.Entitlement__c = entitlementId;
+
+    if (selectedEntitlement!=null) {
+        caseObj.P1_Resolution_hours__c=selectedEntitlement.Support_Program__r.P1_Resolution_hours__c;
+        caseObj.P1_Response_hours__c=selectedEntitlement.Support_Program__r.P1_Response_hours__c;
+        caseObj.P2_Resolution_hours__c=selectedEntitlement.Support_Program__r.P2_Resolution_hours__c;
+        caseObj.P2_Response_hours__c=selectedEntitlement.Support_Program__r.P2_Response_hours__c;
+        caseObj.P3_Resolution_hours__c=selectedEntitlement.Support_Program__r.P3_Resolution_hours__c;
+        caseObj.P3_Response_hours__c=selectedEntitlement.Support_Program__r.P3_Response_hours__c;
+        caseObj.P4_Resolution_hours__c=selectedEntitlement.Support_Program__r.P4_Resolution_hours__c;
+        caseObj.P4_Response_hours__c=selectedEntitlement.Support_Program__r.P4_Response_hours__c;
+        caseObj.P5_Resolution_hours__c=selectedEntitlement.Support_Program__r.P5_Resolution_hours__c;
+        caseObj.P5_Response_hours__c=selectedEntitlement.Support_Program__r.P5_Response_hours__c;
+    }
+
+    caseObj.Origin = "Phone";
+
+    try {
+        var result = sforce.connection.create([caseObj]);
+    } catch (error) {
+        alert(error);
+        return;
+    }
+
+    if (!result[0].success) {
+        alert('Unable to create new Case.  Error: '+result[0].message);
+        return;
+    } else {
+        //If it's a case pack, then decrement it
+        if (selectedEntitlement!=null && selectedEntitlement.Case_Pack__c=='true') {
+            //Make a new sobject out of it and do an update
+            var newEntitlement = new sforce.SObject("Entitlement__c");
+            newEntitlement.Id = selectedEntitlement.Id;
+            newEntitlement.Cases_Remaining__c = selectedEntitlement.Cases_Remaining__c - 1;
+
+            try {
+                 var entResult = sforce.connection.update([newEntitlement]);
+            } catch (error) {
+                 alert(error);
+                 return;
+            }
+
+            if (!entResult[0].getBoolean("success")) {
+                alert('Unable to decrement Entitlement.  Error: '+entResult[0].message);
+            }
+        }
+
+        //Go to the edit page of the case
+        parent.navigateToUrl('/'+result[0].id+'/e?retURL=%2F'+result[0].id);
+    }
+}
+
+</script>
+</head>
+<body onload="pageInit()" class="customTab22 customContactList overviewPage">
+    <table width="95%">
+        <tr>
+            <td><b>Support Program:</b> <span id="ProgramSpan"><select id="ProgramFilter" name="ProgramFilter" tabindex="5"></select></span></td>
+        </tr>
+    </table>
+    <div id="maintable" class="pbBody"> <!-- the body --></div>
+</body>
+</html>

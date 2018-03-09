@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LiveChatAgentConfig xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <profiles>
+            <profile>Admin</profile>
+        </profiles>
+        <users>
+            <user>bservice7kothr8kgvl7tp80oh9y8fy7@example.com</user>
+            <user>jserviceqylqih8eaqiclnvttntvvmjm@example.com</user>
+            <user>admin-gyijrjljxafl@example.com</user>
+            <user>sservicegb2rzsnqpvsrzquqapa8uzc2@example.com</user>
+            <user>tservicetpeh3jbiv5v9fi5v1rab4aip@example.com</user>
+        </users>
+    </assignments>
+    <autoGreeting>Hello, how can I help you today?</autoGreeting>
+    <criticalWaitTime>60</criticalWaitTime>
+    <enableAgentFileTransfer>true</enableAgentFileTransfer>
+    <enableAgentSneakPeek>true</enableAgentSneakPeek>
+    <enableAssistanceFlag>true</enableAssistanceFlag>
+    <enableAutoAwayOnDecline>false</enableAutoAwayOnDecline>
+    <enableAutoAwayOnPushTimeout>false</enableAutoAwayOnPushTimeout>
+    <enableChatConferencing>true</enableChatConferencing>
+    <enableChatMonitoring>true</enableChatMonitoring>
+    <enableChatTransferToAgent>true</enableChatTransferToAgent>
+    <enableChatTransferToButton>true</enableChatTransferToButton>
+    <enableChatTransferToSkill>true</enableChatTransferToSkill>
+    <enableLogoutSound>true</enableLogoutSound>
+    <enableNotifications>true</enableNotifications>
+    <enableRequestSound>true</enableRequestSound>
+    <enableSneakPeek>true</enableSneakPeek>
+    <enableVisitorBlocking>true</enableVisitorBlocking>
+    <enableWhisperMessage>true</enableWhisperMessage>
+    <label>Chat Representatives</label>
+</LiveChatAgentConfig>

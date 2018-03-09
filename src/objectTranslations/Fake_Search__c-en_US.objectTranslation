@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Fake Search</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Fake Searches</value>
+    </caseValues>
+    <fields>
+        <label><!-- Results Clicked --></label>
+        <name>Results_Clicked__c</name>
+    </fields>
+    <fields>
+        <label><!-- Results --></label>
+        <name>Results__c</name>
+    </fields>
+    <fields>
+        <label><!-- Search String --></label>
+        <name>Search_String__c</name>
+    </fields>
+    <fields>
+        <label><!-- Search Timestamp --></label>
+        <name>Search_Timestamp__c</name>
+    </fields>
+    <fields>
+        <label><!-- Search Topic --></label>
+        <name>Search_Topic__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

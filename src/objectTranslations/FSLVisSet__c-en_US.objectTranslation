@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>FSLVisionSetting</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>FSLVisionSetting</value>
+    </caseValues>
+    <fields>
+        <help><!-- User Id --></help>
+        <label><!-- EinsteinUserId --></label>
+        <name>EinsteinUserId__c</name>
+    </fields>
+    <fields>
+        <label><!-- ModelId --></label>
+        <name>ModelId__c</name>
+    </fields>
+    <fields>
+        <help><!-- email format --></help>
+        <label><!-- SignUp --></label>
+        <name>SignUp__c</name>
+    </fields>
+    <fields>
+        <help><!-- 0-0.999999 --></help>
+        <label><!-- Threshold --></label>
+        <name>Threshold__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

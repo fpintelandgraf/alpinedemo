@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Best Case</masterLabel>
+        <translation>最佳案例</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Closed</masterLabel>
+        <translation>关闭</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Commit</masterLabel>
+        <translation>承诺</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Omitted</masterLabel>
+        <translation>略</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Pipeline</masterLabel>
+        <translation>管道</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

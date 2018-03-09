@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VisualizationPlugin xmlns="http://soap.sforce.com/2006/04/metadata">
+    <developerName>LeafletMap</developerName>
+    <icon>mapIco</icon>
+    <masterLabel>LeafletMap</masterLabel>
+    <visualizationResources>
+        <file>jqueryjs</file>
+        <rank>0</rank>
+        <type>js</type>
+    </visualizationResources>
+    <visualizationResources>
+        <file>leafletcss</file>
+        <rank>1</rank>
+        <type>css</type>
+    </visualizationResources>
+    <visualizationResources>
+        <file>leafletjs</file>
+        <rank>2</rank>
+        <type>js</type>
+    </visualizationResources>
+    <visualizationResources>
+        <file>leafletutil</file>
+        <rank>3</rank>
+        <type>js</type>
+    </visualizationResources>
+    <visualizationResources>
+        <file>leafletadapter</file>
+        <rank>4</rank>
+        <type>js</type>
+    </visualizationResources>
+    <visualizationTypes>
+        <developerName>Map</developerName>
+        <icon>mapIco</icon>
+        <masterLabel>Map</masterLabel>
+        <scriptBootstrapMethod>renderMapChart</scriptBootstrapMethod>
+    </visualizationTypes>
+</VisualizationPlugin>

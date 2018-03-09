@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>ID délément d&apos;ordre d&apos;exécution racine</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>root_workorderlineitem_id</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Élément d&apos;ordre d&apos;exécution racine</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>workorderlineitem_rootworkorderlineitem</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <quickActions>
+        <label>Terminé</label>
+        <name>Complete</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- SendEmail --></label>
+        <name>SendEmail</name>
+    </quickActions>
+</CustomObjectTranslation>

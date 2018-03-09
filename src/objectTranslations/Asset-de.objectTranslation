@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>Feed-Based Asset Layout</layout>
+        <sections>
+            <label><!-- Asset Hierarchy --></label>
+            <section>Asset Hierarchy</section>
+        </sections>
+        <sections>
+            <label><!-- Related To --></label>
+            <section>Related To</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- New Case --></label>
+        <name>CreateCase</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- New Work Order --></label>
+        <name>CreateWorkOrder</name>
+    </quickActions>
+    <workflowTasks>
+        <description><!-- Please Follow up with customer to make sure we get the renewal business. --></description>
+        <name>RenewalNotice</name>
+        <subject><!-- Renewal Notice --></subject>
+    </workflowTasks>
+</CustomObjectTranslation>

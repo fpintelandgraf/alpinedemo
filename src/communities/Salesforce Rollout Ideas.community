@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Community xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <description>A great way to get started with Salesforce Ideas is to use it to collect feedback on your internal Salesforce rollout.</description>
+    <showInPortal>false</showInPortal>
+</Community>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Direct Mail</masterLabel>
+        <translation>Courrier</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Direct Marketing</masterLabel>
+        <translation>Marketing direct</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Email</masterLabel>
+        <translation>Email</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Event</masterLabel>
+        <translation>Séminaire / Conférence</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Multi-Channel</masterLabel>
+        <translation>Multicanal</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Other</masterLabel>
+        <translation>Autres</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Print Marketing</masterLabel>
+        <translation>Publicité</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Social Media</masterLabel>
+        <translation>Réseaux sociaux</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Web Marketing</masterLabel>
+        <translation>Pubs &amp; Bannières Web</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>カタログ</value>
+    </caseValues>
+    <fields>
+        <label>商品の追加詳細</label>
+        <name>Item_Additional_Details__c</name>
+    </fields>
+    <fields>
+        <label>商品コード</label>
+        <name>Item_Code__c</name>
+    </fields>
+    <fields>
+        <label>商品詳細</label>
+        <name>Item_Detail__c</name>
+    </fields>
+    <fields>
+        <label>商品の特徴</label>
+        <name>Item_Features__c</name>
+    </fields>
+    <fields>
+        <label>商品画像(大)</label>
+        <name>Item_Image_Large__c</name>
+    </fields>
+    <fields>
+        <label>商品画像</label>
+        <name>Item_Image__c</name>
+    </fields>
+    <fields>
+        <label>商品の詳細記述</label>
+        <name>Item_Long_Description__c</name>
+    </fields>
+    <fields>
+        <label>商品のMSRP</label>
+        <name>Item_MSRP__c</name>
+    </fields>
+    <fields>
+        <label>商品のモデルナンバー</label>
+        <name>Item_Model_Number__c</name>
+    </fields>
+    <fields>
+        <label>商品名</label>
+        <name>Item_Name__c</name>
+    </fields>
+    <fields>
+        <label>商品の概要</label>
+        <name>Item_Short_Description__c</name>
+    </fields>
+    <fields>
+        <label>商品の仕様</label>
+        <name>Item_Specifications__c</name>
+    </fields>
+    <fields>
+        <label>商品のステータス</label>
+        <name>Item_Status__c</name>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Review</masterLabel>
+            <translation><!-- In Review --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Published to Website</masterLabel>
+            <translation><!-- Published to Website --></translation>
+        </picklistValues>
+    </fields>
+    <nameFieldLabel>カタログ名</nameFieldLabel>
+</CustomObjectTranslation>

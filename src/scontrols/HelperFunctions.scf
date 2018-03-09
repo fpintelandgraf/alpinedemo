@@ -1,0 +1,844 @@
+//---------------------- SCONTROL SHARED FUNCTIONS START -----------------------------
+/* Functions used by every budget related s-control. Placed in this file rather than 
+repeating it in each file*/ 
+
+function addPrototypes() {Sforce.Util.ParseDate = function(val) {if (Sforce.Util.dltypeof(val) == "date") return val;var preferEuro=(arguments.length==2)?arguments[1]:false;generalFormats=new Array('y-M-d','MMM d, y','MMM d,y','y-MMM-d','d-MMM-y','MMM d');monthFirst=new Array('M/d/y','M-d-y','M.d.y','MMM-d','M/d','M-d');dateFirst =new Array('d/M/y','d-M-y','d.M.y','d-MMM','d/M','d-M');var checkList=new Array(generalFormats,preferEuro?dateFirst:monthFirst,preferEuro?monthFirst:dateFirst);var d=null;for (var i=0; i<checkList.length; i++) {var l=checkList[i];for (var j=0; j<l.length; j++) {d=Sforce.Util.GetDateFromFormat(val,l[j]);sforceClient.debuglog.writeln(j + " - Formated date = " + d);if (d!=0) { return new Date(d); }}}return null;};}
+
+// onload routine gets picked up on starting scontrol 
+function onLoad() { 
+	addPrototypes();
+	if (startup() == true) {
+		if (initializeForm() == true) {
+			//launch main process 
+			main();
+			closeWindow();
+		}
+	} else {
+		alert("You are not logged in"); 
+		closeWindow();
+	}
+} // onLoad() 
+
+//---------------------- SCONTROL SHARED FUNCTIONS  END -----------------------------
+
+//---------------------- FORM RELATED FUNCTIONS  START -----------------------------
+var validationPageErrorHeader = "Error: Invalid Data.<br>Review all error messages below to correct your data.";
+
+/*
+This function takes a paragraph heading and a string and and outputs it to the named div
+in the html page so the user knows what went wrong.
+*/
+function outputFormMessage(message) {
+    document.getElementById("divErrorMsg").innerHTML = message;
+}
+
+function reSizeWindow() {
+	//Hide the Javascript div
+    document.getElementById("JavaScriptEnabled").className = 'hidden';
+	
+	//Resize the window from the arbitrary window size the s-control opened up with
+	var h = 550;
+	var w = 700;
+	top.resizeTo(w,h);
+	window.moveTo((screen.width-w)/2,(screen.height-h)/2);
+}
+
+function drawUpdating() {
+	document.write('<form  action="/_ui/common/data/LookupResultsFrame" id="new" name="new" method="GET" >');
+	document.write('  <div id="updating" class="lookup">');
+	document.write('    <!-- Begin ListElement -->');
+	document.write('    <div class="bPageBlock secondaryPalette">');
+	document.write('      <div class="pbHeader"></div>');
+	document.write('	  <div class="pbBody">');
+	document.write('	  <div class="pbSubsection">');
+	document.write('        <table width="100%">');
+	document.write('          <tr>');
+	document.write('            <td align=center><span class="moduleTitle">Updating ... Please Wait</span></td>');
+	document.write('          </tr>');
+	document.write('          <tr>');
+	document.write('            <td>&nbsp;</td>');
+	document.write('          </tr>');
+	document.write('          <tr>');
+	document.write('            <td align=center><img src="/img/waiting_dots.gif" border="0" width=156 height=34> </td>');
+	document.write('          </tr>');
+	document.write('        </table>');
+	document.write('      </div>');
+	document.write('	  </div>');
+   	document.write('  <div class="pbFooter secondaryPalette">');
+	document.write('        <div class="bg"></div>');
+	document.write('      </div>');
+	document.write('    </div>');
+	document.write('    <div class="listElementBottomNav"></div>');
+	document.write('    <!-- End ListElement -->');
+	document.write('    <div class="footer">Copyright &copy; 2000-2005 salesforce.com, inc. All rights reserved.</div>');
+	document.write('  </div>');
+	document.write('</form>');
+}
+
+function writeFieldSection() {
+	document.write('	<form name="EntryPage" action="javascript:save()">');
+	document.write('	<div id="fieldSection" class="hidden">');
+	document.write('	<div class="lookup">');
+	document.write('		<div class="bPageTitle">');
+	document.write('			<div class="ptBody primaryPalette">');
+	document.write('				<div class="content"></div>');
+	document.write('			</div>');
+	document.write('		</div>');
+	document.write('		<div class="pBody">');
+	document.write('			<div id="divErrorMsg" style="text-align:center; font-weight: bold; color: #C00;">Error: Invalid Data. <br>Review all error messages below to correct your data.</div>');
+	document.write('		</div>');
+	document.write('		<div class="bPageBlock secondaryPalette">');
+	document.write('			<div class="pbHeader"></div>');
+	document.write('			<div class="pbBody">');
+	document.write('				<div class="pbSubsection">');
+	document.write('						<div id="readOnlyField0" class="hidden">');
+	document.write('							<TABLE  class="detailList" cellpadding="0" cellspacing="0" border="0"><tr>');
+	document.write('								<TD class="labelCol" width="300"><div id="readOnlyFieldName0"></div></TD>');
+	document.write('								<TD class="dataCol col02"><div id="readOnlyFieldValue0"></div></TD>');
+	document.write('							</tr></table>');
+	document.write('						</div>');
+	document.write('  						<div id="readOnlyField1" class="hidden">');
+	document.write('  							<TABLE  class="detailList" cellpadding="0" cellspacing="0" border="0"><tr>');
+	document.write('								<TD class="labelCol" width="300"><div id="readOnlyFieldName1"></div></TD>');
+	document.write('								<TD class="dataCol col02"><div id="readOnlyFieldValue1"></div></TD>');
+	document.write('						</tr></table>');
+	document.write('					</div>');
+	document.write('					<div id="readOnlyField2" class="hidden">');
+	document.write('						<TABLE  class="detailList" cellpadding="0" cellspacing="0" border="0"><tr>');
+	document.write('							<TD class="labelCol" width="300"><div id="readOnlyFieldName2"></div></TD>');
+	document.write('							<TD class="dataCol col02"><div id="readOnlyFieldValue2"></div></TD>');
+	document.write('						</tr></table>');
+	document.write('					</div>');
+	document.write('					<div id="readOnlyField3" class="hidden">');
+	document.write('						<TABLE  class="detailList" cellpadding="0" cellspacing="0" border="0"><tr>');
+	document.write('							<TD class="labelCol" width="300"><div id="readOnlyFieldName3"></div></TD>');
+	document.write('							<TD class="dataCol col02"><div id="readOnlyFieldValue3"></div></TD>');
+	document.write('						</TR></table>');
+	document.write('					</div>');
+	document.write('					<div id="approvedAmount" class="hidden">');
+	document.write('						<TABLE  class="detailList" cellpadding="0" cellspacing="0" border="0"><tr>');
+	document.write('							<TD class="labelCol" width="300" align="right" >');
+	document.write('								<div id="amountLabel" class="hidden">Approved Amount</div></TD>');
+	document.write('							<TD class="dataCol">');
+	document.write('								<div id="requiredAmountInputWrapper" class="hidden">');
+	document.write('									<div class="requiredInput">');
+	document.write('										<div id="ApproveAmountRequired" class="requiredBlock"></div>');
+	document.write('										<div id="approvedValueField" class="hidden">');
+	document.write('											<input id="approvedValue" size="20" name="approvedValue" title="Approved Amount">');
+	document.write('											<span class="pbError"><div id="amountError" class="visible" style="text-align:left;">Attention Required : <br>You must enter an approved amount.</div>');
+	document.write('											</span>');
+	document.write('										</div>');
+	document.write('									</div>');
+	document.write('								</div>');
+	document.write('							</TD>	');
+	document.write('						</TR></table>');
+	document.write('					</div>');
+	document.write('					<div id="budget" class="hidden">');
+	document.write('						<TABLE  class="detailList" cellpadding="0" cellspacing="0" border="0"><tr>	');
+	document.write('							<TD class="labelCol" width="300" align="right">');
+	document.write('								<div id="budgetLabel" class="hidden">Channel Budget</div></TD>');
+	document.write('							<TD class="dataCol">');
+	document.write('								<div id="requiredBudgetInputWrapper" class="hidden">');
+	document.write('									<div class="requiredInput">');
+	document.write('										<div id="BudgetRequired" class="requiredBlock"></div>');
+	document.write('										<div id="approvedBudgetField" class="hidden">');
+	document.write('											<select id="budgetValues"></select>');
+	document.write('											<span class="pbError"><div id="budgetError" class="visible" style="text-align:left;">Attention Required : <br>You must select a budget.</div>');
+	document.write('											</span>');
+	document.write('										</div>');
+	document.write('									</div>');
+	document.write('								</div>');
+	document.write('							</TD>');
+	document.write('					</TR></table>');
+	document.write('					</div>');
+	document.write('				<br>');
+    document.write('	</form>');
+    document.write('	<form action="javascript:save()">');
+	document.write('				<TABLE border="0" align="center"  cellpadding="0" cellspacing="0">');
+	document.write('					<TR>');
+	document.write('						<TD>');
+	document.write('							<input id="SaveButton" class="btn" value=" Save "  size="6"  title="Save" onClick="save()">');
+	document.write('							<input id="Cancel" value="Cancel"  size="6" class="btn" title="Cancel" onClick="window.close()">');
+	document.write('					</TD>');
+	document.write('					</TR>');
+	document.write('				</TABLE><br>');
+    document.write('	</form>');
+	document.write('			</div>');
+	document.write('		</div>');
+	document.write('		<div class="pbFooter secondaryPalette">');
+	document.write('			<div class="bg"></div>');
+	document.write('		</div>');
+	document.write('	</div>');
+	document.write('	<div class="listElementBottomNav"></div>');
+	document.write('		<div class="footer">Copyright &copy; 2000-2005 salesforce.com, inc. All rights reserved.</div>');
+	document.write('	</div>');
+	document.write('	</div>');
+}
+
+//Populates a select box given a query and other parameters
+function populateSelectList(selectList, query, bSort, valField, nameField, formatString) {
+	var qr=getRecords(query);
+	if(qr.size > 0) {
+		//qr.loadSelectElement(selectList, bSort, valField, nameField, formatString);
+		var id;
+		var name;
+		for (i=0; i<qr.size;i++){
+			id = qr.records[i].get("id");
+			name = qr.records[i].get("name");
+			document.getElementById("budgetValues").options[document.getElementById("budgetValues").options.length] = new Option(name, id);
+		}
+	}
+
+}
+
+//Populates an input field given a query and other parameters
+function populateFieldValue(formElement, query, fieldName) {
+	var qr=getRecords(query);
+	if (qr.className == "QueryResult") {
+		if(qr.size > 0) {
+			formElement.value = qr.records[0].get(fieldName);
+		}
+	}
+}
+
+// If we are programmatically closing the window, set flag so user is not asked to confirm 
+function closeWindow(){ 
+window.close(); 
+} 
+
+//---------------------- FORM RELATED FUNCTIONS END -----------------------------
+
+
+//--------------------- GENERIC FUNCTIONS USED BY ALL CHANNEL APPS SCONTROLS START----------------------
+/* The following functions are used by practically all the channel apps s-controls. The goal is to centralize
+as much of the common code as possible in order to easy maintenance changes etc. 
+The core s-controls focus on the queries and other factors that are unique to that record and application
+*/
+
+//Used to validate required fields are filled in 
+function genericInitializeForm(	requestedAmountVal,
+								approvedAmountVal, 
+								approvedAmountFieldName, 
+								approvedAmountMissingMessage,
+								selectedbudgetID, 
+								bGetParent,
+								parentTableName,
+								parentID,
+								selectedbudgetFieldName,
+								objectTableName) {
+	var retVal = true;
+	//Determine if the app has been configured to use the budget. If so, ensure that a budget is selected
+	if (bFundUseBudget) {
+		if(selectedbudgetID == "") {
+			//There is no budget saved in the record. However the page URL may have passed in a budget ID
+			if (getURLParam("bid") != "") {
+				//A budget Id has been passed in 
+				budgetID = getURLParam("bid"); 
+			} else if (bGetParent) {
+				//get the parent fund budget id, if it exists. (used only for claims other hierarchical r/ship)
+				var tableName = parentTableName;
+				var selectFields = new Array("id", "SFDC_Channel_Budget__c");
+				var constrainColumns = new Array("id");
+				var constrainValues = new Array(parentID);
+				var queryResult=getRecords(buildSelectStatement(tableName, selectFields, constrainColumns, constrainValues)); 
+				if (queryResult != null && queryResult.size >0) {
+					//Validate that the parent request has specified a channel budget
+					var id = queryResult.records[0].get("SFDC_Channel_Budget__c");
+					if (id != null && id != "")
+						budgetID = queryResult.records[0].get("SFDC_Channel_Budget__c");
+				}
+			}
+			if (budgetID == "") {
+				//There is no budget id. Present a list to choose from
+				populateSelectList(document.getElementById("budgetValues").name, "Select Id, Name from SFDC_Channel_Budget__c", true, "Id", ["Name"], "Name");
+				if (document.getElementById("budgetValues").length == 0) {
+					//No budgets were returned
+					//the next 1 line of code is used to get around some html hack. Without it the dropdown box ends up being at the end of the page
+					document.getElementById("budgetValues").options[document.getElementById("budgetValues").options.length] = new Option("", "");
+					document.getElementById("budgetValues").options.length = 0;
+					document.getElementById("budgetError").className = "visible";
+					document.getElementById("budgetError").innerHTML = "A channel budget is required. <BR>Create a budget to proceed with this process.";
+				}
+				document.getElementById("budgetValues").selectedIndex = -1;
+				document.getElementById("fieldSection").className = "visible";
+				document.getElementById("budget").className = "visible";
+				document.getElementById("requiredBudgetInputWrapper").className = "visible";
+				document.getElementById("budgetLabel").className = "visible";
+				document.getElementById("budgetLabel").innerHTML = getFieldLabel(selectedbudgetFieldName, objectTableName);
+				document.getElementById("approvedBudgetField").className = "visible";
+				retVal = false;
+			}
+		} 
+	} 
+
+	//Is there an approved amount
+	if (approvedAmountVal == "") { 
+		//There is no approved amount saved in the record. However the page URL may have passed in an approved amount
+		if (getURLParam("apv") != "") {
+			//An approved amount field has been passed in 
+			approvedAmountValue = getURLParam("apv");
+		} else {
+			//Expose the approved amount field for entry, priming it with the requested amount.
+			if (convertToNumber(requestedAmountVal) == 0)
+				requestedAmountVal = "";
+			else 
+				requestedAmountVal = convertToNumber(requestedAmountVal);
+			document.getElementById("fieldSection").className = "visible";
+			document.getElementById("approvedAmount").className = "visible";
+			document.getElementById("requiredAmountInputWrapper").className = "visible";
+			document.getElementById("amountLabel").className = "visible";
+			document.getElementById("amountLabel").innerHTML = getFieldLabel(approvedAmountFieldName, objectTableName);
+			document.getElementById("approvedValueField").className = "visible";
+			document.getElementById("approvedValue").value = requestedAmountVal;
+			document.getElementById("approvedValue").focus();
+			document.getElementById("amountError").className = "visible";
+			document.getElementById("amountError").innerHTML = approvedAmountMissingMessage;
+			retVal = false; 
+		}
+	}
+
+	//if one of the fields failed validation, show the appropriate error message
+	if (retVal == false)
+		document.getElementById("updating").className = 'hidden';
+	return retVal;
+}
+
+//Used to show read only/ contect fields on the intermediate validation form
+function showFormContextFields(fieldsList, fieldsValues, objectName) {
+	//Show some other fields on the pop up page
+	var fieldInfo = getFieldLabels(fieldsList, objectName);
+	//l< 4 because there are only 4 field placeholders in the page 
+	for(l=0;l<fieldsList.length && l<4;l++){
+		var i = getArrayIndex(fieldsList[l], fieldInfo);
+		var divname = "readOnlyField" + l;
+		var name = "readOnlyFieldName" + l;
+		var value = "readOnlyFieldValue" + l;
+		document.getElementById(divname).className = "visible";
+		document.getElementById(name).innerHTML = fieldInfo[i+1];
+		document.getElementById(value).innerHTML = fieldsValues[l];
+	}
+}
+
+//Generic save function, used for the validation form
+function genericSave(validateAmount, validateBudget) {
+	//Boolean that is set to false if any of the validations fail
+	var bAmountPass = true;
+	var bBudgetPass = true;
+	
+	//Array that hold the URLs parameters that are used to resubmit the page
+	var URLArgs = new Array();
+
+	if (validateAmount)	{
+		//Validate that the approved amount is a valid before processing (if this field was visible on the form)
+		if (document.getElementById("approvedValueField").className == "visible") {
+			var message;
+
+			//Figure out what the message needs to be, based on the cause
+			if (document.getElementById("approvedValue").value.length == 0) {
+				message  = "Error: You must enter a value";
+				bAmountPass = false;
+			} else if (!IsNumeric(document.getElementById("approvedValue").value)) {
+				message  = "Error: Invalid currency";
+				bAmountPass = false;
+			}
+
+			//if the validation passed set the URL arg.
+			if(bAmountPass == true) {
+				document.getElementById("amountError").className = "hidden";
+				URLArgs.push("&apv=" + document.getElementById("approvedValue").value);
+			} else {
+				document.getElementById("amountError").className = "visible";
+				document.getElementById("amountError").innerHTML = message;
+				document.getElementById("approvedValue").focus();
+			}
+		}
+	}
+
+	if (validateBudget)	{
+		//Validate the budget field before processing (if this field was visible on the form)
+		if (document.getElementById("budget").className == "visible") {
+			var message;
+			
+			if (document.getElementById("budgetValues").length == 0) {
+				message = "A channel budget is required. <BR>Create a budget to proceed with this process.";
+				bBudgetPass = false;
+			} else if (document.getElementById("budgetValues").selectedIndex == -1) {
+				message = "Attention Required : <br>You must select a budget.";
+				bBudgetPass = false;
+			}
+
+			if(bBudgetPass == true) {
+				document.getElementById("budgetError").className = "hidden";
+				var id = document.getElementById("budgetValues").options[document.getElementById("budgetValues").selectedIndex].value;
+				//Truncate the 18 character id to 15 characters
+				id = Left(id, 15);
+				URLArgs.push("&bid=" + id);
+			} else {
+				document.getElementById("budgetError").className = "visible";
+				document.getElementById("budgetError").innerHTML = message;
+			}
+		}
+	}
+
+	//The validate has passed. Determine what parameters need to be post pended to the URL for resubmission
+	if (bAmountPass && bBudgetPass) {
+		//get rid of any previously appended parameters before adding new parameters
+		var URL = window.location.href;
+		if (getURLParam("bid") != "")
+			URL = removeURLParam(URL, "bid");
+		if (getURLParam("apv") != "")
+			URL = removeURLParam(URL, "apv");
+		for (var i = 0; i < URLArgs.length; i++)
+			URL += URLArgs[i];
+		window.location.replace(URL);
+	} else {
+		outputFormMessage(validationPageErrorHeader);
+	}
+}
+//--------------------- GENERIC FUNCTIONS USED BY ALL CHANNEL APPS SCONTROLS END ----------------------
+
+//-------------------- META DATA RELATED FUNCTIONS START --------------------------
+
+/**
+This function takes a field name and an Object name and if the
+field name is available to the current user the function will return
+a boolean value of true, otherwise it will return false.
+NOTE: You must append '__c' to the field and/or object name when
+       they are custom.
+*/
+function checkForCustomField(field,object){
+
+    //Perform describe on the given object.
+    dsoResult = sforceClient.DescribeSObject(object);
+
+    //Declare the boolean and set it to false.
+    var checkForCustomField = new Boolean(false);
+
+    //Get the array of field objects from the DescribeResult.
+    fields = dsoResult.fields;
+
+    //Loop through the field array to see if the field exists.
+    for(l=0;l<fields.length;l++){
+        fieldFromDescribe = fields[l];
+        if (fieldFromDescribe.name == field) {
+            //Field found, set the response variable to true.
+            var checkForCustomField = true;
+        }
+    }
+
+    return checkForCustomField;
+
+}
+// This function gets the given field label from the DescribeResult.
+function getFieldLabel(field,object) {
+    var label = "";
+    dsoResult = sforceClient.DescribeSObject(object);
+    fields = dsoResult.fields;
+    for(l=0;l<fields.length;l++){
+        fieldFromDescribe = fields[l];
+        if (fieldFromDescribe.name == field) {
+            l = fields.length;
+            label = fieldFromDescribe.label;
+        }
+    }
+    return label;
+}
+
+/* This function gets the field label from the DescribeResult for a set of fieldvalues
+Returns them in array with the syntax fieldname, field label */
+function getFieldLabels(getValues,object) {
+    var label = "";
+	var retrievedLabels = new Array();
+    dsoResult = sforceClient.DescribeSObject(object);
+    fields = dsoResult.fields;
+	for(l=0;l<fields.length;l++){
+        fieldFromDescribe = fields[l];
+        if (matchValue(getValues, fieldFromDescribe.name)) {
+			retrievedLabels[retrievedLabels.length] = fieldFromDescribe.name;
+			retrievedLabels[retrievedLabels.length] = fieldFromDescribe.label;
+			if(retrievedLabels.length / 2 == getValues.length)
+				l = fields.length;
+        }
+    }
+    return retrievedLabels;
+}
+//-------------------- META DATA RELATED FUNCTIONS END ----------------------
+
+//-------------------- DATA RELATED FUNCTIONS START --------------------------
+//Returns true if the reqStatus is contained in the array
+function matchValue(validValues,reqStatus) {
+	var match = false;
+	for (var i = 0; i < validValues.length; i++){
+		if(validValues[i] == reqStatus) {
+			match = true;
+			break;
+		}
+	}
+	return match;
+}
+
+//Gets the index of a given value in an array
+function getArrayIndex(checkValue, arrayArg) {
+	var retVal = -1;
+	for (var i = 0; i < arrayArg.length; i++){
+		if (arrayArg[i] == checkValue) {
+			retVal = i;
+			break;
+		}
+	}
+	return retVal;
+}
+
+//Constructs a SOCL statement for the given parameters
+function buildSelectStatement(tableName, selectFields, constrainColumns, constrainValues){ 
+
+	//build fieldnames 
+	var fieldnames = "";
+	for (var i = 0; i < selectFields.length; i++){
+       		if (i > 0) {
+           		fieldnames += ' , ';
+       		}
+       		fieldnames += selectFields[i];
+	}
+
+	//build where clause 
+	var whereClause = "";
+	if (constrainColumns.length > 0)
+	{
+		whereClause = " where ";
+	}
+	for (var i = 0; i < constrainColumns.length; i++){
+       		if (i > 0) {
+       			whereClause += " and ";
+		}
+       		whereClause += constrainColumns[i] + " ='" + constrainValues[i] + "'";
+	}
+
+	var sql = "select " + fieldnames + " from " + tableName + whereClause;
+	debug(sql);
+	return(sql);
+}
+
+//Executes a SOCL query
+function getRecords(sql) {
+	var queryResult=sforceClient.Query(sql);
+	debug(queryResult.toString());
+	return queryResult;
+}
+
+//Executes a SOCL update
+function updateFields(recordVal, fieldNames, fieldValues){
+	//new array to hold results of updates 
+	var updateObjects = new Array(1); 
+
+	// assign field values to fields 
+	for (var i = 0; i < fieldNames.length; i++){
+       		recordVal.set(fieldNames[i], fieldValues[i]);
+	}
+	updateObjects[0] = recordVal; 
+	var saveResults = sforceClient.Update(updateObjects); 
+	debug(saveResults.toString());
+	return saveResults;
+}
+
+//Executes an update, taking a record array and field names and value to update
+function updateRecords(records, fieldNames, fieldValues){
+	//new array to hold results of updates 
+	var updateObjects = new Array(records.size); 
+
+	// assign field values to fields 
+	for (var i = 0; i < fieldNames.length; i++){
+		for (var x = 0; x < records.length; x++){
+			records[x].set(fieldNames[i], fieldValues[i]);
+		}
+	}
+
+	for (var i = 0; i < records.length; i++){
+		updateObjects[i] = records[i]; 
+	}
+
+	var saveResults = sforceClient.Update(updateObjects); 
+	debug(saveResults.toString());
+	return saveResults;
+}
+
+function retrieve(fieldNames,tableName,recordIDs) {
+	return sforceClient.Retrieve(fieldNames,tableName,recordIDs);
+}
+
+//Returns a summ for a given fieldname in a given resultset
+function sumFieldValue(qr, fieldName) {
+	var fieldValue = 0.00;
+	var tmpVal = 0.00; 
+	if (qr.className == "QueryResult") {
+		if (qr.size > 0) { 
+			for (var i=0;i<qr.records.length;i++) {
+				tmpVal = parseFloat(qr.records[i].get(fieldName));
+				if (!IsNumeric(tmpVal) || isNaN(tmpVal) ) {
+					tmpVal=0.00; 	
+			 	}
+				fieldValue = parseFloat(fieldValue) + parseFloat(tmpVal); 
+			}
+		}
+	}
+	return parseFloat(fieldValue);
+}
+//-------------------- DATA RELATED FUNCTIONS  END --------------------------
+
+//---------------------- DEBUG FUNCTIONS START -----------------------------
+// Show the debug window
+function showDebug() {
+	window.top.debugWindow =
+	  window.open("",
+				  "Debug",
+				  "left=0,top=0,width=300,height=700,scrollbars=yes,"
+				  +"status=yes,resizable=yes");
+	window.top.debugWindow.opener = self;
+	// open the document for writing
+	window.top.debugWindow.document.open();
+	window.top.debugWindow.document.write(
+	  "<HTML><HEAD><TITLE>Debug Window</TITLE></HEAD><BODY><PRE>\n");
+	//sforceClient.debuglog.show();
+}
+
+// If the debug window exists, then write to it
+function debug(val) {
+	if (window.top.debugWindow && ! window.top.debugWindow.closed) {
+		window.top.debugWindow.document.write(val+"\n"); 
+	}
+	//sforceClient.debuglog.writeln(val);
+}
+
+//---------------------------- JAVASCRIPT TEXT RELATED FUNCTIONS  START -------------------------------------
+//Converts a currency formatted field to a number
+function convertToNumber(currValue) {
+	if(currValue == null || currValue =="") {
+		currValue = "0";	
+	} else { 
+		currValue = stripCurrencyCode(currValue);
+	}
+	return currValue.replace(",", "");
+
+}
+
+//Strips the currency code from a currency field
+function stripCurrencyCode(s) {
+	var i;
+	var returnString = "";
+	if (s != "") {
+		for (i = 0; i < s.length; i++) {  
+			if (IsNumeric(s.charAt(i))) {
+				break;
+			}
+		}
+		returnString = Right(s,s.length-i);
+	}
+	return returnString;
+}
+
+//Return the 'n' number of characters from the left of the string
+function Left(str, n){
+	if (n <= 0)
+	    return "";
+	else if (n > String(str).length)
+	    return str;
+	else
+	    return String(str).substring(0,n);
+}
+
+
+//Return the 'n' number of characters from the right of the string
+function Right(str, n){
+    if (n <= 0)
+       return "";
+    else if (n > String(str).length)
+       return str;
+    else {
+       var iLen = String(str).length;
+       return String(str).substring(iLen, iLen - n);
+    }
+}
+
+//Determines if the passed in text is numeric
+function IsNumeric(sText)
+{
+   var ValidChars = "0123456789.";
+   var IsNumber=true;
+   var Char;
+ 
+   for (i = 0; i < sText.length && IsNumber == true; i++) 
+      { 
+      Char = sText.charAt(i); 
+      if (ValidChars.indexOf(Char) == -1) 
+         {
+         IsNumber = false;
+         }
+      }
+   return IsNumber;
+}
+
+//Returns the value of a string up to a certain point
+function getStringUpto(value, uptoValue) {
+	return value.substring(0,value.indexOf(uptoValue))
+}
+
+//Returns a URL Parm
+function getURLParam(strParamName){
+  var strReturn = "";
+  var strHref = window.location.href;
+  //var strHref = href;
+  if ( strHref.indexOf("?") > -1 ){
+    var strQueryString = strHref.substr(strHref.indexOf("?"));
+    var aQueryString = strQueryString.split("&");
+    for ( var iParam = 0; iParam < aQueryString.length; iParam++ ){
+      if ( 
+aQueryString[iParam].indexOf(strParamName + "=") > -1 ){
+        var aParam = aQueryString[iParam].split("=");
+        strReturn = aParam[1];
+        break;
+      }
+    }
+  }
+  return strReturn;
+} 
+
+//Removes a URL parm
+function removeURLParam(url, paramName) {
+	if(!url) return url;
+	begin = url.indexOf(paramName);
+	if (begin == -1) return url;
+	
+	end = url.indexOf('&', begin);
+	if ((begin > 0) && (url.charAt(begin-1) == '&'))
+		begin--; // kill the preceeding '&'
+	
+	if (end == -1) {
+		url = url.substring(0, begin);
+	} else {
+		url = url.substring(0, begin) + url.substring(end, url.length);
+	}
+	
+	if (url.charAt(url.length-1) == '?')
+		url = url.substring(0, url.length-1);
+	
+	return url;
+}
+
+
+//---------------------------- JAVASCRIPT TEXT RELATED FUNCTIONS  END -------------------------------------
+
+//---------------------------- CHANNEL BUDGET RELATED FUNCTIONS  START -------------------------------------
+function createBudgetEntry(cbFields, cbValues){
+	debug("start create budget entry function");
+	debug(cbFields.toString());
+	debug(cbValues.toString());
+	
+	var cbEntry = new Sforce.Dynabean("SFDC_Channel_Budget_Entry__c"); 
+	debug("cbEntry");
+	debug(cbEntry);
+	debug("cbEntry.success");
+	debug(cbEntry.success);
+
+	//set the value for each field value
+	for (var i = 0; i < cbFields.length; i++){
+		cbEntry.set(cbFields[i], cbValues[i]); 
+	}
+	debug(cbEntry); 
+	var saveResult = sforceClient.Create([cbEntry])[0]; 
+	//debug(saveResult.toString()); 
+	if (saveResult.success == true) { 
+		debug("saved successfully");
+		return true;
+	} else { 
+		debug("createBudgetEntry save error");
+		debug(saveResult.errors[0].message); 
+		if (saveResult.errors[0].fields[0].updateable == false){
+				/* This indicates that the user does not have access to this object. (Typical for the read only demo user)
+				Return a true value so that the calling function does not show an error. */
+				return true;
+		} else {
+			return false;
+		}
+	}
+}
+
+function isAllocatedBudgetExceeded(allocatedBudget, oldApprovedRequests, newApprovedRequests){
+		//Checks to see if the approved requests exceed the allocated budget amount
+		if ( parseFloat(newApprovedRequests) > parseFloat(allocatedBudget) ){
+			var exceedAmount = parseFloat(newApprovedRequests) - parseFloat(allocatedBudget);
+			var message = "The allocated budget has been exceeded by \n";
+			message += exceedAmount;
+			alert(message);
+		}
+}
+//---------------------------- CHANNEL BUDGET RELATED FUNCTIONS  END -------------------------------------
+
+//---------------------------- SPECIAL PRICING RELATED FUNCTIONS  START -------------------------------------
+/* This is put in this central file as there are two places where this code is called from
+		1. from the Special Price Request page
+		2. from the Approve Special Price Request process/ s-control
+The code itself updates the requested and approved amounts on the special price record, based on the individual
+product line items.
+*/
+
+function getSPProductLineItemTotals(sprID, updateTotals) {
+	var requestedAmount = 0.00;
+	var approvedAmount = 0.00;
+	var percentDiscount = 0.00;
+	var sql;
+	var qr;
+	var retVal;
+	var returnArray = new Array(5); 
+	//results array; 0=return value, 1=requested amount total, 2=approved amount total, 3 = % disc, 4 = Error Message
+	var validateProductLineItems = true;
+
+	//Prime the return value
+	returnArray[0] = "true"
+
+	//Add the line items
+	sql = "Select id, Total_Requested_Amount__c, Approved_Discount_Amount__c from SFDC_SPA_Product__c  where SPA_Request__c  ='" + sprID + "'";
+	qr=getRecords(sql); 
+	requestedAmount += sumFieldValue(qr, "Total_Requested_Amount__c");
+	approvedAmount += sumFieldValue(qr, "Approved_Discount_Amount__c");
+	returnArray[1] = requestedAmount;
+	returnArray[2] = approvedAmount;
+
+	//Get the percent discount
+	sql = "Select id, Regular_Price__c, Approved_Unit_Price__c from SFDC_SPA_Product__c  where SPA_Request__c ='" + sprID + "' and Approved_Unit_Price__c != null and Regular_Price__c  != null and Approved_Unit_Price__c != 0 and Regular_Price__c  != 0";
+	qr=getRecords(sql); 
+	if(qr.size > 0) {
+		var totalRegPrice = sumFieldValue(qr, "Regular_Price__c");
+		var totalAppUnitPrice = sumFieldValue(qr, "Approved_Unit_Price__c");
+		percentDiscount = ( (totalRegPrice-totalAppUnitPrice) / totalRegPrice )*100;
+		returnArray[3] = percentDiscount;
+	}
+	
+	//validate the product line items actually retun a requested and approved amount
+	var errorMessage;
+	if (requestedAmount == null || requestedAmount == 0) {
+		errorMessage = "There is no requested amount.<br>Please add product details to the request in order to approve the request.";
+		validateProductLineItems = false;
+	} else if (approvedAmount == null || approvedAmount == 0) {
+		errorMessage = "There is no approved amount.<br>Please enter an 'Approved Unit Price' in the product(s) in order to approve the request.";
+		validateProductLineItems = false;
+	}
+	if (!validateProductLineItems) {
+		returnArray[0] = "false";
+		returnArray[4] = errorMessage;
+	}
+
+	if (returnArray[4] == null && updateTotals){
+		//Update the SP request
+		sql = "Select Id, Requested_Amount__c, Approved_Amount__c, Approved_Discount__c from SFDC_SPA_Request__c where id ='" + sprID + "'";
+		qr=getRecords(sql); 
+		var fieldNames = new Array("Requested_Amount__c", "Approved_Amount__c", "Approved_Discount__c");
+		var fieldValues = new Array(requestedAmount +'', approvedAmount +'', percentDiscount);
+		var saveResults=updateFields(qr.records[0], fieldNames, fieldValues);
+		if (saveResults == null)
+			returnArray[0] = "false";
+	}	
+
+	return returnArray;
+}
+
+//---------------------------- SPECIAL PRICING RELATED FUNCTIONS END -------------------------------------

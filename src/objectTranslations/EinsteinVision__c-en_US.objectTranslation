@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>EinsteinVision</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>EinsteinVision</value>
+    </caseValues>
+    <fields>
+        <help><!-- the Salesforce file name where your certificate is stored.  Use this if you signed up and downloaded a .pem file (typical names are &quot;predictive_services&quot; and &quot;einstein_platform&quot; --></help>
+        <label><!-- CertFile --></label>
+        <name>CertFile__c</name>
+    </fields>
+    <fields>
+        <help><!-- the Salesforce name of your security certificate.  Use this if you signed up for Einstein very early and have an Einstein-related security certificate in Setup&gt;Security&gt;Certificate and Key Management --></help>
+        <label><!-- CertName --></label>
+        <name>CertName__c</name>
+    </fields>
+    <fields>
+        <help><!-- Email that you used to sign up for the Eintstein predictive vision service.  If you signed in with your Salesforce org, it&apos;s the email address (not necessarily the username) on your user. --></help>
+        <label><!-- EinsteinUsername --></label>
+        <name>EinsteinUsername__c</name>
+    </fields>
+    <fields>
+        <help><!-- the salesforce userid (not username) of the user that you want to respond as Einstein --></help>
+        <label><!-- LocalEinsteinUser --></label>
+        <name>LocalEinsteinUser__c</name>
+    </fields>
+    <fields>
+        <help><!-- how long should the token (JWT) be valid for? --></help>
+        <label><!-- TokenExpirationTime --></label>
+        <name>TokenExpirationTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- certificateIssuer --></label>
+        <name>certificateIssuer__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Account</value>
+        </caseValues>
+        <caseValues>
+            <plural>true</plural>
+            <value>Accounts</value>
+        </caseValues>
+        <name>business_account</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <layouts>
+        <layout>Account</layout>
+        <sections>
+            <label><!-- Account Details --></label>
+            <section>Account Details</section>
+        </sections>
+        <sections>
+            <label><!-- Address --></label>
+            <section>Address</section>
+        </sections>
+        <sections>
+            <label><!-- Field Service Details --></label>
+            <section>Field Service Details</section>
+        </sections>
+        <sections>
+            <label><!-- Useful Links --></label>
+            <section>Useful Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Account Community View</layout>
+        <sections>
+            <label><!-- Address --></label>
+            <section>Address</section>
+        </sections>
+        <sections>
+            <label><!-- Useful Links --></label>
+            <section>Useful Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Partner Account</layout>
+        <sections>
+            <label><!-- Open Partner Opportunities --></label>
+            <section>Open Partner Opportunities</section>
+        </sections>
+        <sections>
+            <label><!-- Partnership Information --></label>
+            <section>Partnership Information</section>
+        </sections>
+        <sections>
+            <label><!-- Scorecard --></label>
+            <section>Scorecard</section>
+        </sections>
+        <sections>
+            <label><!-- Useful Links --></label>
+            <section>Useful Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Person Account Community View</layout>
+        <layoutType>PersonAccount</layoutType>
+        <sections>
+            <label><!-- Useful Links --></label>
+            <section>Useful Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Person Account Layout</layout>
+        <layoutType>PersonAccount</layoutType>
+        <sections>
+            <label><!-- Customer Finances --></label>
+            <section>Customer Finances</section>
+        </sections>
+        <sections>
+            <label><!-- Useful Links --></label>
+            <section>Useful Links</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Einstein Configuration --></label>
+        <name>Einstein_Configuration</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Log in as --></label>
+        <name>Log_in_as</name>
+    </quickActions>
+</CustomObjectTranslation>

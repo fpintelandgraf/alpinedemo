@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Attention</masterLabel>
+        <translation>Atención</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Closed</masterLabel>
+        <translation>Cerrado</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Closed in Community</masterLabel>
+        <translation>Cerrado en la comunidad</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Escalated</masterLabel>
+        <translation>Escalado</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>New</masterLabel>
+        <translation>Nuevo</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>On Hold</masterLabel>
+        <translation>En espera</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Response Received</masterLabel>
+        <translation>Respuesta recibida</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Waiting on Customer</masterLabel>
+        <translation>Esperando respuesta del cliente</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Warning</masterLabel>
+        <translation>Advertencia</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Working</masterLabel>
+        <translation>En curso</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

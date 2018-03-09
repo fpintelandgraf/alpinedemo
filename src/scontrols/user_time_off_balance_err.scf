@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<link href="/dCSS/Theme2/default/common.css" type="text/css" media="handheld,print,projection,screen,tty,tv"  rel="stylesheet" >
+<link href="/dCSS/Theme2/default/custom.css" type="text/css" media="handheld,print,projection,screen,tty,tv"  rel="stylesheet" >
+<style type="text/css">
+.faqtopic {
+    padding: 6px;
+	font-size: 12px;
+	font-family:verdana;
+	font-weight: bold;
+	color:black;
+}
+</style>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
+<script type="text/javascript" src="/js/functions.js"></script>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
+</head>
+<body class="custom customTab16  overviewPage">
+						<div class="bPageTitle">
+							<div class="ptBody secondaryPalette">
+								<div class="content">
+									<img src="/s.gif" alt="Time-Off Balances"  class="pageTitleIcon" title="Time-Off Balances"/>
+									<h1 class="pageType">My Time-Off Balance<span  class="titleSeparatingColon">:</span></h1>
+									<h2 class="pageDescription">Error</h2>
+									<div class="blank">&nbsp;</div>
+								</div>
+								<div class="links">
+									<a href="javascript:openPopupFocusEscapePounds('http://wiki.apexdevnet.com/index.php/Time_Off_Manager_User_Guide', 'Help', 700, 600, 'width=700,height=600,resizable=yes,toolbar=yes,status=no,scrollbars=yes,menubar=yes,directories=no,location=no,dependant=no', false, false);" title="Help for this Page (New Window)">
+									<span  class="helpLink">Help for this Page</span><img src="/s.gif" alt="Help"  class="helpIcon" title="Help"/></a>
+								</div>
+							</div>
+						</div>
+
+<DIV class="bPageBlock secondaryPalette">
+<DIV class=pbBody>
+<DIV class=pbSubsection>
+<DIV class="faqtopic">Error: Time-Off Balance record not found</DIV>
+<table class="list" border="0" cellspacing="0" cellpadding="0" width="80%">
+<tr>
+  <td>
+Your time-off balance record could not be found.  This generally means that your user record has not been configured for Time-Off Manager.<br><br>  
+Log an IT ticket to request user activation.
+
+<br><br>
+</td>
+</tr>
+</table>
+</div>
+
+</div>
+<div class="pbFooter secondaryPalette"><div class="bg"></div></div>
+</div>
+</DIV>
+</body>
+</html>

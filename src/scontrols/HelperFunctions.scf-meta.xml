@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scontrol xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contentSource>HTML</contentSource>
+    <description>This is a JS file with a series of functions that are shared across many of the S-Controls used in the PRM Applications. It is provided for your convenience.</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Helper Functions</name>
+    <supportsCaching>true</supportsCaching>
+</Scontrol>

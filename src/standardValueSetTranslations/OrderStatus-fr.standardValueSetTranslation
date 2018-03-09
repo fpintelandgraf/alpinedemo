@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Activated</masterLabel>
+        <translation>Activée</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Active</masterLabel>
+        <translation><!-- Active --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Draft</masterLabel>
+        <translation>Brouillon</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

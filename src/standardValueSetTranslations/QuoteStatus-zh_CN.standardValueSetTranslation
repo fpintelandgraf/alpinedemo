@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Accepted</masterLabel>
+        <translation>公认</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Approved</masterLabel>
+        <translation>批准</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Denied</masterLabel>
+        <translation>被拒绝</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Draft</masterLabel>
+        <translation>草案</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Needs Review</masterLabel>
+        <translation>需要回顾</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Presented</masterLabel>
+        <translation>主办</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Rejected</masterLabel>
+        <translation>拒绝</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Submitted</masterLabel>
+        <translation>提交</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

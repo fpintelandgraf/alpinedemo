@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>ID d&apos;Ordre d&apos;exécution parent</value>
+        </caseValues>
+        <gender>Masculine</gender>
+        <name>parent_workorder_id</name>
+        <startsWith>Vowel</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>ID d&apos;Ordre d&apos;exécution racine</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>root_workorder_id</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Ordre d&apos;exécution Racine</value>
+        </caseValues>
+        <gender>Feminine</gender>
+        <name>workorder_rootworkorder</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <layouts>
+        <layout>FSL LEX Work Order Layout</layout>
+        <sections>
+            <label>Adresse</label>
+            <section>Address</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>FSL Partner Page Layout</layout>
+        <sections>
+            <label>Adresse</label>
+            <section>Address</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Accept/Reject --></label>
+        <name>Accept_Reject</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Change Status --></label>
+        <name>ChangeStatus</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- New Work Order Line Item --></label>
+        <name>CreateWOLI</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Create Product Request --></label>
+        <name>Create_Product_Request</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Create Quote --></label>
+        <name>Create_Quote</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- SendEmail --></label>
+        <name>SendEmail</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Time Entry --></label>
+        <name>Time_Entry</name>
+    </quickActions>
+</CustomObjectTranslation>

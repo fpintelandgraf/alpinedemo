@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>Opportunity</layout>
+        <sections>
+            <label>Marketinginformationen</label>
+            <section>Marketing Information</section>
+        </sections>
+        <sections>
+            <label>Opportunityzusammenfassung</label>
+            <section>Opportunity Summary</section>
+        </sections>
+        <sections>
+            <label>Nützliche Links</label>
+            <section>Useful Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Partner Opportunity - Channel Manager View</layout>
+        <sections>
+            <label>Rabattinformationen</label>
+            <section>Discount Information</section>
+        </sections>
+        <sections>
+            <label>Implementierungspläne</label>
+            <section>Implementation Plans</section>
+        </sections>
+        <sections>
+            <label>Marketing / Weiterführendes Tracking</label>
+            <section>Marketing/Advanced Tracking</section>
+        </sections>
+        <sections>
+            <label>Partnerinformationen</label>
+            <section>Partner Information</section>
+        </sections>
+        <sections>
+            <label>Nützliche Links</label>
+            <section>Useful Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Partner Opportunity - Community View</layout>
+        <sections>
+            <label>Rabattinformationen</label>
+            <section>Discount Information</section>
+        </sections>
+        <sections>
+            <label>Implementierungspläne</label>
+            <section>Implementation Plans</section>
+        </sections>
+        <sections>
+            <label>Marketing / Weiterführendes Tracking</label>
+            <section>Marketing/Advanced Tracking</section>
+        </sections>
+        <sections>
+            <label>Nützliche Links</label>
+            <section>Useful Links</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- New Opportunity Product --></label>
+        <name>Add_Product_Line</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Einstein Configuration --></label>
+        <name>Einstein_Configuration</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- New Quote --></label>
+        <name>New_SteelBrick_Quote</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Scoring Setup --></label>
+        <name>Opporunity_Scoring_Setup</name>
+    </quickActions>
+    <workflowTasks>
+        <name>SendProposalandPricing</name>
+        <subject><!-- Send Proposal and Pricing --></subject>
+    </workflowTasks>
+</CustomObjectTranslation>

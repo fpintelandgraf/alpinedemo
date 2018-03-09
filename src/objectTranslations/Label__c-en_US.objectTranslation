@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Vision Label</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Vision Labels</value>
+    </caseValues>
+    <fields>
+        <label><!-- Einstein Label ID --></label>
+        <name>Einstein_Label_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Model --></label>
+        <name>Model__c</name>
+        <relationshipLabel><!-- Vision Labels --></relationshipLabel>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

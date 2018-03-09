@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>SDO ニュース</value>
+    </caseValues>
+    <fields>
+        <label><!-- News Content --></label>
+        <name>News_Content__c</name>
+    </fields>
+    <fields>
+        <label><!-- Image --></label>
+        <name>News_Item_Image__c</name>
+    </fields>
+    <fields>
+        <label><!-- Published Date --></label>
+        <name>Published_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Showcase Link --></label>
+        <name>Showcase_Link__c</name>
+    </fields>
+    <nameFieldLabel>SDO ニュース名</nameFieldLabel>
+</CustomObjectTranslation>

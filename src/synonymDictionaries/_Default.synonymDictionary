@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SynonymDictionary xmlns="http://soap.sforce.com/2006/04/metadata">
+    <groups>
+        <languages>en_US</languages>
+        <terms>Bulb</terms>
+        <terms>Lamp</terms>
+        <terms>Light</terms>
+    </groups>
+    <groups>
+        <languages>en_US</languages>
+        <terms>TV</terms>
+        <terms>Television</terms>
+        <terms>Video</terms>
+    </groups>
+    <groups>
+        <languages>ja</languages>
+        <terms>ランプ</terms>
+        <terms>光</terms>
+        <terms>電球</terms>
+    </groups>
+    <groups>
+        <languages>ja</languages>
+        <terms>テレビ</terms>
+        <terms>ビデオ</terms>
+    </groups>
+    <groups>
+        <languages>en_US</languages>
+        <terms>Component</terms>
+        <terms>Receiver</terms>
+        <terms>Stereo</terms>
+    </groups>
+    <label>_Default</label>
+</SynonymDictionary>

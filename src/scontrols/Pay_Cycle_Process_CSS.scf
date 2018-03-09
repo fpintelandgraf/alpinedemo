@@ -1,0 +1,27 @@
+<style>
+   	h2 {
+   		font-family: 'Verdana','Geneva',sans-serif;
+		font-size: 90%;
+		font-weight: bold;
+   	}
+   	h3 {
+    	font-family: 'Verdana','Geneva',sans-serif;
+		font-size: 90%;
+		font-weight: bold;
+   	}
+   	div.customContent {
+   		padding:0px 4px 4px 4px;
+   		font-size:80%;
+   	}
+   	div.buttons {
+   		padding:10px;
+   		text-align:center;
+   	}
+   	div.progressContainer {
+   		background-color:#CCCCCC;
+   		padding:1px;
+   		margin:20px;
+   		width:200px;
+   		display:none;
+   	}
+   </style>

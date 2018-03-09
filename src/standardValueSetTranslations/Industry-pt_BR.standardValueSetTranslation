@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Agriculture</masterLabel>
+        <translation>Agricultura</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Apparel</masterLabel>
+        <translation>Vestuário</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Banking</masterLabel>
+        <translation>Bancária</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Biotechnology</masterLabel>
+        <translation>Biotecnologia</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Chemicals</masterLabel>
+        <translation>Química</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Communications</masterLabel>
+        <translation>Comunicações</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Construction</masterLabel>
+        <translation>Construção</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Consulting</masterLabel>
+        <translation>Consultoria</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Education</masterLabel>
+        <translation>Educação</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Electronics</masterLabel>
+        <translation>Eletrônica</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Energy</masterLabel>
+        <translation>Energia</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Engineering</masterLabel>
+        <translation>Engenharia</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Entertainment</masterLabel>
+        <translation>Entretenimento</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Environmental</masterLabel>
+        <translation>Ambiental</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Financial Services</masterLabel>
+        <translation>Serviços Financeiros</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Food &amp; Beverage</masterLabel>
+        <translation>Alimentos &amp; Bebidas</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Government</masterLabel>
+        <translation>Pública</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Healthcare &amp; Life Sciences</masterLabel>
+        <translation>Saúde</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Hospitality</masterLabel>
+        <translation>Hotelaria</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Insurance</masterLabel>
+        <translation>Seguros</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Machinery</masterLabel>
+        <translation><!-- Machinery --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Manufacturing</masterLabel>
+        <translation>Manufatura</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Media</masterLabel>
+        <translation><!-- Media --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Not For Profit</masterLabel>
+        <translation>Sem Fins Lucrativos</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Other</masterLabel>
+        <translation>Outro</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Recreation</masterLabel>
+        <translation>Lazer</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Retail</masterLabel>
+        <translation>Varejo</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Shipping</masterLabel>
+        <translation>Logística</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Technology</masterLabel>
+        <translation>Tecnologia</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Telecommunications</masterLabel>
+        <translation>Telecomunicações</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Transportation</masterLabel>
+        <translation>Transporte</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Utilities</masterLabel>
+        <translation><!-- Utilities --></translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

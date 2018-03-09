@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>チャネルプラン</value>
+    </caseValues>
+    <fields>
+        <label>有効</label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <label>ビジネスチャレンジ</label>
+        <name>Business_Challenges__c</name>
+    </fields>
+    <fields>
+        <help><!-- Returns true when the current user&apos;s associated account is the same as for the channel plan. Used in Partner Central for list view visibility. --></help>
+        <label>会社のチャネルプラン</label>
+        <name>My_Company_s_Channel_Plan__c</name>
+    </fields>
+    <fields>
+        <label>所有者</label>
+        <name>Owner__c</name>
+        <relationshipLabel><!-- Channel Plans --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>パートナー</label>
+        <name>Partner_Account__c</name>
+        <relationshipLabel><!-- Channel Account Plans --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>ステータス</label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Achieved</masterLabel>
+            <translation><!-- Achieved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>At Risk</masterLabel>
+            <translation><!-- At Risk --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending</masterLabel>
+            <translation><!-- Pending --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Planning</masterLabel>
+            <translation><!-- Planning --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>ストラテジー</label>
+        <name>Strategy__c</name>
+    </fields>
+    <fields>
+        <label>ターゲット</label>
+        <name>Target__c</name>
+    </fields>
+    <fields>
+        <label>ビジョン</label>
+        <name>Vision__c</name>
+    </fields>
+    <layouts>
+        <layout>Channel Plan Layout</layout>
+        <sections>
+            <label><!-- Vision/Value --></label>
+            <section>Vision/Value</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>チャネルプラン名</nameFieldLabel>
+</CustomObjectTranslation>

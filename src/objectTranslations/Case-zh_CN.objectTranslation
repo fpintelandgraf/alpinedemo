@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>Account Case Page Layout</layout>
+        <sections>
+            <label><!-- Case Details --></label>
+            <section>Case Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Chat Case Page Layout</layout>
+        <sections>
+            <label><!-- Timeline --></label>
+            <section>Timeline</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Communities Page Layout</layout>
+        <sections>
+            <label><!-- Useful Links --></label>
+            <section>Useful Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Community Case Page Layout</layout>
+        <sections>
+            <label><!-- Case Details --></label>
+            <section>Case Details</section>
+        </sections>
+        <sections>
+            <label><!-- Timeline --></label>
+            <section>Timeline</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Community Templates Page Layout</layout>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Lightning Case</layout>
+        <sections>
+            <label><!-- Timeline --></label>
+            <section>Timeline</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Social Case Page Layout</layout>
+        <sections>
+            <label><!-- Timeline --></label>
+            <section>Timeline</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Technical Case Page Layout</layout>
+        <sections>
+            <label><!-- Field Service Information --></label>
+            <section>Field Service Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Technical Case Page Layout - Lightning Console</layout>
+        <sections>
+            <label><!-- Remote Work Information --></label>
+            <section>Remote Work Information</section>
+        </sections>
+        <sections>
+            <label><!-- Timeline --></label>
+            <section>Timeline</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label>附加文章</label>
+        <name>Attach_Article</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Case Comment --></label>
+        <name>Case_Comment</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Classification Layout --></label>
+        <name>Classification_Layout</name>
+    </quickActions>
+    <quickActions>
+        <label>关闭案例</label>
+        <name>Close_Case</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Create Article from Case --></label>
+        <name>Create_Article_from_Case</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Create Work Order --></label>
+        <name>Create_Work_Order</name>
+    </quickActions>
+    <quickActions>
+        <label>详细信息</label>
+        <name>Details</name>
+    </quickActions>
+    <quickActions>
+        <label>气质</label>
+        <name>Disposition</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Escalate --></label>
+        <name>Escalate</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewChildCase --></label>
+        <name>NewChildCase</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- New Quote --></label>
+        <name>New_Quote</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Send Email --></label>
+        <name>SendEmail</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- SocialPublisher --></label>
+        <name>SocialPublisher</name>
+    </quickActions>
+    <quickActions>
+        <label>社会发布</label>
+        <name>Social_Post</name>
+    </quickActions>
+    <quickActions>
+        <label>更新状态</label>
+        <name>Update_Status</name>
+    </quickActions>
+    <workflowTasks>
+        <name>EngineeringReview</name>
+        <subject>工程回顾</subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>FeatureRequestSubmitted</name>
+        <subject>功能要求提交</subject>
+    </workflowTasks>
+    <workflowTasks>
+        <description>该服务案例中的首次响应的里程碑是成功的</description>
+        <name>Milestone_1st_Response_Successful</name>
+        <subject>里程碑 - 首次响应 - 成功</subject>
+    </workflowTasks>
+    <workflowTasks>
+        <description>里程碑 - 第一反应 - 侵犯</description>
+        <name>Milestone_1st_Response_VIOLATION</name>
+        <subject>里程碑 - 首次响应 - 侵犯</subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Sendnewstatement</name>
+        <subject>发送新的声明</subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Yourcustomerhadabillingquestion</name>
+        <subject>您的客户有一个关于账单的问题</subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>YourcustomerhasopenedaCase</name>
+        <subject>你的客户已创建了一个服务案例</subject>
+    </workflowTasks>
+</CustomObjectTranslation>

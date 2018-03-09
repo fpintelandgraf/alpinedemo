@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModerationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <action>Flag</action>
+    <active>true</active>
+    <entitiesAndFields>
+        <entityName>FeedComment</entityName>
+        <fieldName>RawCommentBody</fieldName>
+        <keywordList>Consumer Community.Negative_Sentiment</keywordList>
+    </entitiesAndFields>
+    <entitiesAndFields>
+        <entityName>FeedItem</entityName>
+        <fieldName>Title</fieldName>
+        <keywordList>Consumer Community.Negative_Sentiment</keywordList>
+    </entitiesAndFields>
+    <entitiesAndFields>
+        <entityName>FeedItem</entityName>
+        <fieldName>RawBody</fieldName>
+        <keywordList>Consumer Community.Negative_Sentiment</keywordList>
+    </entitiesAndFields>
+    <entitiesAndFields>
+        <entityName>FeedItem</entityName>
+        <fieldName>LinkUrl</fieldName>
+        <keywordList>Consumer Community.Negative_Sentiment</keywordList>
+    </entitiesAndFields>
+    <entitiesAndFields>
+        <entityName>FeedPollChoice</entityName>
+        <fieldName>ChoiceBody</fieldName>
+        <keywordList>Consumer Community.Negative_Sentiment</keywordList>
+    </entitiesAndFields>
+    <masterLabel>Flag Negative Sentiment</masterLabel>
+</ModerationRule>

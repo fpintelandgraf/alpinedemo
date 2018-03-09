@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>SDO Wizard Step</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>SDO Wizard Steps</value>
+    </caseValues>
+    <fields>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- External ID --></label>
+        <name>External_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Page Content Name --></label>
+        <name>Page_Content_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Step Order --></label>
+        <name>Step_Order__c</name>
+    </fields>
+    <fields>
+        <label><!-- Wizard --></label>
+        <name>Widard__c</name>
+        <relationshipLabel><!-- SDO Wizard Steps --></relationshipLabel>
+    </fields>
+    <nameFieldLabel>SDO Wizard Step Name</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Direct Mail</masterLabel>
+        <translation>Suorapostitius</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Direct Marketing</masterLabel>
+        <translation>Internet search</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Email</masterLabel>
+        <translation>Email</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Event</masterLabel>
+        <translation>Seminaari/konferenssi</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Multi-Channel</masterLabel>
+        <translation><!-- Multi-Channel --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Other</masterLabel>
+        <translation>Muu</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Print Marketing</masterLabel>
+        <translation>Mainos</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Social Media</masterLabel>
+        <translation>Public Relations/PR</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Web Marketing</masterLabel>
+        <translation>Online mainokset ja bannerit</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

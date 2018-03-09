@@ -1,0 +1,76 @@
+<link href="/css/ie_global.css" rel="stylesheet" type="text/css">
+<link href="/css/ie_navigation.css" rel="stylesheet" type="text/css">
+<body bgcolor="#FFFFFF">
+<center>
+<br>
+<table width="10%">
+<tr>
+<td align=center>
+<span class="moduleTitle">Preparing Solution Email Template... Please Wait</span>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td align=center>
+<img src="http://na1.salesforce.com/img/waiting_dots.gif" border="0" width=156 height=34>
+</td>
+</tr>
+</table>
+</center>
+<script type="text/javascript" src="/js/functions.js"></script>
+<script src="/soap/ajax/8.0/connection.js"></script>
+<script>
+function zeroPad(str) {
+if (str<10) {
+return "0" + str;
+} else {
+return str;
+}{!$Action.Activity.SendEmail}
+}
+
+function timestampCase() {
+if ('{!Case.Id}'=='')
+{
+var caseObj = new sforce.SObject("Case");
+caseObj.Id = '{!Case.Id}';
+var d=new Date();
+var day=zeroPad(d.getDate());
+var month=zeroPad(d.getMonth() + 1);
+var year=d.getFullYear();
+var hours = zeroPad(d.getHours());
+var minutes = zeroPad(d.getMinutes());
+var seconds = zeroPad(d.getSeconds());
+
+var timezoneHours = Math.floor(d.getTimezoneOffset()/60);
+var timezoneHoursStr = zeroPad(timezoneHours);
+var timezoneMinutes = zeroPad(d.getTimezoneOffset()/60 - timezoneHours);
+//We have to reverse the sign from what Javascript tells us
+var timezonePlusMinus = d.getTimezoneOffset() > 0? "-" : "+";
+var timezone = timezonePlusMinus + timezoneHoursStr + ":" + timezoneMinutes;
+
+var totalDate = year + "-" + month + "-" + day + "T" + hours + ":" + minutes + ":" + seconds + timezone;
+
+//
+caseObj.Actual_First_Response__c = totalDate;
+try {
+var result = sforce.connection.update([caseObj]);
+
+if (!result[0].getBoolean("success")) {
+alert('Unable to update Actual First Response field on the originating case. Error: '+result[0].message);
+}
+} catch (error) {
+alert('Unable to update Actual First Response field on the originating case. Exception: ' + error);
+}
+}
+}
+
+function closeMe() {
+//timestampCase();
+this.window.opener.location.replace('/email/author/emailauthor.jsp?retURL=%2F{!Case.Id}&p3_lkid={!Case.Id}&rtype=003&p2_lkid={!Case.ContactId}&template_id=00X6A000000OWh8&new_template=true');
+this.window.close();
+}
+setTimeout(closeMe, 1000);
+
+</script>

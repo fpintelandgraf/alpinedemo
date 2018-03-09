@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>認定試験</value>
+    </caseValues>
+    <fields>
+        <label>取引先責任者</label>
+        <name>Contact__c</name>
+        <relationshipLabel><!-- Certifications --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>日程</label>
+        <name>Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Indicates that the certification is assigned to the community user that is currently logged in. Used to populate a list view. --></help>
+        <label>既存ユーザ</label>
+        <name>Is_Current_User__c</name>
+    </fields>
+    <fields>
+        <label>スコア</label>
+        <name>Score__c</name>
+    </fields>
+    <fields>
+        <label>ステータス</label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Completed</masterLabel>
+            <translation><!-- Completed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Registered</masterLabel>
+            <translation><!-- Registered --></translation>
+        </picklistValues>
+    </fields>
+    <nameFieldLabel>名前</nameFieldLabel>
+</CustomObjectTranslation>

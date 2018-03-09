@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PathAssistant xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <entityName>Lead</entityName>
+    <fieldName>Status</fieldName>
+    <masterLabel>Partner Deal Registration</masterLabel>
+    <pathAssistantSteps>
+        <fieldNames>Lead_Score__c</fieldNames>
+        <fieldNames>Name</fieldNames>
+        <fieldNames>Company</fieldNames>
+        <picklistValueName>Approved</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;Thank you for submitting this lead. We have reviewed it, and have found either a conflict or other reason to reject it. Your channel manager will review with you shortly.&lt;/p&gt;</info>
+        <picklistValueName>Rejected</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Lead_Score__c</fieldNames>
+        <fieldNames>Name</fieldNames>
+        <fieldNames>Company</fieldNames>
+        <fieldNames>Email</fieldNames>
+        <fieldNames>MobilePhone</fieldNames>
+        <info>&lt;p&gt;Thank you for submitting or reviewing this lead. Our channel team will review it, and approve ore reject based on the criteria detailed in your partner agreement.&lt;/p&gt;</info>
+        <picklistValueName>Submitted</picklistValueName>
+    </pathAssistantSteps>
+    <recordTypeName>DealRegistration</recordTypeName>
+</PathAssistant>

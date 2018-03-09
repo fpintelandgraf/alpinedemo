@@ -1,0 +1,374 @@
+var isDebug = false;
+
+Calendar = function (el, curdate, cM, cH, classDayOfWeek, cD, brdr){
+    
+    this.el = el; 
+    
+    this.curdate = curdate; 
+    this.curmonth;
+    this.curyear;
+    
+    this.cM = cM;
+    this.cH = cH;
+    this.classDayOfWeek = classDayOfWeek;
+    this.cD = cD;
+    this.brdr = brdr;
+    
+    this.myEmployeeId;
+    
+    this.objects = {};
+}
+
+// treat as static
+Calendar.prototype.buildCal = function(m, y, cM, cH, classDayOfWeek, cD, brdr){
+
+	var mn=['January','February','March','April','May','June','July','August','September','October','November','December'];
+	var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+	var dim=[31,0,31,30,31,30,31,31,30,31,30,31];
+	
+	var oD = new Date(y, m-1, 1); //DD replaced line to fix date bug when current day is 31st
+	oD.od=oD.getDay()+1; //DD replaced line to fix date bug when current day is 31st
+	
+	var todaydate=new Date() //DD added
+	var scanfortoday=(y==todaydate.getFullYear() && m==todaydate.getMonth()+1)? todaydate.getDate() : 0 //DD added
+	
+	dim[1]=(((oD.getFullYear()%100!=0)&&(oD.getFullYear()%4==0))||(oD.getFullYear()%400==0))?29:28;
+	var t='<div class="'+cM+'"><table class="'+cM+'" cols="7" cellpadding="0" cellspacing="0" border="'+brdr+'"><tr align="center">';
+	t+='<td colspan="2" class="'+cH+' header" align="left">&nbsp; &nbsp; <img src="/s.gif" class="holidayBlock">&nbsp;Holiday&nbsp; <img src="/s.gif" class="leaveBlock">&nbsp;Time-Off&nbsp; <img src="/s.gif" class="pendingBlock">&nbsp;Pending </td>';
+	t+='<td colspan="3" class="'+cH+' header" align="center">';
+	t+='<a title="Previous" href="#" onclick="calendar.roll(false, employeeNumbers, entityId);"><img class="prevCalArrow" title="Previous" alt="Previous" src="/s.gif"/></a>&nbsp; &nbsp;';
+	t+= mn[m-1]+', '+y;
+	t+='&nbsp; &nbsp;<a title="Next" href="#" onclick="calendar.roll(true, employeeNumbers, entityId);"><img class="nextCalArrow" title="Next" alt="Next" src="/s.gif"/></a>';
+	t+='&nbsp; &nbsp; &nbsp; &nbsp; <a title="This Month" href="javascript:calendar.display(new Date(), employeeNumbers, entityId);">This Month</a></td>';
+	t+='<td colspan="2" class="'+cH+' header"></td></tr>';
+	t+='<tr align="center">';
+	for (s=0;s<7;s++)
+	    t+='<td class="'+classDayOfWeek+'">'+days[s]+'</td>';
+	t+='</tr><tr align="center">';
+	for (i=1;i<=42;i++){
+	    var x=((i-oD.od>=0)&&(i-oD.od<dim[m-1]))? i-oD.od+1 : '&nbsp;';
+	    var classDayNumber = cD;
+	    if (x==scanfortoday){
+	        classDayNumber = classDayNumber + " today";
+	    }
+	    t+='<td valign="top"><table class="wholeday" border="0" cellpadding="0" cellspacing="0"><tr><td class="'+classDayNumber+'">';
+	    t+=x;
+	    var dayIdH = this.getDayId(x);
+	    t+='</td></tr><tr><td class="holder" id="'+ dayIdH +'" valign="top">';
+	    if (isDebug) t+= dayIdH;
+	    t+='</td></tr></table></td>';
+	    if(((i)%7==0)&&(i<36))
+	        t+='</tr><tr align="center">';
+	}
+	return t+='</tr></table></div>';
+
+}
+
+Calendar.prototype.getDayId = function(dayOfMonth, dayObject){
+
+    var date;
+    if (dayOfMonth){
+    	date = this.curdate;
+    	dayOfMonth = dayOfMonth;
+    } else {
+        date = dayObject;
+        dayOfMonth = date.getDate();
+    }
+
+    var year = date.getFullYear();
+    dayOfMonth = dayOfMonth < 10 ? "0" + dayOfMonth : dayOfMonth;
+    var month = date.getMonth() + 1;
+    month = month < 10 ? "0" + month : month;
+    var id = year + "" + month + "" + dayOfMonth;
+
+    return id;
+    
+}
+
+Calendar.prototype.display = function(date, employeeNumbers, entityId){
+
+    if (date){
+        this.curdate = date;
+    }
+
+	this.curmonth = this.curdate.getMonth()+1; //get current month (1-12)
+	this.curyear = this.curdate.getFullYear(); //get current year
+
+	var cal = this.buildCal(this.curmonth, this.curyear, this.cM, this.cH, this.classDayOfWeek, this.cD, this.brdr);
+	this.el.innerHTML = cal;
+
+    this.displayHolidays(employeeNumbers);
+    this.displayLeave(employeeNumbers, entityId);
+}
+
+Calendar.prototype.displayHolidays = function(employeeNumbers){
+    var recs = sforce.apex.execute("pto_web_services", "get_holidays_for_users", {employee_numbers:employeeNumbers, year:this.curyear});
+    for (var i = 0; recs && i < recs.length; i++){
+        var holiday = recs[i];
+        if (holiday){
+	        var holidayDate = holiday.getDate("Date__c");
+	        if (holidayDate && 
+	            holidayDate.getMonth()+1 == this.curmonth){
+	            var id = holiday.get("Id");
+	            this.objects[id] = holiday;
+    	        this.displayOnCalendar("holidayBlock", id, id, holidayDate, holiday.get("Name"));
+	        }
+        }
+    }
+}
+
+Calendar.prototype.displayLeave = function(employeeNumbers, entityId){
+
+    // var isTeamView = employeeNumbers
+
+    var startOfMonth = new Date(this.curdate.getTime());
+    startOfMonth.setDate(1);
+    var endOfMonth = new Date(startOfMonth.getTime());
+    endOfMonth.setMonth(endOfMonth.getMonth() + 1);
+    
+    var leaveQuery = 
+        "Select Id, Name, Employee_Number__c, Pay_Cycle__c, Requested_Day__c " + 
+        " , Time_Off_Request__r.Id, Time_Off_Request__r.Name, Time_Off_Request__r.Employee_Name__c " +
+        " , Time_Off_Request__r.Employee_Number__c, Time_Off_Request__r.Status__c, Time_Off_Request__r.Comments_text__c " + 
+        "From Requested_Day__c " +
+        "Where Requested_Day__c >= "+this.formatDateSoql(startOfMonth)+" And Requested_Day__c < " + this.formatDateSoql(endOfMonth) + 
+        " And Time_Off_Request__r.Status__c != 'Canceled' "; 
+        
+    if (!entityId){
+        leaveQuery += " And (Time_Off_Request__r.Status__c = 'Pending Approval' OR Time_Off_Request__r.Status__c = 'Approved' OR Time_Off_Request__r.Status__c = 'Processed')";
+    }
+    
+    if (employeeNumbers){
+        leaveQuery += " And (";
+        for (var i = 0; i < employeeNumbers.length; i++){
+	        leaveQuery += " Employee_Number__c = '"+employeeNumbers[i]+"' ";
+	        if (i + 1 != employeeNumbers.length){
+		        leaveQuery += " OR ";
+		    }
+	    }
+        leaveQuery += ")";
+    }
+
+    var qr = sforce.connection.query(leaveQuery);
+    var recs = qr.getArray("records");
+    for (var i = 0; recs && i < recs.length; i++){
+        var leave = recs[i];
+        if (leave){
+	        var leaveDate = leave.get("Requested_Day__c");
+
+            if (leaveDate){
+                leaveDate = DateUtil.parseDate(leaveDate);
+            }
+            
+	        if (leaveDate && 
+	            leaveDate.getMonth()+1 == this.curmonth && 
+	            leaveDate.getFullYear()  == this.curyear){
+	            var id = leave.get("Id");
+	            this.objects[id] = leave;
+	            
+	            var timeOffRequest = leave.get("Time_Off_Request__r");
+	            var text;
+	            if (entityId != null){ 
+	                text = 'PTO';
+	            } else {
+	                text = timeOffRequest.get("Employee_Name__c");
+	            }
+	            
+	            var parentId = timeOffRequest.get("Id");
+	            var status = timeOffRequest.get("Status__c");
+	            var holidayClass;
+	            if (status == "Approved" || status == "Processed"){
+	                holidayClass = "leaveBlock";
+	            } else {
+	                holidayClass = "pendingBlock";
+	            }
+
+    	        this.displayOnCalendar(holidayClass, id, parentId, leaveDate, text);
+
+                // highlight days for contextual Time Off Request
+    	        if (parentId && entityId && parentId.indexOf(entityId.substring(0, 15)) == 0){
+                    var dayId = this.getDayId(null, leaveDate);
+				    var el = document.getElementById(dayId);
+				    if (el){
+				        el.className = el.className + " highlight";
+				    }
+    	        }
+	        }
+        }
+    }
+    
+}
+
+Calendar.prototype.displayOnCalendar = function(holidayClass, id, openId, date, text){
+    var dayId = this.getDayId(null, date);
+    var el = document.getElementById(dayId);
+    if (el){
+        var block = "<nobr><img src='/s.gif' class='"+holidayClass+"'> ";
+        block += "<span id='"+id+"' class='pointer' onclick='Calendar.prototype.open(\""+openId+"\")' onmouseover='PtoHover.prototype.displayDetail(\""+id+"\", \""+id+"\")' onmouseout='PtoHover.prototype.hideDetail()'>" + text + "</span></nobr><BR>";
+        el.innerHTML = el.innerHTML + block;
+    }
+}
+
+Calendar.prototype.open = function(id){
+    parent.document.location = "/" + id;
+}
+
+Calendar.prototype.roll = function(isForward, employeeNumbers, entityId){
+    if (isForward){    
+        this.curdate.setMonth(this.curdate.getMonth() + 1);
+    } else {
+        this.curdate.setMonth(this.curdate.getMonth() - 1);
+    }
+    this.display(this.curdate, employeeNumbers, entityId);
+}
+
+Calendar.prototype.getObject = function(id){
+    return this.objects[id];
+}
+
+Calendar.prototype.formatDateSoql = function(date){
+    return DateUtil.formatDate(date, "yyyy-MM-dd");
+}
+
+PtoHover = function() {}
+
+PtoHover.prototype.TIME_OFF_REQUEST_LABELS = ["Request ID", "Employee Name", "Employee Number", "Status", "Comments", "Requested Day"];
+PtoHover.prototype.TIME_OFF_REQUEST_FIELDS = ["Time_Off_Request__r.Name", "Time_Off_Request__r.Employee_Name__c", "Time_Off_Request__r.Employee_Number__c", "Time_Off_Request__r.Status__c", "Time_Off_Request__r.Comments_text__c", "Requested_Day__c"];
+
+PtoHover.prototype.HOLIDAY_LABELS = ["Holiday", "Date"];
+PtoHover.prototype.HOLIDAY_FIELDS = ["Name", "Date__c"];
+
+// hover over displays event/client details
+PtoHover.prototype.displayDetail = function(id, parentElId, event){
+
+    var detail = document.getElementById("detail");
+    if (!detail) return;
+    
+    if (!event){
+        event = window.event;
+    }
+
+    detail.innerHTML = "";
+    
+    var obj = calendar.getObject(id);
+    if (!obj) return;
+    
+    var fields;
+    var labels;
+    if (obj.get("Time_Off_Request__r")){
+        fields = PtoHover.prototype.TIME_OFF_REQUEST_FIELDS;
+        labels = PtoHover.prototype.TIME_OFF_REQUEST_LABELS;
+    } else {
+        fields = PtoHover.prototype.HOLIDAY_FIELDS;
+        labels = PtoHover.prototype.HOLIDAY_LABELS;
+    }
+    
+    var html = PtoHover.prototype.getDetailHTML(obj, fields, labels);
+    if (html) {
+
+        var x, y, top;
+        if (parentElId){
+            var parentEl = document.getElementById(parentElId);
+            if (parentEl){
+                x = getObjX(parentEl);
+                y = getObjY(parentEl);
+                top = parentEl.style.height;
+            }
+        } else if (event) {
+            x = getMouseX(event);
+            y = getMouseY(event) - 10;
+        }
+        
+        if (x && y){
+        
+            // pseudo edge-detection
+            var windowWidth = document.documentElement.clientWidth;
+            if (!windowWidth){
+                windowWidth = document.body.clientWidth;
+            }
+            if (!windowWidth){
+                windowWidth = window.innerWidth;
+            }
+            if (windowWidth){
+                x = Math.min(x, windowWidth - 320);
+            }
+        
+            detail.style.position = "absolute";
+            detail.style.top = (y + 20) + "px";
+            detail.style.left = x + "px";
+            detail.style.display = "block";
+            detail.style.width = "200px";
+    
+            detail.innerHTML = html;
+        }
+
+   }
+        
+}
+
+PtoHover.prototype.getDetailHTML = function(obj, fields, labels){
+    var html = [];
+ 
+    html.push("<table class='detail' style='margin-top: -1px;' cellpadding='0' cellspacing='3' border='0'>");
+    for (var i = 0; i < fields.length; i++) {
+        var field = fields[i];
+        var baseObj = obj;
+        
+        // if child field specified (Child.Field), pull value from child field.
+        if (field.indexOf('.') > 0){
+            var parts = field.split('.');
+            if (parts.length == 2){
+                baseObj = obj[parts[0]];
+                field = parts[1];
+            }
+        }
+        
+        if (baseObj){
+	        var val = baseObj[field];
+	        if (typeof val != 'function'){
+	            PtoHover.prototype.addRow(html, [labels[i], val]);
+	        }
+	    }
+    }
+    html.push("</table>");
+
+    html = html.join('');
+    return html;
+}
+
+PtoHover.prototype.scrub = function(txt){
+    txt = txt.replace("__c", "");
+    txt = txt.replace("_", " ");
+    return txt;
+}
+
+// helper to add rows of a event detail (hover)
+PtoHover.prototype.addRow = function(parent, texts){
+
+    parent.push("<tr>");
+    for (var i = 0; i < texts.length; i++){
+        var isFirst = (i == 0);
+        parent.push("<td");
+        if (isFirst){
+            parent.push(" class='detailLabel'");
+        } else {
+            parent.push(" class='detailText'");
+        }
+        parent.push(">");
+        parent.push(texts[i]);
+        if (isFirst && texts[i]){
+            parent.push(":");
+        }
+        parent.push("</td>");
+    }
+    parent.push("</tr>");
+    
+}
+
+// hide event details on mouse out
+PtoHover.prototype.hideDetail = function(){
+    var detail = document.getElementById("detail");
+    if (detail){
+        detail.style.display = "none";
+    }
+}

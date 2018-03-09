@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Closed Lost</masterLabel>
+        <translation>ロスト</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Closed Won</masterLabel>
+        <translation>受注</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Discovery</masterLabel>
+        <translation>ディスカバリ</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Negotiation</masterLabel>
+        <translation>交渉</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Proposal/Quote</masterLabel>
+        <translation>提案/見積</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Qualification</masterLabel>
+        <translation>受注可能性の確認</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

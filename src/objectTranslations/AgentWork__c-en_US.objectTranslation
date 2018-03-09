@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>AgentWork__c</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>AgentWork__c</value>
+    </caseValues>
+    <fields>
+        <label><!-- AcceptDateTime --></label>
+        <name>AcceptDateTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- ActiveTime --></label>
+        <name>ActiveTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- AgentCapacityWhenDeclined --></label>
+        <name>AgentCapacityWhenDeclined__c</name>
+    </fields>
+    <fields>
+        <label><!-- AssignedDateTime --></label>
+        <name>AssignedDateTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- CancelDateTime --></label>
+        <name>CancelDateTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- CapacityPercentage --></label>
+        <name>CapacityPercentage__c</name>
+    </fields>
+    <fields>
+        <label><!-- CapacityWeight --></label>
+        <name>CapacityWeight__c</name>
+    </fields>
+    <fields>
+        <label><!-- CloseDateTime --></label>
+        <name>CloseDateTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- CreatedDate --></label>
+        <name>CreatedDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- DeclineDateTime --></label>
+        <name>DeclineDateTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- DeclineReason --></label>
+        <name>DeclineReason__c</name>
+    </fields>
+    <fields>
+        <label><!-- External ID --></label>
+        <name>External_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- HandleTime --></label>
+        <name>HandleTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- OriginalQueue ID --></label>
+        <name>OriginalQueueId__c</name>
+    </fields>
+    <fields>
+        <label><!-- PushTimeoutDateTime --></label>
+        <name>PushTimeoutDateTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- PushTimeout --></label>
+        <name>PushTimeout__c</name>
+    </fields>
+    <fields>
+        <label><!-- RequestDateTime --></label>
+        <name>RequestDateTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- ServiceChannel ID --></label>
+        <name>ServiceChannelId__c</name>
+    </fields>
+    <fields>
+        <label><!-- SpeedToAnswer --></label>
+        <name>SpeedToAnswer__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- User ID --></label>
+        <name>UserId__c</name>
+        <relationshipLabel><!-- AgentWork__c --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- WorkItem ID --></label>
+        <name>WorkItemId__c</name>
+    </fields>
+    <fields>
+        <label><!-- analyticsdemo_batch_id__c --></label>
+        <name>analyticsdemo_batch_id__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

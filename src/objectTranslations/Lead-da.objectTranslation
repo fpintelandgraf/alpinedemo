@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>Lead</layout>
+        <sections>
+            <label><!-- Address --></label>
+            <section>Address</section>
+        </sections>
+        <sections>
+            <label><!-- Lead Scoring --></label>
+            <section>Lead Scoring</section>
+        </sections>
+        <sections>
+            <label><!-- Segmentation --></label>
+            <section>Segmentation</section>
+        </sections>
+        <sections>
+            <label><!-- Useful Links --></label>
+            <section>Useful Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Lead Community View</layout>
+        <sections>
+            <label><!-- Deal Registration --></label>
+            <section>Deal Registration</section>
+        </sections>
+        <sections>
+            <label><!-- Segmentation --></label>
+            <section>Segmentation</section>
+        </sections>
+        <sections>
+            <label><!-- Useful Links --></label>
+            <section>Useful Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Pardot Lead</layout>
+        <sections>
+            <label><!-- Address --></label>
+            <section>Address</section>
+        </sections>
+        <sections>
+            <label><!-- Pardot Information --></label>
+            <section>Pardot Information</section>
+        </sections>
+        <sections>
+            <label><!-- Pardot Nurturing Campaigns --></label>
+            <section>Pardot Nurturing Campaigns</section>
+        </sections>
+        <sections>
+            <label><!-- Segmentation --></label>
+            <section>Segmentation</section>
+        </sections>
+        <sections>
+            <label><!-- Useful Links --></label>
+            <section>Useful Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Partner Lead</layout>
+        <sections>
+            <label><!-- Deal Registration --></label>
+            <section>Deal Registration</section>
+        </sections>
+        <sections>
+            <label><!-- Segmentation --></label>
+            <section>Segmentation</section>
+        </sections>
+        <sections>
+            <label><!-- Useful Links --></label>
+            <section>Useful Links</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Einstein Configuration --></label>
+        <name>EinsteinConfigurationLead</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Einstein Configuration --></label>
+        <name>Lead_Scoring_Setup</name>
+    </quickActions>
+    <workflowTasks>
+        <description><!-- A new lead has been assigned to you in Salesforce. Please follow up within 24 hours or your manager will be notified.
+
+Thanks,
+Sales Operations --></description>
+        <name>NewLeadAssignedtoyouFollowupwithin24Hours</name>
+        <subject><!-- New Lead Assigned to you. Follow up within 24 Hours --></subject>
+    </workflowTasks>
+</CustomObjectTranslation>

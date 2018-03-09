@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>取引先インサイトニュース</value>
+    </caseValues>
+    <fields>
+        <label>記事内容</label>
+        <name>Article_Text__c</name>
+    </fields>
+    <fields>
+        <label>取引先インサイト</label>
+        <name>InsightGroup__c</name>
+        <relationshipLabel><!-- Account Insight Articles --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>ニュースエージェンシー</label>
+        <name>News_Agency__c</name>
+    </fields>
+    <fields>
+        <label>順序</label>
+        <name>Order__c</name>
+    </fields>
+    <nameFieldLabel>取引先インサイトニュース名</nameFieldLabel>
+</CustomObjectTranslation>

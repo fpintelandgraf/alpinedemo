@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html> <head>
+<title>Contact Entitlements List</title>
+<!--- skype conference call with live online status using mystatus.skype.com -->
+<link href="/sCSS/9.0/PortalDefault/default/elements.css?browser=&lastMod=1167282235000" media="handheld,print,projection,screen,tty,tv" rel="stylesheet" type="text/css" /><link href="/sCSS/9.0/PortalDefault/default/common.css?browser=&lastMod=1167282235000" media="handheld,print,projection,screen,tty,tv" rel="stylesheet" type="text/css" /><link href="/css/assistive.css" media="aural,braille,embossed" rel="stylesheet" type="text/css" /><link href="/sCSS/9.0/PortalDefault/dStandard.css?browser=&lastMod=1167791038000" media="handheld,print,projection,screen,tty,tv" rel="stylesheet" type="text/css" /><link href="/sCSS/9.0/PortalDefault/00D6A000001SUwZ/00D6A000001SUwZ/dCustom.css?browser=&lastMod=1167791038000" media="handheld,print,projection,screen,tty,tv" rel="stylesheet" type="text/css" /><link href="/sCSS/9.0/PortalDefault/default/extended.css?browser=&lastMod=1167282235000" media="handheld,print,projection,screen,tty,tv" rel="stylesheet" type="text/css" /><link href="/sCSS/9.0/PortalDefault/{!$Organization.Id}/0606A0000004i2j/portal.css?browser=&lastMod=1167877556000" media="handheld,print,projection,screen,tty,tv" rel="stylesheet" type="text/css" />
+<style type="text/css"rel="stylesheet" >
+.handy { cursor: pointer; }
+
+.customContactList {
+background-color: rgb(243, 243, 236);
+border-top-color: rgb(86, 69, 140);
+border-right-color: rgb(86, 69, 140);
+border-bottom-color: rgb(86, 69, 140);
+border-left-color: rgb(86, 69, 140);
+}
+</style>
+
+<html>
+<head>
+<script type="text/javascript" src="/js/functions.js"></script>
+<script src="/soap/ajax/8.0/connection.js"></script>
+<script language="javascript">
+
+function refresh() { window.parent.parent.location.href = window.parent.parent.location.href }
+function jumpback() { window.parent.parent.location.href = retUrl; }
+
+function pageInit() { // and login
+pb = document.getElementById("mainpageblock");
+drawSolutions();
+}
+
+function makeRow(atts) {
+if (isIE5 || isIE) {
+var trTag = "<TR ";
+for (key in atts) {
+trTag += key + "=\"" + atts[key] + "\"";
+}
+trTag += ">";
+var ret = document.createElement(trTag);
+} else {
+var tr = document.createElement("TR");
+for (key in atts) {
+tr.setAttribute(key, atts[key]);
+}
+var ret = tr;
+}
+ret.active = false;
+return ret;
+}
+
+function makeTable() {
+var table = document.createElement("table");
+table.className = "list";
+table.width = "95%";
+table.border = "0";
+table.cellspacing = "0";
+table.cellpadding = "0";
+var tbody = document.createElement("tbody");
+table.appendChild(tbody);
+table.even = true;
+table.tbody =tbody;
+return table
+}
+
+function createTag(parent, name, keyvalPairs) {
+//alert("type of " + typeof(keyvalPairs))
+var el = document.createElement(name);
+for (key in keyvalPairs) {
+el.setAttribute(key, keyvalPairs[key]);
+}
+parent.appendChild(el);
+return el;
+}
+
+function drawSolutions() {
+document.getElementById("maintable").innerHTML = "";
+
+var solQuery = "Select s.Id, s.SolutionName,s.TimesUsed from Solution s Order By s.TimesUsed DESC LIMIT 5";
+
+var solResult = sforce.connection.query(solQuery);
+
+if (solResult!=null && solResult.size > 0) {
+var ta = makeTable();
+ta.border = "0";
+ta.cellspacing = "0";
+
+var headerAtts = new Object();
+headerAtts["class"] = "headerRow";
+headerAtts["width"] = "40%";
+var headerRow = makeRow(headerAtts);
+headerRow.active == false;
+ta.tbody.appendChild(headerRow);
+
+createTag(headerRow,"th").innerHTML="Solution Name";
+createTag(headerRow,"th").innerHTML="Cases Solved";
+//createTag(headerRow,"th").innerHTML="Priority";
+//createTag(headerRow,"th").innerHTML="Last Modified Date";
+
+var i = 0;
+var solIter = new sforce.QueryResultIterator(solResult);
+while (solIter.hasNext()) {
+var solObj = solIter.next();
+var atts = new Object();
+if (i==0) { // skin stuff
+atts["class"] = "dataRow even first";
+} else if (ta.even == true) {
+atts["class"] = "dataRow even";
+} else {
+atts["class"] = "dataRow odd";
+}
+ta.even = !ta.even;
+
+atts["onmouseout"] = "if (typeof(hiOff) != 'undefined' && this.active == false){hiOff(this);}";
+atts["onmouseover"] = "if (typeof(hiOn) != 'undefined'){hiOn(this);}";
+var tr = makeRow(atts);
+tr.active == true;
+
+//tr.opp = op;
+ta.tbody.appendChild(tr);
+
+atts["class"] = " dataCell ";
+atts["style"] = "font-size:90%;";
+createTag(tr,"th",atts).innerHTML = '<a href="/'+solObj.Id+'" target="_parent">'+solObj.SolutionName+'</a>';
+createTag(tr,"td",atts).innerHTML = solObj.TimesUsed;
+//createTag(tr,"td",atts).innerHTML = solObj.Priority;
+
+//var tIndex = solObj.LastModifiedDate.indexOf("T");
+//var lastModifiedDate = solObj.LastModifiedDate.substring(0,tIndex);
+
+//createTag(tr,"td",atts).innerHTML = lastModifiedDate;
+
+i++;
+}
+
+document.getElementById("maintable").appendChild(ta);
+} else {
+document.getElementById("maintable").innerHTML="No cases found.";
+}
+}
+
+</script>
+</head>
+<body onload="pageInit()" class="caseTab overviewPage">
+<div class="bRelatedList">
+<div class="bNext"><div class="withFilter"><div class="clearingBox"></div></div></div>
+<div class="hotListElement"><div class="bPageBlock secondaryPalette">
+<div class="pbHeader">
+<table border="0" cellpadding="2" cellspacing="0">
+<tr>
+<td class="pbTitle"><img src="/s.gif" alt="" width="1" height="1" class="minWidth" title="" /><h3>Top 5 Most Helpful Solutions</h3></td>
+<!-- <td class="pbButton"><input value=" New " class="btn" name="new" onclick="navigateToUrl('/500/e?retURL=%2F500%2Fo');" title="New" type="button" /></td> -->
+</tr>
+</table>
+</div>
+<div class="pbBody">
+<div id="maintable"> <!-- the body --></div>
+</div></div></div></div>
+</body>
+</html>

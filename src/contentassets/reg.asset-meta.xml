@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentAsset xmlns="http://soap.sforce.com/2006/04/metadata">
+    <language>en_US</language>
+    <masterLabel>reg</masterLabel>
+    <originNetwork>Consumer Community</originNetwork>
+    <relationships/>
+    <versions>
+        <version>
+            <number>1</number>
+            <pathOnClient>reg.png</pathOnClient>
+        </version>
+    </versions>
+</ContentAsset>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomSite xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>false</active>
+    <allowHomePage>false</allowHomePage>
+    <allowStandardAnswersPages>false</allowStandardAnswersPages>
+    <allowStandardIdeasPages>false</allowStandardIdeasPages>
+    <allowStandardLookups>false</allowStandardLookups>
+    <allowStandardSearch>false</allowStandardSearch>
+    <authorizationRequiredPage>Unauthorized</authorizationRequiredPage>
+    <bandwidthExceededPage>BandwidthExceeded</bandwidthExceededPage>
+    <changePasswordPage>ChangePassword</changePasswordPage>
+    <clickjackProtectionLevel>AllowAllFraming</clickjackProtectionLevel>
+    <description>This site is the former Partner Portal and is no longer used.</description>
+    <fileNotFoundPage>FileNotFound</fileNotFoundPage>
+    <genericErrorPage>Exception</genericErrorPage>
+    <inMaintenancePage>InMaintenance</inMaintenancePage>
+    <inactiveIndexPage>InMaintenance</inactiveIndexPage>
+    <indexPage>Site_SiteHome</indexPage>
+    <masterLabel>Ω - Partners</masterLabel>
+    <portal>* Partner Portal</portal>
+    <requireHttps>false</requireHttps>
+    <requireInsecurePortalAccess>false</requireInsecurePortalAccess>
+    <robotsTxtPage>robotstxt</robotsTxtPage>
+    <siteAdmin>admin-gyijrjljxafl@example.com</siteAdmin>
+    <siteRedirectMappings>
+        <action>Permanent</action>
+        <isActive>true</isActive>
+        <source>/partners/home/home.jsp</source>
+        <target>/partners/apex/Community_Partner_Home?sfdc.tabName=01ra0000001VlZT</target>
+    </siteRedirectMappings>
+    <siteTemplate>Site_Template</siteTemplate>
+    <siteType>Visualforce</siteType>
+    <subdomain>sdo-demo-main-1603215b5a3-16-1619a0adabb</subdomain>
+    <urlPathPrefix>Partners</urlPathPrefix>
+</CustomSite>

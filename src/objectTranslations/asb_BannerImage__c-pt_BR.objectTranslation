@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Banner Image --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Banner Image --></value>
+    </caseValues>
+    <fields>
+        <help>O banner no qual esta imagem faz parte</help>
+        <label>Banner</label>
+        <name>Banner__c</name>
+        <relationshipLabel>Imagens do Banner</relationshipLabel>
+    </fields>
+    <fields>
+        <help>O ID do anexo que tem a imagem</help>
+        <label>ID da Imagem Anexa</label>
+        <name>ImageAttachmentId__c</name>
+    </fields>
+    <fields>
+        <help>A URL na qual o usuário irá ser redirecionado ao clicar na imagem do banner</help>
+        <label>Link</label>
+        <name>Link__c</name>
+    </fields>
+    <fields>
+        <help>A ordem em que esta imagem deve aparecer na rotação do banner</help>
+        <label>Pedido</label>
+        <name>Order__c</name>
+    </fields>
+    <fields>
+        <help>A janela que será usada para o link de redirecionamento quando o usuário clicar no banner</help>
+        <label>Meta</label>
+        <name>Target__c</name>
+        <picklistValues>
+            <masterLabel>Current</masterLabel>
+            <translation><!-- Current --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New</masterLabel>
+            <translation><!-- New --></translation>
+        </picklistValues>
+    </fields>
+    <gender><!-- Feminine --></gender>
+    <nameFieldLabel><!-- Banner Image Name --></nameFieldLabel>
+</CustomObjectTranslation>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Portal xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>false</active>
+    <description>Old Legacy 2</description>
+    <emailSenderAddress>support@uci.com</emailSenderAddress>
+    <emailSenderName>support@uci.com</emailSenderName>
+    <enableSelfCloseCase>false</enableSelfCloseCase>
+    <footerDocument>SSE_Portal_Documents/CustomerPortalFooterHTML.html</footerDocument>
+    <forgotPassTemplate>unfiled$public/PartnerRelationshipManagementPartnerPortalResetPasswordSAMPLE</forgotPassTemplate>
+    <headerDocument>SSE_Portal_Documents/CustomerPortalHeaderHTML.htm</headerDocument>
+    <isSelfRegistrationActivated>false</isSelfRegistrationActivated>
+    <loginHeaderDocument>SSE_Portal_Documents/CustomerPortalHeaderHTML.htm</loginHeaderDocument>
+    <newPassTemplate>unfiled$public/PartnerRelationshipManagementPartnerPortalResetPasswordSAMPLE</newPassTemplate>
+    <newUserTemplate>unfiled$public/PartnerRelationshipManagementPartnerPortalNewUserLoginInformationSAMPLE</newUserTemplate>
+    <showActionConfirmation>false</showActionConfirmation>
+    <type>Partner</type>
+</Portal>

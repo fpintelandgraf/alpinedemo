@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Portal xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <emailSenderAddress>tjanzen@salesforce.com</emailSenderAddress>
+    <emailSenderName>Partner Community</emailSenderName>
+    <enableSelfCloseCase>false</enableSelfCloseCase>
+    <isSelfRegistrationActivated>false</isSelfRegistrationActivated>
+    <showActionConfirmation>false</showActionConfirmation>
+    <type>Network</type>
+</Portal>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModerationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <action>Block</action>
+    <active>true</active>
+    <entitiesAndFields>
+        <entityName>FeedComment</entityName>
+        <fieldName>RawCommentBody</fieldName>
+        <keywordList>Professional Community.Profanity</keywordList>
+    </entitiesAndFields>
+    <entitiesAndFields>
+        <entityName>FeedItem</entityName>
+        <fieldName>Title</fieldName>
+        <keywordList>Professional Community.Profanity</keywordList>
+    </entitiesAndFields>
+    <entitiesAndFields>
+        <entityName>FeedItem</entityName>
+        <fieldName>RawBody</fieldName>
+        <keywordList>Professional Community.Profanity</keywordList>
+    </entitiesAndFields>
+    <entitiesAndFields>
+        <entityName>FeedItem</entityName>
+        <fieldName>LinkUrl</fieldName>
+        <keywordList>Professional Community.Profanity</keywordList>
+    </entitiesAndFields>
+    <entitiesAndFields>
+        <entityName>FeedPollChoice</entityName>
+        <fieldName>ChoiceBody</fieldName>
+        <keywordList>Professional Community.Profanity</keywordList>
+    </entitiesAndFields>
+    <masterLabel>Block Profanity</masterLabel>
+    <userMessage>The terms of use for this community do not allow the use of profanity.  Please modify your message and post again.</userMessage>
+</ModerationRule>

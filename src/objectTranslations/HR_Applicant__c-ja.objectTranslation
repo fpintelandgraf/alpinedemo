@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>応募者</value>
+    </caseValues>
+    <fields>
+        <label><!-- External ID --></label>
+        <name>External_ID__c</name>
+    </fields>
+    <fields>
+        <label>応募者ID</label>
+        <name>HR_Applicant_ID__c</name>
+    </fields>
+    <fields>
+        <label>人事担当者</label>
+        <name>HR_Contact__c</name>
+        <relationshipLabel><!-- Applicants (HR Contact) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>現従業員</label>
+        <name>HR_Current_Employer__c</name>
+    </fields>
+    <fields>
+        <label>現在の役職</label>
+        <name>HR_Current_Title__c</name>
+    </fields>
+    <fields>
+        <label>教育</label>
+        <name>HR_Education__c</name>
+        <picklistValues>
+            <masterLabel>2 year college</masterLabel>
+            <translation><!-- 2 year college --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4 year college</masterLabel>
+            <translation><!-- 4 year college --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Degree in Progress - BS</masterLabel>
+            <translation><!-- Degree in Progress - BS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Degree in Progress - MS</masterLabel>
+            <translation><!-- Degree in Progress - MS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Doctorate</masterLabel>
+            <translation><!-- Doctorate --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>High School</masterLabel>
+            <translation><!-- High School --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Masters</masterLabel>
+            <translation><!-- Masters --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Professional (MD, JD, CPA)</masterLabel>
+            <translation><!-- Professional (MD, JD, CPA) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Technical Training</masterLabel>
+            <translation><!-- Technical Training --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>メール</label>
+        <name>HR_Email__c</name>
+    </fields>
+    <fields>
+        <label>顔写真 URL</label>
+        <name>HR_Headshot_Url__c</name>
+    </fields>
+    <fields>
+        <label>採用マネージャー</label>
+        <name>HR_Hiring_Manager__c</name>
+        <relationshipLabel><!-- Applicants (Hiring Manager) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>場所</label>
+        <name>HR_Location__c</name>
+    </fields>
+    <fields>
+        <label>市区郡(郵送先)</label>
+        <name>HR_Mailing_City__c</name>
+    </fields>
+    <fields>
+        <label>郵便番号(郵送先)</label>
+        <name>HR_Mailing_Postal_Code__c</name>
+    </fields>
+    <fields>
+        <label>都道府県(郵送先)</label>
+        <name>HR_Mailing_State__c</name>
+    </fields>
+    <fields>
+        <label>町名・番地(郵送先)</label>
+        <name>HR_Mailing_Street__c</name>
+    </fields>
+    <fields>
+        <label>管理職経験</label>
+        <name>HR_Manager_Experience__c</name>
+    </fields>
+    <fields>
+        <label>携帯</label>
+        <name>HR_Mobile_Phone__c</name>
+    </fields>
+    <fields>
+        <label>仕事要求</label>
+        <name>HR_Position__c</name>
+        <relationshipLabel><!-- Applicants --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>履歴書</label>
+        <name>HR_Resume__c</name>
+    </fields>
+    <fields>
+        <label>ステータス</label>
+        <name>HR_Status__c</name>
+        <picklistValues>
+            <masterLabel>Expend Offer</masterLabel>
+            <translation><!-- Expend Offer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hired</masterLabel>
+            <translation><!-- Hired --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New</masterLabel>
+            <translation><!-- New --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Phone Screen</masterLabel>
+            <translation><!-- Phone Screen --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected</masterLabel>
+            <translation><!-- Rejected --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Review Resume</masterLabel>
+            <translation><!-- Review Resume --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Schedule interview</masterLabel>
+            <translation><!-- Schedule interview --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>日本国籍</label>
+        <name>HR_US_Citizen__c</name>
+    </fields>
+    <fields>
+        <label>VISA要</label>
+        <name>HR_Visa_Required__c</name>
+    </fields>
+    <layouts>
+        <layout>Applicant Layout</layout>
+        <sections>
+            <label><!-- Current Employer Information --></label>
+            <section>Current Employer Information</section>
+        </sections>
+        <sections>
+            <label><!-- Other Applicant Information --></label>
+            <section>Other Applicant Information</section>
+        </sections>
+        <sections>
+            <label><!-- Resume --></label>
+            <section>Resume</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>名前</nameFieldLabel>
+    <quickActions>
+        <label>ステータス更新</label>
+        <name>Update_Status</name>
+    </quickActions>
+</CustomObjectTranslation>

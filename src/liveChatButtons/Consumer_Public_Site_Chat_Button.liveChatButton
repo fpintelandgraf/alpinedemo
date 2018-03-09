@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LiveChatButton xmlns="http://soap.sforce.com/2006/04/metadata">
+    <animation>Slide</animation>
+    <autoGreeting>Hello {!LiveAgent_VisitorName}, how can I help you</autoGreeting>
+    <chasitorIdleTimeout>300</chasitorIdleTimeout>
+    <chasitorIdleTimeoutWarning>250</chasitorIdleTimeoutWarning>
+    <deployments>
+        <deployment>Ω - Legacy Deployment 2</deployment>
+        <deployment>Ω - Legacy Deployment 3</deployment>
+        <deployment>Ω - Legacy Deployment 1</deployment>
+    </deployments>
+    <enableQueue>true</enableQueue>
+    <inviteEndPosition>Right</inviteEndPosition>
+    <inviteStartPosition>Right</inviteStartPosition>
+    <isActive>true</isActive>
+    <label>Consumer Public Site Chat Button</label>
+    <optionsCustomRoutingIsEnabled>false</optionsCustomRoutingIsEnabled>
+    <optionsHasChasitorIdleTimeout>true</optionsHasChasitorIdleTimeout>
+    <optionsHasInviteAfterAccept>true</optionsHasInviteAfterAccept>
+    <optionsHasInviteAfterReject>true</optionsHasInviteAfterReject>
+    <optionsHasRerouteDeclinedRequest>false</optionsHasRerouteDeclinedRequest>
+    <optionsIsAutoAccept>false</optionsIsAutoAccept>
+    <optionsIsInviteAutoRemove>true</optionsIsInviteAutoRemove>
+    <perAgentQueueLength>5</perAgentQueueLength>
+    <preChatFormUrl>https://na17.salesforce.com/apex/myPreChatForm</preChatFormUrl>
+    <routingType>Choice</routingType>
+    <site>Consumer_Community</site>
+    <skills>
+        <skill>Billing_and_Accounts</skill>
+        <skill>Generic_Live_Agents</skill>
+        <skill>Technical_Support</skill>
+    </skills>
+    <timeToRemoveInvite>10</timeToRemoveInvite>
+    <type>Invite</type>
+    <windowLanguage>en_US</windowLanguage>
+</LiveChatButton>

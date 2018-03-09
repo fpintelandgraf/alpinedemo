@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Cold Call</masterLabel>
+        <translation>Chamada Fria</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Community</masterLabel>
+        <translation>Comunidade</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Data.com</masterLabel>
+        <translation>Lista Comprada</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Inbound Call</masterLabel>
+        <translation>Chamada Recebida</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Marketing Event</masterLabel>
+        <translation>Evento de Marketing</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Partner</masterLabel>
+        <translation>Parceiro</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Referral</masterLabel>
+        <translation>Indicação</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Salesforce IoT</masterLabel>
+        <translation><!-- Salesforce IoT --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Social Media</masterLabel>
+        <translation>Mídia Social</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Website</masterLabel>
+        <translation>Web</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

@@ -1,0 +1,9 @@
+<apex:page sidebar="false" standardStylesheets="false" showHeader="false" docType="html-5.0">
+    <div ng-show="shown" class="slds-spinner_container slds-is-fixed">
+        <div role="status" class="slds-spinner slds-spinner_medium">
+            <span class="slds-assistive-text">Loading</span>
+            <div class="slds-spinner__dot-a"></div>
+            <div class="slds-spinner__dot-b"></div>
+        </div>
+    </div>
+</apex:page>

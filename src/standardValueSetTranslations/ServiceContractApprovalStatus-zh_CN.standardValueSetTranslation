@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Activated</masterLabel>
+        <translation>活性</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Draft</masterLabel>
+        <translation>草案</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>In Approval Process</masterLabel>
+        <translation>在审批流程</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

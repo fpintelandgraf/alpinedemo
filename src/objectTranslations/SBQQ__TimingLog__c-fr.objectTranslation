@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Journal des calculs de temps</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Journaux des calculs de temps</value>
+    </caseValues>
+    <gender>Masculine</gender>
+    <nameFieldLabel>Nom</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

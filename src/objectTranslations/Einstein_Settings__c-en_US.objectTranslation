@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Einstein Settings</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Einstein Settings</value>
+    </caseValues>
+    <fields>
+        <label><!-- Cache Name --></label>
+        <name>CacheName__c</name>
+    </fields>
+    <fields>
+        <help><!-- the Salesforce name of your security certificate --></help>
+        <label><!-- CertName --></label>
+        <name>CertName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Einstein EMail --></label>
+        <name>Einstein_EMail__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

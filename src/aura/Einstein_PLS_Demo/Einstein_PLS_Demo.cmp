@@ -1,0 +1,46 @@
+<aura:component controller="EinsteinAwesomeController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global">
+    <aura:attribute name="recordId" type="Id" />
+    <aura:attribute name="lead1" type="String" default="Riley Schultz"/>
+    <aura:attribute name="lead1_title" type="String" default="Director of Sales"/>
+    <aura:attribute name="lead1_company" type="String" default="Presidio Tech"/>
+    <aura:attribute name="lead1_location" type="String" default="San Francisco"/>
+    <aura:attribute name="lead1_escore" type="String" default="high (92)"/>
+    <aura:attribute name="lead1_I1" type="String" default="True"/>
+    <aura:attribute name="lead1_T1" type="String" default="&nbsp;"/>
+    <aura:attribute name="lead1_TR1" type="String" default="&nbsp;"/>
+    <aura:attribute name="lead1_I2" type="String" default="&nbsp;"/>
+    <aura:attribute name="lead1_T2" type="String" default="&nbsp;"/>
+    <aura:attribute name="lead1_TR2" type="String" default="&nbsp;"/>
+    <aura:attribute name="lead1_I3" type="String" default="&nbsp;"/>
+    <aura:attribute name="lead1_T3" type="String" default="&nbsp;"/>
+    <aura:attribute name="lead1_TR3" type="String" default="&nbsp;"/>
+    <aura:attribute name="lead1_I4" type="String" default="&nbsp;"/>
+    <aura:attribute name="lead1_T4" type="String" default="&nbsp;"/>
+    <aura:attribute name="lead1_TR4" type="String" default="&nbsp;"/>
+    <aura:attribute name="lead1_I5" type="String" default="&nbsp;"/>
+    <aura:attribute name="lead1_T5" type="String" default="&nbsp;"/>
+    <aura:attribute name="lead1_TR5" type="String" default="&nbsp;"/>
+
+    <aura:handler event="c:PLSUpdate" value='{!this}' action="{!c.doInit}"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+   	<div class="title">
+        <img src="https://www.dropbox.com/s/gizhr8tq5735gij/einsteinlogo.svg?raw=1" id="insightsLogoOppty"/>Einstein
+    </div>
+    <div class="wrapper">
+        		<div class="top-card">
+                    <img src="{!v.lead1_escore}"></img>
+                    <h1>Lead Score</h1>
+                </div>
+                <div class="bottom-card">
+                	<h3>TOP PREDICTIVE FACTORS</h3>
+                    <ul>
+                    	<li><img src="{!v.lead1_I1}"></img>&nbsp;{!v.lead1_T1} <b>&nbsp;{!v.lead1_TR1}</b></li>
+                    	<li><img src="{!v.lead1_I2}"></img>&nbsp;{!v.lead1_T2} <b>&nbsp;{!v.lead1_TR2}</b></li>
+                        <li><img src="{!v.lead1_I3}"></img>&nbsp;{!v.lead1_T3} <b>&nbsp;{!v.lead1_TR3}</b></li>
+                        <li><img src="{!v.lead1_I4}"></img>&nbsp;{!v.lead1_T4} <b>&nbsp;{!v.lead1_TR4}</b></li>
+                        <li><img src="{!v.lead1_I5}"></img>&nbsp;{!v.lead1_T5} <b>&nbsp;{!v.lead1_TR5}</b></li>
+                    </ul>
+                </div>
+    </div>
+</aura:component>

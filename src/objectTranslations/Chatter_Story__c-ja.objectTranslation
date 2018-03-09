@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Chatter ストーリー</value>
+    </caseValues>
+    <fields>
+        <label>有効</label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <help><!-- Works better if it&apos;s more than 10 seconds apart. Schedule job isn&apos;t very punctual... --></help>
+        <label>投稿日時の間隔秒数</label>
+        <name>Seconds_Apart_For_Posting__c</name>
+    </fields>
+    <fields>
+        <label>監視する単語</label>
+        <name>Watch_Word__c</name>
+    </fields>
+    <nameFieldLabel>Chatter ストーリー名</nameFieldLabel>
+</CustomObjectTranslation>

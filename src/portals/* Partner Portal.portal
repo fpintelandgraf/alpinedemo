@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Portal xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <admin>admin-gyijrjljxafl@example.com</admin>
+    <description>Use This One! Login: treseller@[your org]/ password</description>
+    <emailSenderAddress>support@uci.com</emailSenderAddress>
+    <emailSenderName>support@uci.com</emailSenderName>
+    <enableSelfCloseCase>false</enableSelfCloseCase>
+    <footerDocument>SSE_Portal_Documents/SSEPortalFooter.html</footerDocument>
+    <forgotPassTemplate>unfiled$public/PartnerRelationshipManagementPartnerPortalResetPasswordSAMPLE</forgotPassTemplate>
+    <headerDocument>SSE_Portal_Documents/SSEPortalHeaderPortal.html</headerDocument>
+    <isSelfRegistrationActivated>false</isSelfRegistrationActivated>
+    <loginHeaderDocument>SSE_Portal_Documents/CustomerPortalHeaderHTML.htm</loginHeaderDocument>
+    <newPassTemplate>unfiled$public/PartnerRelationshipManagementPartnerPortalResetPasswordSAMPLE</newPassTemplate>
+    <newUserTemplate>unfiled$public/PartnerRelationshipManagementPartnerPortalNewUserLoginInformationSAMPLE</newUserTemplate>
+    <showActionConfirmation>true</showActionConfirmation>
+    <type>Partner</type>
+</Portal>

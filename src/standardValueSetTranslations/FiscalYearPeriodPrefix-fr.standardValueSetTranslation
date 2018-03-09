@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>FP</masterLabel>
+        <translation>PF</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Month</masterLabel>
+        <translation>Mois</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>P</masterLabel>
+        <translation><!-- P --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Period</masterLabel>
+        <translation>Période</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

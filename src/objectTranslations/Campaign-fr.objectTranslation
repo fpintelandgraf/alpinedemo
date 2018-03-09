@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>Campaign Layout</layout>
+        <sections>
+            <label>Graphiques</label>
+            <section>Campaign Charts</section>
+        </sections>
+        <sections>
+            <label>Résultats</label>
+            <section>Campaign Results</section>
+        </sections>
+        <sections>
+            <label>Liens Utiles</label>
+            <section>Useful Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Parent Campaign Layout</layout>
+        <sections>
+            <label>Planification -Hiérarchie</label>
+            <section>Hierarchy Planning</section>
+        </sections>
+        <sections>
+            <label>Résultats - Hiérarchie</label>
+            <section>Hierarchy Results</section>
+        </sections>
+        <sections>
+            <label>Liens Utiles</label>
+            <section>Useful Links</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

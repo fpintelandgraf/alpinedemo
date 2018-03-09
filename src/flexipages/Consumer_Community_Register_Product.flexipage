@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>richTextValue</name>
+                <value>&lt;h1&gt;&lt;span style=&quot;font-size: 22px;&quot;&gt;&lt;img class=&quot;sfdcCbImage&quot; src=&quot;{!contentAsset.ICON_Register_Product.1}&quot; style=&quot;width: 65.9062px; height: 56.8281px;&quot; /&gt; Register Your Product&lt;/span&gt;&lt;/h1&gt;
+&lt;p&gt;&amp;nbsp;Please answer a few basic questions about the product you purchased.&lt;/p&gt;</value>
+            </componentInstanceProperties>
+            <componentName>forceCommunity:richTextInline</componentName>
+        </componentInstances>
+        <name>header</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>flowArguments</name>
+                <value>[]</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>flowLayout</name>
+                <value>oneColumn</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>flowName</name>
+                <value>Register_Product</value>
+            </componentInstanceProperties>
+            <componentName>forceCommunity:flowCommunity</componentName>
+        </componentInstances>
+        <name>content</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <name>footer</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <masterLabel>Register Product</masterLabel>
+    <pageTemplate>siteforce:sldsOneColLayout</pageTemplate>
+    <type>CommAppPage</type>
+</FlexiPage>

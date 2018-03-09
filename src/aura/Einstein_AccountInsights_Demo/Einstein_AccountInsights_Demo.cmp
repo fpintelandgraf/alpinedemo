@@ -1,0 +1,81 @@
+<aura:component extends="c:EinsteinWrapperCard" controller="EinsteinAwesomeController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global">
+    <aura:attribute name="recordId" type="Id" />
+    <aura:attribute name="insight1_ar" type="String[]" default="blank, blank"/>  
+    <aura:attribute name="class_cus1" type="String" default="visible"/>
+    <aura:attribute name="class_cus1b" type="String" default="visible"/>
+    <aura:attribute name="class_col1" type="String" default="neut"/>
+    <aura:attribute name="image_trend1" type="String" default="https://www.dropbox.com/s/u7e7n5zf2zggtsn/trending_DOWN.png?raw=1"/>
+    <aura:handler name="init" value="{!this}" action="{!c.loadMe}" />
+    <aura:attribute name="lastInsight" type="Integer" />
+    
+    <div class="wrapper">
+        <div class="{!v.class_cus1 + ' insight down regular'}" id="insight1">
+            <img src="{!v.image_trend1}"  id="insight-img1"></img>
+            <div class="title-wrapper" >
+                <span id="insight-text1" class="{!v.class_col1 + ' insight-title'}" onclick="{!c.expandInsight}" data-id="1">{!v.insight1_ar[1]}</span>
+            </div>
+            <div class="why" onclick="{!c.fadeInsight}" data-id="1"></div>
+            <div class="content" aura:id="content1">
+                <div class="content-body">
+                    <div class="content-body-top">
+                        <div class="content-body-top-question">
+                            <img class="einstein-indicator" src="https://www.dropbox.com/s/z1ndx3xfw2xb5rj/ellie.gif?raw=1"></img>
+                            What supports this insight?
+                        </div>
+                        <div class="content-body-top-answer">
+                            {!v.insight1_ar[14]}
+                        </div>
+                    </div>
+                    <div class="{!v.class_cus1b}">
+                        <div class="content-body-squiggle">
+                        </div>
+                    </div>
+                    <div class="content-body-bottom">
+                        <div class="{!v.class_cus1b}">
+                            <div class="icon">
+                                <img src="https://www.dropbox.com/s/vj4fulfsvy0m5zz/newicon.png?raw=1"></img> 
+                            </div>
+                            <div class="content-body-bottom-subject">
+                                <a href="{! '//' + v.insight1_ar[5]}" target="blank">{!v.insight1_ar[2]}</a>
+                            </div>
+                            <div class="content-body-bottom-email">
+                                {!v.insight1_ar[4]} - {!v.insight1_ar[3]}<br/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-body-bottom">
+                        <div class="{!v.class_cus1b}">
+                            <div class="icon">
+                                <img src="https://www.dropbox.com/s/vj4fulfsvy0m5zz/newicon.png?raw=1"></img> 
+                            </div>
+                            <div class="content-body-bottom-subject">
+                                <a href="{!'//' + v.insight1_ar[9]}" target="blank">{!v.insight1_ar[6]}</a>
+                            </div>
+                            <div class="content-body-bottom-email">
+                                {!v.insight1_ar[8]} - {!v.insight1_ar[7]}<br/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-body-bottom">
+                        <div class="{!v.class_cus1b}">
+                            <div class="icon">
+                                <img src="https://www.dropbox.com/s/vj4fulfsvy0m5zz/newicon.png?raw=1"></img> 
+                            </div>
+                            <div class="content-body-bottom-subject">
+                                <a href="{! '//' + v.insight1_ar[13]}" target="blank">{!v.insight1_ar[10]}</a>
+                            </div>
+                            <div class="content-body-bottom-email">
+                                {!v.insight1_ar[12]} - {!v.insight1_ar[11]}<br/>
+                            </div>
+                        </div>     
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="dock" aura:id="aDock" onclick="{!c.closeDock}">
+        <div class="dockbutton">
+        </div>
+    </div>
+</aura:component>

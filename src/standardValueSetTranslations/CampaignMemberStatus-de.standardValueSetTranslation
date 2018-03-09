@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Added</masterLabel>
+        <translation>Hinzugefügt</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Attended</masterLabel>
+        <translation>Teilgenommen</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Contacted</masterLabel>
+        <translation>Kontaktiert</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Converted</masterLabel>
+        <translation>Konvertiert</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Engaged</masterLabel>
+        <translation>In Bearbeitung</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Invited</masterLabel>
+        <translation>Eingeladen</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Posted</masterLabel>
+        <translation>Eingeladen</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Registered</masterLabel>
+        <translation>Registriert</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Responded</masterLabel>
+        <translation>Geantwortet</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Sent</masterLabel>
+        <translation>Gesendet</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

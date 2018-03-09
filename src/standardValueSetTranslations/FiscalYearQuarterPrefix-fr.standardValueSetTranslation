@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>FQ</masterLabel>
+        <translation>TF</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Q</masterLabel>
+        <translation>T</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Quarter</masterLabel>
+        <translation>Trimestre</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Trimester</masterLabel>
+        <translation>Trimestre</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

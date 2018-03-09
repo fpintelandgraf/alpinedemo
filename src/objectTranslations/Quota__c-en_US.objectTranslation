@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Quota__c</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Quota__c</value>
+    </caseValues>
+    <fields>
+        <label><!-- External ID --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Owner Name --></label>
+        <name>OwnerName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Quota Amount --></label>
+        <name>QuotaAmount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Quota Owner --></label>
+        <name>QuotaOwner_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Start Date --></label>
+        <name>StartDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- analyticsdemo_batch_id__c --></label>
+        <name>analyticsdemo_batch_id__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

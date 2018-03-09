@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Approved</masterLabel>
+        <translation>批准</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Draft</masterLabel>
+        <translation>草案</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>New</masterLabel>
+        <translation>打开</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Pending</masterLabel>
+        <translation>待定</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Qualified - Convert</masterLabel>
+        <translation>合格 - 转换</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Rejected</masterLabel>
+        <translation>拒绝</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Submitted</masterLabel>
+        <translation>提交</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Unqualified</masterLabel>
+        <translation>存档</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Working</masterLabel>
+        <translation>加工</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

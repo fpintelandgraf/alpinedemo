@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>Account Case Page Layout</layout>
+        <sections>
+            <label>ケース詳細</label>
+            <section>Case Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Chat Case Page Layout</layout>
+        <sections>
+            <label>タイムライン</label>
+            <section>Timeline</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Communities Page Layout</layout>
+        <sections>
+            <label>関連リンク</label>
+            <section>Useful Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Community Case Page Layout</layout>
+        <sections>
+            <label><!-- Case Details --></label>
+            <section>Case Details</section>
+        </sections>
+        <sections>
+            <label>タイムライン</label>
+            <section>Timeline</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Community Templates Page Layout</layout>
+        <sections>
+            <label>新規セクション</label>
+            <section>New Section</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Lightning Case</layout>
+        <sections>
+            <label>タイムライン</label>
+            <section>Timeline</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Social Case Page Layout</layout>
+        <sections>
+            <label>タイムライン</label>
+            <section>Timeline</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Technical Case Page Layout</layout>
+        <sections>
+            <label><!-- Field Service Information --></label>
+            <section>Field Service Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Technical Case Page Layout - Lightning Console</layout>
+        <sections>
+            <label><!-- Remote Work Information --></label>
+            <section>Remote Work Information</section>
+        </sections>
+        <sections>
+            <label>タイムライン</label>
+            <section>Timeline</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label>記事を添付</label>
+        <name>Attach_Article</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Case Comment --></label>
+        <name>Case_Comment</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Classification Layout --></label>
+        <name>Classification_Layout</name>
+    </quickActions>
+    <quickActions>
+        <label>ケースをクローズ</label>
+        <name>Close_Case</name>
+    </quickActions>
+    <quickActions>
+        <label>ケースから記事を作成</label>
+        <name>Create_Article_from_Case</name>
+    </quickActions>
+    <quickActions>
+        <label>作業オーダーを作成</label>
+        <name>Create_Work_Order</name>
+    </quickActions>
+    <quickActions>
+        <label>詳細</label>
+        <name>Details</name>
+    </quickActions>
+    <quickActions>
+        <label>解決</label>
+        <name>Disposition</name>
+    </quickActions>
+    <quickActions>
+        <label>エスカレート</label>
+        <name>Escalate</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewChildCase --></label>
+        <name>NewChildCase</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- New Quote --></label>
+        <name>New_Quote</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Send Email --></label>
+        <name>SendEmail</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- SocialPublisher --></label>
+        <name>SocialPublisher</name>
+    </quickActions>
+    <quickActions>
+        <label>ソーシャルに投稿</label>
+        <name>Social_Post</name>
+    </quickActions>
+    <quickActions>
+        <label>ステータス更新</label>
+        <name>Update_Status</name>
+    </quickActions>
+    <workflowTasks>
+        <name>EngineeringReview</name>
+        <subject><!-- Engineering Review --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>FeatureRequestSubmitted</name>
+        <subject><!-- Feature Request Submitted --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <description><!-- The 1st Response milestone for this case was SUCCESSFUL --></description>
+        <name>Milestone_1st_Response_Successful</name>
+        <subject><!-- Milestone - 1st Response - SUCCESSFUL --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <description><!-- Milestone - 1st Response - VIOLATED --></description>
+        <name>Milestone_1st_Response_VIOLATION</name>
+        <subject><!-- Milestone - 1st Response - VIOLATION --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Sendnewstatement</name>
+        <subject><!-- Send new statement --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Yourcustomerhadabillingquestion</name>
+        <subject><!-- Your customer had a billing question --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>YourcustomerhasopenedaCase</name>
+        <subject><!-- Your customer has opened a Case --></subject>
+    </workflowTasks>
+</CustomObjectTranslation>

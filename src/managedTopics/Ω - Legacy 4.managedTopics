@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ManagedTopics xmlns="http://soap.sforce.com/2006/04/metadata">
+    <managedTopic>
+        <fullName>Ω - Legacy 4.Featured:Consumer</fullName>
+        <managedTopicType>Featured</managedTopicType>
+        <name>Consumer</name>
+        <parentName></parentName>
+        <position>0</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Ω - Legacy 4.Featured:Enterprise</fullName>
+        <managedTopicType>Featured</managedTopicType>
+        <name>Enterprise</name>
+        <parentName></parentName>
+        <position>1</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+</ManagedTopics>

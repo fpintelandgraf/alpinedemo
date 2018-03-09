@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Activity Management</masterLabel>
+        <translation>活动管理</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>AppExchange Apps</masterLabel>
+        <translation>AppExchange应用程序</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Audio Conferencing</masterLabel>
+        <translation>音频会议</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Benefits</masterLabel>
+        <translation>优点</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Best Practices</masterLabel>
+        <translation>最佳实践</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Change Requests</masterLabel>
+        <translation>变更请求</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Channel Marketing</masterLabel>
+        <translation>渠道营销</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Company-Wide Improvements - Internal</masterLabel>
+        <translation>全公司的改进 - 内部</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Conference Room Setup</masterLabel>
+        <translation>会议室设置</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Contact Me Page</masterLabel>
+        <translation>联系我页</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Contact Me Requests</masterLabel>
+        <translation>联系我请求</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Corporate Wireless</masterLabel>
+        <translation>企业无线</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Culture</masterLabel>
+        <translation>文化</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Customer</masterLabel>
+        <translation>顾客</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Customer Feedback</masterLabel>
+        <translation>客户反馈</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Customer Testimonials</masterLabel>
+        <translation>客户推荐</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Data Quality</masterLabel>
+        <translation>数据质量</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Demo Center</masterLabel>
+        <translation>演示中心</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Email Marketing</masterLabel>
+        <translation>电子邮件营销</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Email Templates</masterLabel>
+        <translation>电子邮件模板</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Events</masterLabel>
+        <translation>活动</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Executive Sponsorship</masterLabel>
+        <translation>管理层的支持</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Free Trial</masterLabel>
+        <translation>免费试用</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Google Apps</masterLabel>
+        <translation>谷歌企业应用套件</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Green - Alt Transport Credit</masterLabel>
+        <translation>绿色 -  Alt键传输信用</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Green - Car / Van Pooling</masterLabel>
+        <translation>绿色 - 汽车/范池</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Green - Carbon Offset</masterLabel>
+        <translation>绿色 - 碳补偿</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Green - Electric Reduction</masterLabel>
+        <translation>绿色 - 电还原</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Green - Glass / Can Recycling</masterLabel>
+        <translation>绿色 - 玻璃/可否回收利用</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Green - Paper Waste</masterLabel>
+        <translation>绿色 - 废纸</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Green - Waste Reduction</masterLabel>
+        <translation>绿色 - 减少废物</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Green - Water Reduction</masterLabel>
+        <translation>绿色 - 减水</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Landing Page Design</masterLabel>
+        <translation>着陆页面设计</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Lead Generation</masterLabel>
+        <translation>领先一代</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Marketing Requests</masterLabel>
+        <translation>市场要求</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Marketing Team - Internal</masterLabel>
+        <translation>营销团队 - 内部</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>My Google Apps Idea</masterLabel>
+        <translation>我的谷歌应用服务理念</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>My Marketing Idea</masterLabel>
+        <translation>我的营销理念</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>My Partner Relationship Management Idea</masterLabel>
+        <translation>我的合作伙伴关系管理理念</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>My SFA Idea</masterLabel>
+        <translation>我的SFA理念</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>My Salesforce Content Idea</masterLabel>
+        <translation>我Salesforce的内容创意</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>My Salesforce Ideas Idea</masterLabel>
+        <translation>我Salesforce的思想理念</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>My Service &amp; Support Idea</masterLabel>
+        <translation>我的服务与支持理念</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Onboarding</masterLabel>
+        <translation>入职培训</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Online Community</masterLabel>
+        <translation>在线社区</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Other</masterLabel>
+        <translation>其他</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>PC/Laptop/Hardware</masterLabel>
+        <translation>PC /笔记本电脑/硬件</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>PDA/Blackberry</masterLabel>
+        <translation>PDA /黑莓</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Partner Enhancements</masterLabel>
+        <translation>合作伙伴增强</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Performance Management</masterLabel>
+        <translation>绩效管理</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Phone/Voicemail</masterLabel>
+        <translation>电话/语音信箱</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Portal Enhancements</masterLabel>
+        <translation>门户网站增强功能</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Print Advertising</masterLabel>
+        <translation>印刷广告</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Printer/Copier/Fax</masterLabel>
+        <translation>打印/复印/传真</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Product Enhancements</masterLabel>
+        <translation>产品增强</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Product Launches</masterLabel>
+        <translation>产品发布</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Product Marketing</masterLabel>
+        <translation>产品市场</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Recruiting</masterLabel>
+        <translation>招聘</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Sales Team - Internal</masterLabel>
+        <translation>销售团队 - 内部</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Search Advertising</masterLabel>
+        <translation>搜索广告</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Search Engine Optimization</masterLabel>
+        <translation>搜索引擎优化</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Search Marketing</masterLabel>
+        <translation>搜索营销</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Software</masterLabel>
+        <translation>软件</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Support Team - Internal</masterLabel>
+        <translation>支持团队 - 内部</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>TV and Radio Advertising</masterLabel>
+        <translation>电视和广播广告</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Templates</masterLabel>
+        <translation>模板</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Trade Shows</masterLabel>
+        <translation>贸易展览会</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Training</masterLabel>
+        <translation>训练</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>VPN/RSA</masterLabel>
+        <translation>VPN / RSA</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Video Conferencing</masterLabel>
+        <translation>视频会议</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Viral Marketing</masterLabel>
+        <translation>病毒式营销</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Volunteering</masterLabel>
+        <translation>当志工</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Web Site</masterLabel>
+        <translation>网站</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Webinars</masterLabel>
+        <translation>网络研讨会</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>White Papers</masterLabel>
+        <translation>白皮书</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

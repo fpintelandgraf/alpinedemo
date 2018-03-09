@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Account Executive</masterLabel>
+        <translation>业务经理</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Channel Manager</masterLabel>
+        <translation>渠道经理</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Competitive Expert</masterLabel>
+        <translation>竞争力的专家</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Executive Sponsor</masterLabel>
+        <translation>执行发起人</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Industry Specialist</masterLabel>
+        <translation>行业专家</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Opportunity Owner</masterLabel>
+        <translation>机会所有者</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Sales Manager</masterLabel>
+        <translation>销售经理</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Service Contact</masterLabel>
+        <translation>服务联系</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Referral</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Referrals</value>
+    </caseValues>
+    <fields>
+        <label><!-- Candidate ID --></label>
+        <name>Candidate_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Email --></label>
+        <name>Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- First Name --></label>
+        <name>First_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Job --></label>
+        <name>Job__c</name>
+        <relationshipLabel><!-- Referrals --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Last Name --></label>
+        <name>Last_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Phone --></label>
+        <name>Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Created</masterLabel>
+            <translation><!-- Created --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hired</masterLabel>
+            <translation><!-- Hired --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Hired</masterLabel>
+            <translation><!-- Not Hired --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Offer</masterLabel>
+            <translation><!-- Offer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reviewing</masterLabel>
+            <translation><!-- Reviewing --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>Referral Layout</layout>
+        <sections>
+            <label><!-- Contact Info --></label>
+            <section>Contact Info</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

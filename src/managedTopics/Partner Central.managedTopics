@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ManagedTopics xmlns="http://soap.sforce.com/2006/04/metadata">
+    <managedTopic>
+        <fullName>Partner Central.Featured:Getting Started</fullName>
+        <managedTopicType>Featured</managedTopicType>
+        <name>Getting Started</name>
+        <parentName></parentName>
+        <position>0</position>
+        <topicDescription>How to get started as a Cirrus partner.</topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Partner Central.Featured:Planning and Marketing</fullName>
+        <managedTopicType>Featured</managedTopicType>
+        <name>Planning and Marketing</name>
+        <parentName></parentName>
+        <position>1</position>
+        <topicDescription>Need help on marketing &amp; market planning? This is the topic for you!</topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Partner Central.Featured:Training And Certification</fullName>
+        <managedTopicType>Featured</managedTopicType>
+        <name>Training And Certification</name>
+        <parentName></parentName>
+        <position>2</position>
+        <topicDescription>Learn about and get certified on Cirrus products, and how to sell them.</topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Partner Central.Navigational:Getting Started</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Getting Started</name>
+        <parentName></parentName>
+        <position>0</position>
+        <topicDescription>How to get started as a Cirrus partner.</topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Partner Central.Navigational:Planning and Marketing</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Planning and Marketing</name>
+        <parentName></parentName>
+        <position>1</position>
+        <topicDescription>Need help on marketing &amp; market planning? This is the topic for you!</topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Partner Central.Navigational:Training And Certification</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Training And Certification</name>
+        <parentName></parentName>
+        <position>2</position>
+        <topicDescription>Learn about and get certified on Cirrus products, and how to sell them.</topicDescription>
+    </managedTopic>
+</ManagedTopics>

@@ -1,0 +1,468 @@
+<apex:page title="Platform Events Setup" controller="PlatformEventsCtrl" showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" >
+    <apex:slds ></apex:slds>
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"/>
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-sanitize.js"/>
+    
+    <style>
+        .slds-notify_container {left: 50% !important; transform:translateX(-50%)}
+        .card {height: 130px; background-color: #fff; border: 1px solid #d8dde6;border-radius:3px;border: 1px solid #d8dde6;border-radius:3px;}
+        
+        .card-empty { background-color: #f4f6f9; display:flex; flex-align: center; border-radius:3px;border: 1px dashed #d8dde6;border-radius:3px; transition: all .3s ease-in-out;}
+        .card-empty:hover { border-style:solid; background-color: #fff;cursor:pointer;}
+        
+        .flex-center { align-self: center; flex: 1;}
+    </style>
+    
+    <script>
+    function PlatformEventButton(pageId, name, message){
+        this.Name = name;
+        this.Platform_Events_Page__c = pageId;
+        this.Message__c = message;
+    }
+    
+    var remote = PlatformEventsCtrl;
+    var app = angular.module('PlatformEventsApp', [])
+    
+    .controller('MainCtrl', function($scope){
+        $scope.shownPage = 'pages';
+        
+        $scope.$on('set-shown', function(evt, args){
+            $scope.shownPage = args[0];
+            console.log($scope.shownPage);
+            
+            if(args[1]){
+                console.log('Emitting: ', args[1])
+                $scope.$broadcast('set-page',[ args[1] ])
+            }
+            
+        })
+    })
+    
+    .controller('PagesCtrl', function($scope){
+        $scope.pages = [];
+        
+        $scope.selectPage = function(pageId){
+            console.log('Broadcasting: ', pageId)
+            $scope.$emit('set-shown', ['setup', pageId]);
+        }
+        
+        $scope.launchPage = function(recordId){
+            if(typeof sforce != 'undefined'){
+                if(sforce.one){
+                    sforce.one.navigateToURL('/apex/PlatformEventsPage?id=' + recordId, true);
+                } else {
+                    window.open('/apex/PlatformEventsPage?id=' + recordId);
+                }
+            } else {
+                window.open('/apex/PlatformEventsPage?id=' + recordId);
+            }
+        }
+        
+        $scope.getPages = function(){
+            remote.getPages(function(res,evt){
+                if(evt.status){
+                    $scope.pages = res;
+                    $scope.$apply();
+                }
+            })
+        }
+        
+        $scope.deletePage = function(pageIndex, pageId){
+            if(confirm('Do you want to remove this page?')){
+                remote.deletePage(pageId, function(res,evt){
+                    if(evt.status){
+                        $scope.pages.splice(pageIndex, 1);
+                        $scope.$apply();
+                    } else {
+                        console.log('PagesCtrl:deletePage', evt);
+                    }
+                })
+            }
+        }
+        
+        $scope.newPage = function(){
+            console.log('Emit new page')
+            $scope.$emit('set-shown', ['new-page'])
+        }
+        
+        $scope.$on('new-page', function(evt, args){
+            console.log('new-page',args);
+            $scope.pages.push(args[0]);
+        })
+        
+        $scope.getPages();
+    })
+    
+    .controller('NewPageCtrl', function($rootScope, $scope){
+        $scope.newPage = {
+            Name: '',
+            Subtitle__c: '',
+            Background_URL__c: ''
+        }
+        
+        $scope.upsertPage = function(){
+            remote.upsertPage(JSON.stringify($scope.newPage), function(res,evt){
+                if(evt.status){
+                    $scope.newPage = {
+                        Name: '',
+                        Subtitle__c: '',
+                        Background_URL__c: ''
+                    }
+                    $rootScope.$broadcast('new-page', [res]);
+                    $scope.$emit('set-shown', ['setup', res.Id]);
+                    $scope.$apply();
+                } else {
+                    console.log('ERROR:PagesCtrl:upsertPage',evt)
+                }
+                
+            })
+        }
+        
+        $scope.back = function(){
+            $scope.$emit('set-shown', ['pages']);
+        }
+        
+        $scope.showPages = function(){
+            $scope.$emit('set-shown','pages')
+        }
+    })
+    
+    .controller('SetupCtrl', function($rootScope, $scope){
+        $scope.page;
+        $scope.buttons = [];
+        $scope.getPage = function(pageId){
+            remote.getPage(pageId, function(res,evt){
+                if(evt.status){
+                    console.log('SUCCESS:SetupCtrl:getPage', res);
+                    $scope.page = res;
+                    if(res['Platform_Event_Buttons__r']){
+                        $scope.buttons = res['Platform_Event_Buttons__r'];
+                        delete res['Platform_Event_Buttons__r'];
+                    } else {
+                        $scope.buttons = [];
+                    }
+                    $scope.$apply();
+                } else {
+                    console.log('ERROR:SetupCtrl:getPage',evt)
+                }
+            },{escape:false})
+        }
+        
+        $scope.deletePage = function(){
+            if(confirm('Do you want to remove this page?')){
+                remote.deletePage($scope.page.Id, function(res,evt){
+                    if(evt.status){
+                        $scope.$emit('set-shown',['pages']);
+                    }
+                })
+            }
+        }
+        
+        $scope.updatePage = function(){
+            remote.upsertPage(angular.toJson($scope.page), function(res,evt){
+                if(evt.status){
+                    remote.upsertButtons(angular.toJson($scope.buttons), function(res,evt){
+                        if(evt.status){
+                            console.log('SUCCESS:SetupCtrl:updatePage', res)
+                            $rootScope.$broadcast('create-toast', ['Page Updated!','success'])
+                        } else {
+                            console.log('ERROR:SetupCtrl:upsertButtons',evt)
+                        }
+                    })
+                } else {
+                    console.log('ERROR:SetupCtrl:upsertPage',evt)
+                }
+            })
+        }
+        
+        $scope.addButton = function(){
+            $scope.buttons.push(new PlatformEventButton($scope.page.Id, '',''))
+        }
+        $scope.deleteButton = function(buttonIndex,buttonId){
+            if(confirm('Delete this button?')){
+            	remote.deleteButton(buttonId, function(res,evt){
+                	if(evt.status){
+                    	$scope.buttons.splice(buttonIndex,1);
+                    } else {
+                        console.log('ERROR:SetupCtrl:deleteButton',evt)
+                    }
+                })
+            }
+            $scope.buttons.splice(buttonIdex,1);
+        }
+        
+        $scope.launchPage = function(){
+            var recordId = $scope.page.Id
+            if(typeof sforce != 'undefined'){
+                if(sforce.one){
+                    sforce.one.navigateToURL('/apex/PlatformEventsPage?id=' + recordId, true);
+                } else {
+                    window.open('/apex/PlatformEventsPage?id=' + recordId);
+                }
+            } else {
+                window.open('/apex/PlatformEventsPage?id=' + recordId);
+            }
+        }
+        
+        $scope.back = function(){
+            $scope.$emit('set-shown', ['pages']);
+        }
+        
+        $scope.$on('set-page', function(evt, args){
+            console.log('set-page');
+            $scope.getPage(args[0]);
+        })
+    })
+    
+    .controller('ToastsCtrl', function($scope,$sce){
+        $scope.Toast =  function Toast(message, type){
+            var self = this;
+            
+            this.INTERVAL_RATE = 1000;
+            this.DURATION = 6000;
+            this.message = message;
+            this.type = type;
+            this.expiry = (new Date).getTime() + self.DURATION;
+            this.shown = true;
+            this.currentTime = (new Date).getTime();
+            
+            this.countdown = function(){
+                
+                self.currentTime += self.INTERVAL_RATE;
+                
+                if(self.expiry <= self.currentTime){
+                    self.dismiss();
+                }
+                $scope.$apply();
+            }
+            
+            this.dismiss = function(){
+                self.shown = false;
+            	clearInterval(self.interval);
+            }
+            
+            this.interval = setInterval(this.countdown, self.INTERVAL_RATE);
+        }
+        
+        $scope.toasts = [];
+        
+    	$scope.$on('create-toast', function(evt, args){
+            console.log('Toast Event Heard',evt, args)
+            $scope.toasts.push( new $scope.Toast(args[0],args[1]) );
+        })
+        
+        $scope.trustHtml = function(htmlString){
+        	return $sce.trustAsHtml(htmlString);
+        }
+        
+        $scope.dismiss = function(idx){
+        	$scope.toasts[idx].dismiss();
+        }
+    })
+    </script>
+    
+    <body ng-app="PlatformEventsApp" ng-controller="MainCtrl" xmlns:xlink="http://www.w3.org/1999/xlink" class="slds">
+        
+        <div class="slds-notify_container slds-container_medium slds-is-fixed" ng-controller="ToastsCtrl" >
+            <div ng-repeat="toast in toasts" ng-show="toast.shown" class="slds-notify slds-notify_toast {{'slds-theme_' + toast.type}}">
+                <span class="slds-assistive-text">{{toast.type}}</span>
+                <div class="slds-notify__content">
+                    <h2 class="slds-text-heading_small" ng-bind-html="trustHtml(toast.message)"></h2>
+                </div>
+                <button ng-click="toast.dismiss()" class="slds-button slds-button_icon slds-notify__close slds-button_icon-inverse">
+                    <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                        <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#close')}"></use>
+                    </svg>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+            </div>
+        </div>
+        
+        <div class="slds-container_center slds-container_large">
+            <div class="slds-m-bottom_medium">
+                <div class="slds-text-heading_large">Platform Events Setup/Launcher</div>
+            </div>
+            
+            <div ng-show="shownPage == 'pages'" ng-controller="PagesCtrl" class="">
+                
+                <div class="slds-text-heading_medium slds-m-bottom_medium">
+                    Platform Events Launchers
+                </div>
+                <div class="slds-card slds-p-around_medium">
+                    <div class="slds-grid slds-wrap slds-grid_pull-padded">
+                        <div ng-repeat="page in pages" class="slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3 slds-grid_vertical-stretch">
+                            <div class="slds-p-around_medium slds-m-around_medium slds-panel">
+                                <div class="slds-text-heading_medium slds-m-bottom_x-small slds-truncate">
+                                    Name: {{page.Name}}
+                                </div>
+                                <div class="slds-text-title slds-m-bottom_small slds-truncate">
+                                    Subheader: {{page.Subtitle__c}}
+                                </div>
+                                <div>
+                                    
+                                    <button ng-click="launchPage(page.Id)" class="slds-button slds-button_neutral">
+                                        <svg class="slds-button__icon slds-button__icon_left">
+                                            <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#new_window')}"></use>
+                                        </svg>
+                                        View Page
+                                    </button>
+                                    
+                                    <button ng-click="selectPage(page.Id)" class="slds-button slds-button_icon slds-button_icon-border slds-button_icon-border-filled">
+                                        <svg class="slds-button__icon">
+                                            <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#edit')}"></use>
+                                        </svg>
+                                    </button>
+                                    
+                                    <button ng-click="deletePage($index, page.Id)" class="slds-button slds-button_icon slds-button_icon-border slds-button_icon-border-filled slds-button_icon-error">
+                                        <svg class="slds-button__icon">
+                                            <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#delete')}"></use>
+                                        </svg>
+                                    </button>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-click="newPage()" class="slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3 slds-grid_vertical-stretch">
+                            
+                            <div class="slds-p-around_medium slds-m-around_medium slds-text-align_center card-empty card">
+                                <div class="flex-center">
+                                    <div>
+                                        <svg class="slds-icon_small">
+                                            <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#add')}"></use>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        Add new page
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div ng-show="shownPage == 'new-page'" ng-controller="NewPageCtrl" class="">
+                
+                <div class="slds-text-heading_medium slds-m-bottom_medium">
+                    New Launcher
+                </div>
+                <div class="slds-card slds-p-around_medium">
+                    <div class="slds-panel slds-p-around_medium">
+                        <div class="slds-form-element">
+                            <label>Page Name</label>
+                            <input ng-model="newPage.Name" class="slds-input" placeholder="Title of the page and header.."/>
+                        </div>
+                        <div class="slds-form-element">
+                            <label>Subheader Text</label>
+                            <input ng-model="newPage.Subtitle__c" class="slds-input" placeholder="Subheading on page.."/>
+                        </div>
+                        <div class="slds-form-element">
+                            <label>Background Image</label>
+                            <input ng-model="newPage.Background_URL__c" class="slds-input" placeholder="Page background URL.."/>
+                        </div>
+                    </div>
+                    <div class="slds-m-top_medium slds-text-align_center">
+                        <button ng-click="back();" class="slds-button slds-button_neutral">
+                            Back
+                        </button>
+                        <button ng-click="upsertPage()" class="slds-button slds-button_brand">
+                            Create Page
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div ng-show="shownPage == 'setup'" ng-controller="SetupCtrl"  class="">
+                
+                <div class="slds-text-heading_medium slds-m-bottom_medium">
+                    Edit Launcher
+                </div>
+                <div class="slds-card slds-p-around_medium">
+                    <div>
+                        <div class="slds-form-element">
+                            <label>Page Name</label>
+                            <input ng-model="page.Name" class="slds-input" placeholder="Title of the page and header"/>
+                        </div>
+                        <div class="slds-form-element">
+                            <label>Subheader Text</label>
+                            <input ng-model="page.Subtitle__c" class="slds-input" placeholder="Subheading on page"/>
+                        </div>
+                        <div class="slds-form-element">
+                            <label>Background Image</label>
+                            <input ng-model="page.Background_URL__c" class="slds-input" placeholder="Page background URL"/>
+                        </div>
+                    </div>
+                    
+                    <div class="slds-grid slds-wrap slds-grid_pull-padded">
+                        <div ng-repeat="button in buttons" class="slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3 slds-grid_vertical-stretch">
+                            <div class="slds-p-around_medium slds-m-around_medium  slds-panel">
+                                <div class="slds-form-element">
+                                    <label>Button Label</label>
+                                    <input ng-model="button.Name" class="slds-input" placeholder="Button Label"/>
+                                </div>
+                                <div class="slds-form-element">
+                                    <label>Message</label>
+                                    <input ng-model="button.Message__c" class="slds-input" placeholder="Platform event message"/>
+                                </div>
+                                
+                                <div class="slds-text-align_center slds-m-top_small">
+                                    <button ng-click="deleteButton($index, button.Id)" class="slds-button slds-button_icon slds-button_icon-border slds-button_icon-border-filled slds-button_icon-error">
+                                        <svg class="slds-button__icon">
+                                            <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#delete')}"></use>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-click="addButton()" class="slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3 slds-grid_vertical-stretch">
+                            
+                            <div class="slds-p-around_medium slds-m-around_medium slds-text-align_center card-empty card">
+                                <div class="flex-center">
+                                    <div>
+                                        <svg class="slds-icon_small">
+                                            <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#add')}"></use>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        Add new button
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="slds-m-top_medium slds-text-align_center">
+                        <button ng-click="back()" class="slds-button slds-button_neutral">
+                            Back
+                        </button>
+                        
+                        <button ng-click="launchPage()" class="slds-button slds-button_neutral">
+                            <svg class="slds-button__icon slds-button__icon_left">
+                                <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#new_window')}"></use>
+                            </svg>
+                            View Page
+                        </button>
+                        
+                        <button ng-click="updatePage()" class="slds-button slds-button_brand">
+                            Update Page
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    
+    ga('create', 'UA-46606102-1', 'auto');
+    ga('send', 'pageview');
+    
+    </script>
+</apex:page>

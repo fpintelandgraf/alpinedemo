@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>SAP Sales Order</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>SAP Sales Orders</value>
+    </caseValues>
+    <fields>
+        <label><!-- Businesspartnerid --></label>
+        <name>Businesspartnerid__c</name>
+        <relationshipLabel><!-- SalesOrders --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Companyname --></label>
+        <name>Companyname__c</name>
+    </fields>
+    <fields>
+        <label><!-- Currency --></label>
+        <name>Currency__c</name>
+    </fields>
+    <fields>
+        <label><!-- Netsum --></label>
+        <name>Netsum__c</name>
+    </fields>
+    <fields>
+        <label><!-- Orderid --></label>
+        <name>Orderid__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tax --></label>
+        <name>Tax__c</name>
+    </fields>
+    <fields>
+        <label><!-- Totalsum --></label>
+        <name>Totalsum__c</name>
+    </fields>
+    <layouts>
+        <layout>SalesOrders Layout</layout>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

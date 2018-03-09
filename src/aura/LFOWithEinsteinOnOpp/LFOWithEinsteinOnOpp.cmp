@@ -1,0 +1,438 @@
+<aura:component controller="LFOWithEinsteinController" implements="force:appHostable,force:hasRecordId,clients:availableForMailAppAppPage,clients:hasItemContext" access="global"> 
+    <aura:attribute name="recordId" type="Id" />
+    <aura:attribute name="account_name" type="String" default="Presidio Tech"/>  
+    <aura:attribute name="closedate" type="String" default="7/13/2017"/>
+    <aura:attribute name="act_text" type="String" default="Jim wanted to talk about the upcoming deal..."/>
+    <aura:attribute name="act_type" type="String" default="https://www.dropbox.com/s/vr2q3nfczjpt925/email.png?raw=1"/>
+    <aura:attribute name="act_subject" type="String" default="RE: reaching out"/>
+    <aura:attribute name="con_name" type="String" default="Jim Harrison"/>
+    <aura:attribute name="comp_name" type="String" default="Sprint Networks"/>
+    <aura:attribute name="slow_reason" type="String" default="A lower than usual number of prospect participants"/>
+    <aura:attribute name="boost_reason" type="String" default="A higher than usual number of prospect participants"/>
+    <aura:attribute name="email_subject" type="String" default="Blank"/>
+    <aura:attribute name="email_body" type="String" default="Blank"/>
+    <aura:attribute name="email_cid" type="String" default="Blank"/>
+    <aura:attribute name="email_cname" type="String" default="Blank"/>
+    <aura:attribute name="email_cemail" type="String" default="Blank"/>
+    <aura:attribute name="class_cus1" type="String" default="invisible"/>
+    <aura:attribute name="class_cus2" type="String" default="invisible"/>
+    <aura:attribute name="class_cus3" type="String" default="invisible"/>
+    <aura:attribute name="class_cus4" type="String" default="invisible"/>
+    <aura:attribute name="class_cus5" type="String" default="invisible"/>
+    <aura:attribute name="class_cus6" type="String" default="invisible"/>
+    <aura:attribute name="class_cus7" type="String" default="invisible"/>
+    <aura:attribute name="class_cus8" type="String" default="invisible"/>
+    <aura:attribute name="class_cus9" type="String" default="invisible"/>
+    <aura:attribute name="lastInsight" type="Integer" />
+    
+    <aura:attribute name="source" type="String" default="email" />
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+    <aura:handler name="change" value="{!v.subject}" action="{!c.handleSubjectChange}" />
+    <aura:handler name="change" value="{!v.people}" action="{!c.handlePeopleChange}" />
+
+    
+    <div class="wrapper">
+        <div class="title">
+            <img src="https://www.dropbox.com/s/gizhr8tq5735gij/einsteinlogo.svg?raw=1" id="insightsLogoOppty"/>Einstein
+        </div> 
+         
+        <div class="placeholder" id="placeholder1"></div>
+        <div class="placeholder" id="placeholder2"></div>
+        <div class="placeholder" id="placeholder3"></div> 
+        <div class="placeholder" id="placeholder4"></div> 
+        <div class="placeholder" id="placeholder5"></div> 
+        <div class="placeholder" id="placeholder6"></div> 
+        
+        <div class="insight down fade hide" id="insight0">
+            <img src="https://www.dropbox.com/s/es337funzub8nan/trending_UP.png?raw=1" id="insight-img0-rep"></img>
+            <div class="title-wrapper" >
+                <span id="insight-text0" class="insight-title" onclick="{!c.expandInsight}" data-id="0">Trending Up</span>
+            </div>
+            <!--div class="why" onclick="{!c.handleClick}"></div-->
+            <div class="why" onclick="{!c.fadeInsight}" data-id="0"></div>
+            <div class="content" aura:id="content0">
+                <div class="content-body">
+                    <div class="content-body-top">
+                        <div class="content-body-top-question">
+                            <img src="https://www.dropbox.com/s/z1ndx3xfw2xb5rj/ellie.gif?raw=1"></img>
+                            What supports this insight?
+                        </div>
+                        <div class="content-body-top-answer">
+                            Opportunities without C-Level or senior participants are less likely to close on time.
+                        </div>
+                    </div>
+                    <div class="content-body-squiggle">
+                    </div>
+                    <div class="relevant-activity">
+                        <img src="{!v.act_type}"></img> 
+                        <span>Latest Activity - 9 days ago</span>
+                    </div>
+                    <div class="content-body-bottom">
+                        <div class="content-body-bottom-subject">
+                            <a>{!v.act_subject}</a>
+                        </div>
+                        <div class="content-body-bottom-email">
+                            "{!v.act_text}"<br/>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-button email-button" onclick="{!c.emailDock}"  data-id="0">
+                    Send Email
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="{!v.class_cus1 + ' insight down regular'}" id="insight1">
+            <img src="https://www.dropbox.com/s/u7e7n5zf2zggtsn/trending_DOWN.png?raw=1"  id="insight-img1"></img>
+            <div class="title-wrapper" >
+                <span id="insight-text1" class="insight-title" onclick="{!c.expandInsight}" data-id="1" style="color:rgb(194, 57, 52)">Opportunity is unlikely to close in time</span>
+            </div>
+            <!--div class="why" onclick="{!c.handleClick}"></div-->
+            <div class="why" onclick="{!c.fadeInsight}" data-id="1"></div>
+            <div class="content" aura:id="content1">
+                <div class="content-body">
+                    <div class="content-body-top">
+                        <div class="content-body-top-question">
+                            <img src="https://www.dropbox.com/s/z1ndx3xfw2xb5rj/ellie.gif?raw=1"></img>
+                            What supports this insight?
+                        </div>
+                        <div class="content-body-top-answer">
+                            Recent activity suggests this deal won't be won by {!v.closedate}.
+                        </div>
+                    </div>
+                    <div class="content-body-squiggle">
+                    </div>
+                    <div class="relevant-activity">
+                        <img src="{!v.act_type}"></img> 
+                        <span>Latest Activity - 9 days ago</span>
+                    </div>
+                    <div class="content-body-bottom">
+                        <div class="content-body-bottom-subject">
+                            <a>{!v.act_subject}</a>
+                        </div>
+                        <div class="content-body-bottom-email">
+                            "{!v.act_text}"<br/>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-button" onclick="{!c.emailDock}"  data-id="1">
+                    Send Email
+                </div>
+            </div>
+        </div>
+        
+         <div class="{!v.class_cus2 + ' insight down regular'}" id="insight2">
+            <img src="https://www.dropbox.com/s/u7e7n5zf2zggtsn/trending_DOWN.png?raw=1" id="insight-img2"></img>
+            <div class="title-wrapper" >
+                <span id="insight-text3" class="insight-title" onclick="{!c.expandInsight}" data-id="2" style="color:rgb(194, 57, 52)">Prospect unresponsive</span>
+            </div>
+            <div class="why" onclick="{!c.fadeInsight}" data-id="2"></div>
+            <div class="content" aura:id="content2">
+                <div class="content-body">
+                    <div class="content-body-top">
+                        <div class="content-body-top-question">
+                            <img src="https://www.dropbox.com/s/z1ndx3xfw2xb5rj/ellie.gif?raw=1"></img>
+                            What supports this insight?
+                        </div>
+                        <div class="content-body-top-answer">
+                          	We usually hear from a prospect within 5 days, but we haven't heard back in 15 days.
+                        </div>
+                    </div>
+                    <div class="content-body-squiggle">
+                    </div>
+                    <div class="relevant-activity">
+                        <img src="{!v.act_type}"></img> 
+                        <span>Latest Activity - 9 days ago</span>
+                    </div>
+                    <div class="content-body-bottom">
+                        <div class="content-body-bottom-subject">
+                            <a>{!v.act_subject}</a>
+                        </div>
+                        <div class="content-body-bottom-email">
+                            "{!v.act_text}"<br/>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-button" onclick="{!c.emailDock}"  data-id="2">
+                    Send Email
+                </div>
+            </div>
+        </div>
+        
+        <div class="{!v.class_cus3 + ' insight neutral regular'}" id="insight3" >
+            <img src="https://www.dropbox.com/s/zq6gplcsza98gqe/trending_NEUTRAL.png?raw=1" id="insight-img3"></img>
+            <div class="title-wrapper">
+                <span id="insight-text1" class="insight-title"  onclick="{!c.expandInsight}" data-id="3" style="color:rgb(22, 50, 92)">Competitor was mentioned</span>
+            </div>
+            <div class="why" onclick="{!c.fadeInsight}" data-id="3"></div>
+            
+            <div class="content" aura:id="content3">
+                <div class="content-body">
+                    <div class="content-body-top">
+                        <div class="content-body-top-question">
+                            <img src="https://www.dropbox.com/s/z1ndx3xfw2xb5rj/ellie.gif?raw=1"></img>
+                            What supports this insight?
+                        </div>
+                        <div class="content-body-top-answer">
+                            {!v.con_name} mentioned {!v.comp_name}.
+                        </div>
+                    </div>
+                    <div class="content-body-squiggle">
+                    </div>
+                    <div class="relevant-activity">
+                        <img src="https://www.dropbox.com/s/vr2q3nfczjpt925/email.png?raw=1"></img> 
+                        <span>Related email - 4 days ago</span>
+                    </div>
+                    <div class="content-body-bottom">
+                        <div class="content-body-bottom-subject">
+                            <a>RE:Solutions</a>
+                        </div>
+                        <div class="content-body-bottom-email">
+                            "we are currently evaluating other options from {!v.comp_name}..."<br/>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-button" onclick="{!c.emailDock}" data-id="3">
+                    Send Email
+                </div>
+            </div>
+        </div>
+        
+
+		<div class="{!v.class_cus4 + ' insight down regular'}" id="insight4">
+            <img src="https://www.dropbox.com/s/u7e7n5zf2zggtsn/trending_DOWN.png?raw=1" id="insight-img4"></img>
+            <div class="title-wrapper" >
+                <span id="insight-text4" class="insight-title" onclick="{!c.expandInsight}" data-id="4" style="color:rgb(194, 57, 52)">Opportunity slowing</span>
+            </div>
+            <div class="why" onclick="{!c.fadeInsight}" data-id="4"></div>
+            <div class="content" aura:id="content4">
+                <div class="content-body">
+                    <div class="content-body-top">
+                        <div class="content-body-top-question">
+                            <img src="https://www.dropbox.com/s/z1ndx3xfw2xb5rj/ellie.gif?raw=1"></img>
+                            What supports this insight?
+                        </div>
+                        <div class="content-body-top-answer">
+                            {!v.slow_reason} suggests that this deal is less likely to be won.
+                        </div>
+                    </div>
+                    <div class="content-body-squiggle">
+                    </div>
+                    <div class="relevant-activity">
+                        <img src="{!v.act_type}"></img> 
+                        <span>Latest Activity - 9 days ago</span>
+                    </div>
+                    <div class="content-body-bottom">
+                        <div class="content-body-bottom-subject">
+                            <a>{!v.act_subject}</a>
+                        </div>
+                        <div class="content-body-bottom-email">
+                            "{!v.act_text}"<br/>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-button" onclick="{!c.emailDock}"  data-id="4">
+                    Send Email
+                </div>
+            </div>
+        </div> 
+        
+        <div class="{!v.class_cus5 + ' insight down regular'}" id="insight5">
+            <img src="https://www.dropbox.com/s/es337funzub8nan/trending_UP.png?raw=1" id="insight-img5-rep"></img>
+            <div class="title-wrapper" >
+                <span id="insight-text5" class="insight-title" onclick="{!c.expandInsight}" data-id="5" style="color:rgb(2, 128, 72)">Opportunity boosting</span>
+            </div>
+            <div class="why" onclick="{!c.fadeInsight}" data-id="5"></div>
+            <div class="content" aura:id="content5">
+                <div class="content-body">
+                    <div class="content-body-top">
+                        <div class="content-body-top-question">
+                            <img src="https://www.dropbox.com/s/z1ndx3xfw2xb5rj/ellie.gif?raw=1"></img>
+                            What supports this insight?
+                        </div>
+                        <div class="content-body-top-answer">
+                            {!v.boost_reason} suggests this deal is more likely to be won.
+                        </div>
+                    </div>
+                    <div class="content-body-squiggle">
+                    </div>
+                    <div class="relevant-activity">
+                        <img src="{!v.act_type}"></img> 
+                        <span>Latest Activity - 9 days ago</span>
+                    </div>
+                    <div class="content-body-bottom">
+                        <div class="content-body-bottom-subject">
+                            <a>{!v.act_subject}</a>
+                        </div>
+                        <div class="content-body-bottom-email">
+                            "{!v.act_text}"<br/>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-button" onclick="{!c.emailDock}"  data-id="5">
+                    Send Email
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="{!v.class_cus6 + ' insight down regular'}" id="insight6">
+            <img src="https://www.dropbox.com/s/zq6gplcsza98gqe/trending_NEUTRAL.png?raw=1" id="insight-img6"></img>
+            <div class="title-wrapper" >
+                <span id="insight-text6" class="insight-title" onclick="{!c.expandInsight}" data-id="6" style="color:rgb(22, 50, 92)">Time-consuming opportunity</span>
+            </div>
+            <div class="why" onclick="{!c.fadeInsight}" data-id="6"></div>
+            <div class="content" aura:id="content6">
+                <div class="content-body">
+                    <div class="content-body-top">
+                        <div class="content-body-top-question">
+                            <img src="https://www.dropbox.com/s/z1ndx3xfw2xb5rj/ellie.gif?raw=1"></img>
+                            What supports this insight?
+                        </div>
+                        <div class="content-body-top-answer">
+                            Too much time might be spent on this deal relative to its value (compared to your previous deals at this stage).
+                        </div>
+                    </div>
+                    <div class="content-body-squiggle">
+                    </div>
+                    <div class="relevant-activity">
+                        <img src="{!v.act_type}"></img> 
+                        <span>Latest Activity - 9 days ago</span>
+                    </div>
+                    <div class="content-body-bottom">
+                        <div class="content-body-bottom-subject">
+                            <a>{!v.act_subject}</a>
+                        </div>
+                        <div class="content-body-bottom-email">
+                            "{!v.act_text}"<br/>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-button" onclick="{!c.emailDock}"  data-id="6">
+                    Send Email
+                </div>
+            </div>
+        </div>
+        
+        <div class="{!v.class_cus7 + ' insight down regular'}" id="insight7">
+            <img src="https://www.dropbox.com/s/u7e7n5zf2zggtsn/trending_DOWN.png?raw=1" id="insight-img7"></img>
+            <div class="title-wrapper" >
+                <span id="insight-text7" class="insight-title" onclick="{!c.expandInsight}" data-id="7" style="color:rgb(194, 57, 52)">No communication</span>
+            </div>
+            <div class="why" onclick="{!c.fadeInsight}" data-id="7"></div>
+            <div class="content" aura:id="content7">
+                <div class="content-body">
+                    <div class="content-body-top">
+                        <div class="content-body-top-question">
+                            <img src="https://www.dropbox.com/s/z1ndx3xfw2xb5rj/ellie.gif?raw=1"></img>
+                            What supports this insight?
+                        </div>
+                        <div class="content-body-top-answer">
+                            There’s usually communication with this opportunity every 3 days. So far, there hasn’t been any in 9 days.
+                        </div>
+                    </div>
+                    <div class="content-body-squiggle">
+                    </div>
+                    <div class="relevant-activity">
+                        <img src="{!v.act_type}"></img> 
+                        <span>Latest Activity - 9 days ago</span>
+                    </div>
+                    <div class="content-body-bottom">
+                        <div class="content-body-bottom-subject">
+                            <a>{!v.act_subject}</a>
+                        </div>
+                        <div class="content-body-bottom-email">
+                            "{!v.act_text}"<br/>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-button" onclick="{!c.emailDock}"  data-id="7">
+                    Send Email
+                </div>
+            </div>
+        </div>
+        
+        <div class="{!v.class_cus8 + ' insight down regular'}" id="insight8">
+            <img src="https://www.dropbox.com/s/es337funzub8nan/trending_UP.png?raw=1" id="insight-img8-rep"></img>
+            <div class="title-wrapper" >
+                <span id="insight-text8" class="insight-title" onclick="{!c.expandInsight}" data-id="8" style="color:rgb(2, 128, 72)">Re-engaged Opportunity</span>
+            </div>
+            <div class="why" onclick="{!c.fadeInsight}" data-id="8"></div>
+            <div class="content" aura:id="content8">
+                <div class="content-body">
+                    <div class="content-body-top">
+                        <div class="content-body-top-question">
+                            <img src="https://www.dropbox.com/s/z1ndx3xfw2xb5rj/ellie.gif?raw=1"></img>
+                            What supports this insight?
+                        </div>
+                        <div class="content-body-top-answer">
+                            There's new activity on this inactive opportunity.
+                        </div>
+                    </div>
+                    <div class="content-body-squiggle">
+                    </div>
+                    <div class="relevant-activity">
+                        <img src="{!v.act_type}"></img> 
+                        <span>Latest Activity - 9 days ago</span>
+                    </div>
+                    <div class="content-body-bottom">
+                        <div class="content-body-bottom-subject">
+                            <a>{!v.act_subject}</a>
+                        </div>
+                        <div class="content-body-bottom-email">
+                            "{!v.act_text}"<br/>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-button" onclick="{!c.emailDock}"  data-id="8">
+                    Send Email
+                </div>
+            </div>
+        </div>
+        
+        <div class="{!v.class_cus9 + ' insight down regular'}" id="insight9">
+            <img src="https://www.dropbox.com/s/zq6gplcsza98gqe/trending_NEUTRAL.png?raw=1" id="insight-img9"></img>
+            <div class="title-wrapper" >
+                <span id="insight-text9" class="insight-title" onclick="{!c.expandInsight}" data-id="9" style="color:rgb(22, 50, 92)">Opportunity has overdue task</span>
+            </div>
+            <div class="why" onclick="{!c.fadeInsight}" data-id="9"></div>
+            <div class="content" aura:id="content9">
+                <div class="content-body">
+                    <div class="content-body-top">
+                        <div class="content-body-top-question">
+                            <img src="https://www.dropbox.com/s/z1ndx3xfw2xb5rj/ellie.gif?raw=1"></img>
+                            What supports this insight?
+                        </div>
+                        <div class="content-body-top-answer">
+                             Task was due 3 days ago.
+                        </div>
+                    </div>
+                    <div class="content-body-squiggle">
+                    </div>
+                    <div class="relevant-activity">
+                        <img src="{!v.act_type}"></img> 
+                        <span>Latest Activity - 9 days ago</span>
+                    </div>
+                    <div class="content-body-bottom">
+                        <div class="content-body-bottom-subject">
+                            <a>{!v.act_subject}</a>
+                        </div>
+                        <div class="content-body-bottom-email">
+                            "{!v.act_text}"<br/>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-button" onclick="{!c.emailDock}"  data-id="9">
+                    Send Email
+                </div>
+            </div>
+        </div>
+                
+        
+    </div>
+    <div class="dock" aura:id="aDock" onclick="{!c.closeDock}">
+        <div class="dockbutton">
+        </div>
+    </div>
+</aura:component>

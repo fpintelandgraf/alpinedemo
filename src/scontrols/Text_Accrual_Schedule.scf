@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<link href="/dCSS/Theme2/default/common.css" type="text/css" media="handheld,print,projection,screen,tty,tv"  rel="stylesheet" >
+<link href="/dCSS/Theme2/default/custom.css" type="text/css" media="handheld,print,projection,screen,tty,tv"  rel="stylesheet" >
+<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
+<script type="text/javascript" src="/js/functions.js"></script>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
+</head>
+<body class="custom customTab20  overviewPage">
+ <DIV class=bPageTitle>
+ <DIV class="ptBody secondaryPalette">
+ <DIV class=content>
+<img src="/s.gif" alt="Time-Off Request"  class="pageTitleIcon" title="Time-Off Request">
+<h1 class="pageType">Time-Off Requests<span  class="titleSeparatingColon">:</span></h1>
+<h2 class="pageDescription">Time-Off Accrual Schedule</h2>
+</div></div></div>
+
+<DIV class="bPageBlock secondaryPalette">
+<DIV class=pbBody>
+<DIV class=pbSubsection>
+<DIV class="pbSubheader first tertiaryPalette">PTO Accrual Schedule</DIV>
+<table class="list" border="0" cellspacing="0" cellpadding="0" width="80%">
+    <tr class=headerRow>
+      <th width="143" ></th>
+      <th width="202" >Accrual Per Year</th>
+      <th width="218" >Days Accrued Per Month</th>
+      <th width="160" >Maximum Accrual</th>
+    </tr>
+    <tr onmouseover=hiOn(this) onmouseout=hiOff(this)>
+      <td width="143" rowspan="2" >1-24 months<br />1-2 years</td>
+      <td width="202" rowspan="2" >15 days (three weeks)</td>
+      <td width="218" rowspan="2" >1.25 days per month</td>
+      <td width="160" rowspan="2" >200 hours</td>
+    </tr>
+    <tr> </tr>
+    <tr onmouseover=hiOn(this) onmouseout=hiOff(this)>
+      <td width="143" rowspan="2" valign="bottom">25-72 months<br />2-5 years</td>
+      <td width="202" rowspan="2" >20 days (four weeks)</td>
+      <td width="218" rowspan="2" >1.67 days per month</td>
+      <td width="160" rowspan="2" >240 hours</td>
+    </tr>
+    <tr> </tr>
+    <tr onmouseover=hiOn(this) onmouseout=hiOff(this)>
+      <td width="143" rowspan="2" >73+ month<br /> 5+ years</td>
+      <td width="202" rowspan="2" >25 days (five weeks)</td>
+      <td width="218" rowspan="2" >2.08 days per month</td>
+      <td width="160" rowspan="2" >300 hours</td>
+    </tr>
+    <tr> </tr>
+  </table>
+</div>
+</div>
+</div>
+</body>
+</html>

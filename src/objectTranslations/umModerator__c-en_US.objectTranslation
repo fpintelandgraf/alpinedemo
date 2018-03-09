@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>umModerator</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>umModerator</value>
+    </caseValues>
+    <fields>
+        <help><!-- Id of the parent (umSite custom setting). --></help>
+        <label><!-- umSite Id --></label>
+        <name>umSite_id__c</name>
+    </fields>
+    <fields>
+        <help><!-- Agent Id. --></help>
+        <label><!-- User Id --></label>
+        <name>userId__c</name>
+    </fields>
+    <fields>
+        <help><!-- Agent Username. --></help>
+        <label><!-- Username --></label>
+        <name>userInfo__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

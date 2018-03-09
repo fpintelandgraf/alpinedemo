@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>Account Case Page Layout</layout>
+        <sections>
+            <label>Détails de la Requête</label>
+            <section>Case Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Chat Case Page Layout</layout>
+        <sections>
+            <label>Chronologie</label>
+            <section>Timeline</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Communities Page Layout</layout>
+        <sections>
+            <label>Liens Utiles</label>
+            <section>Useful Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Community Case Page Layout</layout>
+        <sections>
+            <label><!-- Case Details --></label>
+            <section>Case Details</section>
+        </sections>
+        <sections>
+            <label>Chronologie</label>
+            <section>Timeline</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Community Templates Page Layout</layout>
+        <sections>
+            <label>Nouvelle Section</label>
+            <section>New Section</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Lightning Case</layout>
+        <sections>
+            <label>Chronologie</label>
+            <section>Timeline</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Social Case Page Layout</layout>
+        <sections>
+            <label>Chronologie</label>
+            <section>Timeline</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Technical Case Page Layout</layout>
+        <sections>
+            <label><!-- Field Service Information --></label>
+            <section>Field Service Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Technical Case Page Layout - Lightning Console</layout>
+        <sections>
+            <label><!-- Remote Work Information --></label>
+            <section>Remote Work Information</section>
+        </sections>
+        <sections>
+            <label>Chronologie</label>
+            <section>Timeline</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label>Attacher Article</label>
+        <name>Attach_Article</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Case Comment --></label>
+        <name>Case_Comment</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Classification Layout --></label>
+        <name>Classification_Layout</name>
+    </quickActions>
+    <quickActions>
+        <label>Clôture Requête</label>
+        <name>Close_Case</name>
+    </quickActions>
+    <quickActions>
+        <label>Créer article depuis la requête</label>
+        <name>Create_Article_from_Case</name>
+    </quickActions>
+    <quickActions>
+        <label>Créer Ordre d&apos;Exécution</label>
+        <name>Create_Work_Order</name>
+    </quickActions>
+    <quickActions>
+        <label>Détails</label>
+        <name>Details</name>
+    </quickActions>
+    <quickActions>
+        <label>Clôture</label>
+        <name>Disposition</name>
+    </quickActions>
+    <quickActions>
+        <label>Escalade</label>
+        <name>Escalate</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewChildCase --></label>
+        <name>NewChildCase</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- New Quote --></label>
+        <name>New_Quote</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Send Email --></label>
+        <name>SendEmail</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- SocialPublisher --></label>
+        <name>SocialPublisher</name>
+    </quickActions>
+    <quickActions>
+        <label>Post Social</label>
+        <name>Social_Post</name>
+    </quickActions>
+    <quickActions>
+        <label>MAJ Statut</label>
+        <name>Update_Status</name>
+    </quickActions>
+    <workflowTasks>
+        <name>EngineeringReview</name>
+        <subject>Revue R&amp;D</subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>FeatureRequestSubmitted</name>
+        <subject>Demande de Fonctionnalité Soumise</subject>
+    </workflowTasks>
+    <workflowTasks>
+        <description>Le jalon de 1ère réponse pour cette requête a été un succès</description>
+        <name>Milestone_1st_Response_Successful</name>
+        <subject>Jalon - 1ère Réponse - REUSSITE</subject>
+    </workflowTasks>
+    <workflowTasks>
+        <description>Jalon - 1ère Réponse - DEPASSE</description>
+        <name>Milestone_1st_Response_VIOLATION</name>
+        <subject>Jalon - 1ère Réponse - DEPASSEMENT</subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Sendnewstatement</name>
+        <subject>Envoi nouveau communiqué</subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Yourcustomerhadabillingquestion</name>
+        <subject>Votre client avait une question sur la facturation</subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>YourcustomerhasopenedaCase</name>
+        <subject>Votre client a ouvert une requête</subject>
+    </workflowTasks>
+</CustomObjectTranslation>

@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Activity Management</masterLabel>
+        <translation>Gestión de actividades</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>AppExchange Apps</masterLabel>
+        <translation>Apps del AppExchange</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Audio Conferencing</masterLabel>
+        <translation>Audio Conferencia</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Benefits</masterLabel>
+        <translation>Beneficios</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Best Practices</masterLabel>
+        <translation>Mejores prácticas</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Change Requests</masterLabel>
+        <translation>Solicitudes de cambio</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Channel Marketing</masterLabel>
+        <translation>Canal de Marketing</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Company-Wide Improvements - Internal</masterLabel>
+        <translation>Mejoras para la organización - Interno</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Conference Room Setup</masterLabel>
+        <translation>Configuración sala de conferencia</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Contact Me Page</masterLabel>
+        <translation>Página ponerse en contacto conmigo</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Contact Me Requests</masterLabel>
+        <translation>Solicitudes ponerse en contacto conmigo</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Corporate Wireless</masterLabel>
+        <translation>Red inalámbrica corporativa</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Culture</masterLabel>
+        <translation>Cultura</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Customer</masterLabel>
+        <translation>Clientes</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Customer Feedback</masterLabel>
+        <translation>Comentarios de clientes</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Customer Testimonials</masterLabel>
+        <translation>Testimonios de clientes</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Data Quality</masterLabel>
+        <translation>Calidad de datos</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Demo Center</masterLabel>
+        <translation>Centro de demos</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Email Marketing</masterLabel>
+        <translation>Correo electrónico Marketing</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Email Templates</masterLabel>
+        <translation>Plantillas correo electrónico</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Events</masterLabel>
+        <translation>Eventos</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Executive Sponsorship</masterLabel>
+        <translation>Patrocinador ejecutivo</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Free Trial</masterLabel>
+        <translation>Versión de prueba gratuita</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Google Apps</masterLabel>
+        <translation><!-- Google Apps --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Green - Alt Transport Credit</masterLabel>
+        <translation><!-- Green - Alt Transport Credit --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Green - Car / Van Pooling</masterLabel>
+        <translation><!-- Green - Car / Van Pooling --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Green - Carbon Offset</masterLabel>
+        <translation><!-- Green - Carbon Offset --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Green - Electric Reduction</masterLabel>
+        <translation><!-- Green - Electric Reduction --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Green - Glass / Can Recycling</masterLabel>
+        <translation><!-- Green - Glass / Can Recycling --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Green - Paper Waste</masterLabel>
+        <translation><!-- Green - Paper Waste --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Green - Waste Reduction</masterLabel>
+        <translation><!-- Green - Waste Reduction --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Green - Water Reduction</masterLabel>
+        <translation><!-- Green - Water Reduction --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Landing Page Design</masterLabel>
+        <translation><!-- Landing Page Design --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Lead Generation</masterLabel>
+        <translation><!-- Lead Generation --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Marketing Requests</masterLabel>
+        <translation><!-- Marketing Requests --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Marketing Team - Internal</masterLabel>
+        <translation><!-- Marketing Team - Internal --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>My Google Apps Idea</masterLabel>
+        <translation><!-- My Google Apps Idea --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>My Marketing Idea</masterLabel>
+        <translation><!-- My Marketing Idea --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>My Partner Relationship Management Idea</masterLabel>
+        <translation><!-- My Partner Relationship Management Idea --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>My SFA Idea</masterLabel>
+        <translation><!-- My SFA Idea --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>My Salesforce Content Idea</masterLabel>
+        <translation><!-- My Salesforce Content Idea --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>My Salesforce Ideas Idea</masterLabel>
+        <translation><!-- My Salesforce Ideas Idea --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>My Service &amp; Support Idea</masterLabel>
+        <translation><!-- My Service &amp; Support Idea --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Onboarding</masterLabel>
+        <translation><!-- Onboarding --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Online Community</masterLabel>
+        <translation><!-- Online Community --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>PC/Laptop/Hardware</masterLabel>
+        <translation><!-- PC/Laptop/Hardware --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>PDA/Blackberry</masterLabel>
+        <translation><!-- PDA/Blackberry --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Partner Enhancements</masterLabel>
+        <translation><!-- Partner Enhancements --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Performance Management</masterLabel>
+        <translation><!-- Performance Management --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Phone/Voicemail</masterLabel>
+        <translation><!-- Phone/Voicemail --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Portal Enhancements</masterLabel>
+        <translation><!-- Portal Enhancements --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Print Advertising</masterLabel>
+        <translation><!-- Print Advertising --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Printer/Copier/Fax</masterLabel>
+        <translation><!-- Printer/Copier/Fax --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Product Enhancements</masterLabel>
+        <translation><!-- Product Enhancements --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Product Launches</masterLabel>
+        <translation><!-- Product Launches --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Product Marketing</masterLabel>
+        <translation><!-- Product Marketing --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Recruiting</masterLabel>
+        <translation><!-- Recruiting --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Sales Team - Internal</masterLabel>
+        <translation><!-- Sales Team - Internal --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Search Advertising</masterLabel>
+        <translation><!-- Search Advertising --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Search Engine Optimization</masterLabel>
+        <translation><!-- Search Engine Optimization --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Search Marketing</masterLabel>
+        <translation><!-- Search Marketing --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Software</masterLabel>
+        <translation><!-- Software --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Support Team - Internal</masterLabel>
+        <translation><!-- Support Team - Internal --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>TV and Radio Advertising</masterLabel>
+        <translation><!-- TV and Radio Advertising --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Templates</masterLabel>
+        <translation><!-- Templates --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Trade Shows</masterLabel>
+        <translation><!-- Trade Shows --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Training</masterLabel>
+        <translation><!-- Training --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>VPN/RSA</masterLabel>
+        <translation><!-- VPN/RSA --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Video Conferencing</masterLabel>
+        <translation><!-- Video Conferencing --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Viral Marketing</masterLabel>
+        <translation><!-- Viral Marketing --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Volunteering</masterLabel>
+        <translation><!-- Volunteering --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Web Site</masterLabel>
+        <translation><!-- Web Site --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Webinars</masterLabel>
+        <translation><!-- Webinars --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>White Papers</masterLabel>
+        <translation><!-- White Papers --></translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

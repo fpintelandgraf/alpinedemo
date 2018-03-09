@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scontrol xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contentSource>HTML</contentSource>
+    <description>To be tied to a button that will pop a status window showing the progress of the processing of time off requests for a given pay cycle which will be performed through the AJAX toolkit invoking an Apex Cod web service.</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Process Pay Cycle</name>
+    <supportsCaching>false</supportsCaching>
+</Scontrol>

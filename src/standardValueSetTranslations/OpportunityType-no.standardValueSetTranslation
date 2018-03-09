@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Add-On Business</masterLabel>
+        <translation>Tilleggskjøp</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>New Business</masterLabel>
+        <translation>Nysalg</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Services</masterLabel>
+        <translation>Service/Tjenester</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

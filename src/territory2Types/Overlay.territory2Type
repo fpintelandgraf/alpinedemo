@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Territory2Type xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Industry areas</description>
+    <name>Overlay</name>
+    <priority>0</priority>
+</Territory2Type>

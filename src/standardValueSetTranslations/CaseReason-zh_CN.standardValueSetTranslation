@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Documentation Issue</masterLabel>
+        <translation>文档问题</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Existing problem</masterLabel>
+        <translation>存在问题</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Feature Request</masterLabel>
+        <translation>功能要求</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Hardware Issue</masterLabel>
+        <translation>硬件问题</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Mail delivery issue</masterLabel>
+        <translation>邮件投递问题</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>New problem</masterLabel>
+        <translation>新问题</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Problem Resolved</masterLabel>
+        <translation>问题解决</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Software Issue</masterLabel>
+        <translation>软件问题</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

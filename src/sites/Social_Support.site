@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomSite xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>false</active>
+    <allowHomePage>false</allowHomePage>
+    <allowStandardAnswersPages>false</allowStandardAnswersPages>
+    <allowStandardIdeasPages>false</allowStandardIdeasPages>
+    <allowStandardLookups>false</allowStandardLookups>
+    <allowStandardSearch>false</allowStandardSearch>
+    <authorizationRequiredPage>Unauthorized</authorizationRequiredPage>
+    <bandwidthExceededPage>BandwidthExceeded</bandwidthExceededPage>
+    <changePasswordPage>ChatterAnswersChangePassword</changePasswordPage>
+    <clickjackProtectionLevel>AllowAllFraming</clickjackProtectionLevel>
+    <description>This site is the former Chatter Answers portal and is no longer used.</description>
+    <fileNotFoundPage>FileNotFound</fileNotFoundPage>
+    <genericErrorPage>Exception</genericErrorPage>
+    <inMaintenancePage>InMaintenance</inMaintenancePage>
+    <inactiveIndexPage>InMaintenance</inactiveIndexPage>
+    <indexPage>ChatterAnswersCommunitiesHome</indexPage>
+    <masterLabel>Ω - Social Support</masterLabel>
+    <portal>Knowledge Portal</portal>
+    <requireHttps>false</requireHttps>
+    <requireInsecurePortalAccess>false</requireInsecurePortalAccess>
+    <robotsTxtPage>robotstxt</robotsTxtPage>
+    <siteAdmin>admin-gyijrjljxafl@example.com</siteAdmin>
+    <siteTemplate>SiteTemplate</siteTemplate>
+    <siteType>Visualforce</siteType>
+    <subdomain>sdo-demo-main-1603215b5a3-16-1619a0adabb</subdomain>
+    <urlPathPrefix>SocialSupport</urlPathPrefix>
+</CustomSite>

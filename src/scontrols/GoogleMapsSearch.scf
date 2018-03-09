@@ -1,0 +1,1406 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta content="True" name="vs_showGrid">
+<meta content="Microsoft Visual Studio .NET 7.1" name="GENERATOR">
+<meta content="http://schemas.microsoft.com/intellisense/ie5" name="vs_targetSchema">
+<script language="javascript" src="https://www.salesforce.com/services/lib/ajax/beta3.3/sforceclient.js"
+type="text/javascript"></script>
+<script language="javascript" src="http://sandbox.sforce.com/services/lib/ajax/gm/gmaploader2.js" type="text/javascript"></script>
+<script language="javascript" id="Soql support">
+<!--
+
+var caseReturnFields = "Case(ContactId)";
+
+var leadSoql = " from lead where (City != Null) and (IsConverted = false)";
+var contactSoql = " from contact where (mailingcity != Null)";
+var accountSoql = " from account where (BillingCity != Null)";
+
+var leadSelect = "id, lastname, firstname, street, city, state, postalcode, company, title, website, email";
+var contactSelect = "id, lastname, firstname, mailingstreet, mailingcity, mailingstate, mailingpostalcode, accountid, title, email";
+var accountSelect = "id, Name, BillingCity, BillingCountry, BillingPostalCode, BillingState, BillingStreet, type, numberofemployees, website";
+
+var leadPhones = "";
+var contactPhones = "";
+var accountPhones = "";
+
+function PhoneObject(type, number) {
+this.phoneType = type;
+this.phoneNumber = number;
+}
+
+function loadPrototypes() {
+
+Sforce.Dynabean.prototype.getPhones = function() {
+var desc = sforceClient.DescribeSObject(this.getName());
+var ret = new Array();
+var i = 0;
+for (key in desc.fieldMap.keys) {
+var fld = desc.fieldMap.map[key];
+if (fld.type == "phone") {
+if (this.containsItem(fld.name) && this.get(fld.name) != null) {
+ret[i++] = new PhoneObject(fld.name, this.get(fld.name));
+}
+}
+}
+this.phones = ret;
+};
+
+Sforce.Dynabean.prototype.toCurrency = function(amount)
+{
+var i = parseFloat(amount);
+if(isNaN(i)) { i = 0.00; }
+var minus = '';
+if(i < 0) { minus = '-'; }
+i = Math.abs(i);
+i = parseInt((i + .005) * 100);
+i = i / 100;
+s = new String(i);
+if(s.indexOf('.') < 0) { s += '.00'; }
+if(s.indexOf('.') == (s.length - 2)) { s += '0'; }
+s = minus + s;
+return this.addCommas(s);
+}
+Sforce.Dynabean.prototype.addCommas = function(amount)
+{
+var delimiter = ","; // replace comma if desired
+var a = amount.split('.',2)
+var d = a[1];
+var i = parseInt(a[0]);
+if(isNaN(i)) { return ''; }
+var minus = '';
+if(i < 0) { minus = '-'; }
+i = Math.abs(i);
+var n = new String(i);
+var a = [];
+while(n.length > 3)
+{
+var nn = n.substr(n.length-3);
+a.unshift(nn);
+n = n.substr(0,n.length-3);
+}
+if(n.length > 0) { a.unshift(n); }
+n = a.join(delimiter);
+if(d.length < 1) { amount = n; }
+else { amount = n + '.' + d; }
+amount = minus + amount;
+return amount;
+}
+
+Sforce.Dynabean.prototype.shortDate = function(dateval) {
+var ret = dateval.getMonth() + "/" + dateval.getDate() + "/" + dateval.getFullYear() + " ";
+ret += dateval.getHours() + ":" + dateval.getMinutes() + ":" + dateval.getSeconds();
+return ret;
+}
+
+Sforce.Dynabean.prototype.getStreet = function() {
+if (this.getName().toLowerCase() == "account") {
+return this.get("BillingStreet");
+} else if (this.getName().toLowerCase() == "contact") {
+return this.get("MailingStreet");
+} else {
+return this.get("Street");
+}
+}
+Sforce.Dynabean.prototype.getCity = function() {
+if (this.getName().toLowerCase() == "account") {
+return this.get("BillingCity");
+} else if (this.getName().toLowerCase() == "contact") {
+return this.get("MailingCity");
+} else {
+return this.get("City");
+}
+}
+Sforce.Dynabean.prototype.getState = function() {
+if (this.getName().toLowerCase() == "account") {
+return this.get("BillingState");
+} else if (this.getName().toLowerCase() == "contact") {
+return this.get("MailingState");
+} else {
+return this.get("State");
+}
+}
+
+Sforce.Dynabean.prototype.makeHtml = function() {
+var html = "<div>";
+var name;
+if (this.getName().toLowerCase() == "account") {
+name = this.get("name");
+} else {
+name = this.get("FirstName") + " " + this.get("LastName");
+}
+
+html += "<b><a href='https://na1.salesforce.com/" + this.get("id") + "' target='_blank'>" + name.replace("&", " ") + "</a></b><br>";
+if (this.getName().toLowerCase() == "lead") {
+html += "<b>" + this.get("title") + "</b><br>";
+html += "<b>" + this.get("company") + "</b><br>";
+} else if (this.getName().toLowerCase() == "contact") {
+html += "<b>" + this.get("title") + "</b><br>";
+if (this.containsItem("accountName") && this.get("accountName") != null) {
+html += "<b>" + this.get("accountName") + "</b><br>";
+}
+} else if (this.getName().toLowerCase() == "account") {
+if (this.get("type") != null && this.get("type") != "") html += "Type: " + this.get("type") + "<br>";
+if (this.get("numberofemployees") != null && this.get("numberofemployees") != "") html += "Employees: " + this.get("numberofemployees") + "<br>";
+}
+try {
+if (map.sfield != undefined) {
+var critField = map.sfield;
+var critFieldLabel = this.getDefinition().fieldMap.map[critField.toLowerCase()].label;
+if (this.containsItem(map.sfield)) {
+if (this.get(critField) != null && this.get(critField) != "") {
+html += "<BR><font color=\"red\">" + critFieldLabel + ": " + this.get(critField) + "</font><BR><BR>";
+}
+}
+}
+} catch(e) {}
+
+var phoneHtml = "";
+if (this.phones.length > 0) {
+phoneHtml += "";
+var showPhoneData = false;
+for (var i=0;i<this.phones.length;i++) {
+if (this.phones[i].phoneType.toLowerCase() != "fax") {
+html += this.phones[i].phoneType + ": " + this.phones[i].phoneNumber + "<br>";
+showPhoneData = true;
+}
+}
+
+if (showPhoneData == true) {
+html += "<br>" + phoneHtml;
+}
+}
+
+if (this.getName().toLowerCase() == "lead" || this.getName().toLowerCase() == "contact") {
+if (this.get("email") != null && this.get("email") != "") {
+html += "Email: <a href='mailto:" + this.get("email") + "'>" + this.get("email") + "</a><br><br>";
+}
+}
+
+html += "" + this.getStreet() + "<br>" + this.getCity() + ", " + this.getState() + "<br>";
+if (this.containsItem("website") && this.get("website") != null) {
+html += "<a href='http://" + this.get("website") + "' target='_blank'>" + this.get("website") + "</a><br>";
+}
+
+html += "</div>";
+return html;
+};
+
+Sforce.XMLDOMFile = function(url, callback) {
+_this = this;
+_callback = callback;
+rsc = function(e) {
+if (_xml.req.readyState == 4) {
+// only if "OK"
+if (_xml.req.status == 200) {
+if (_callback != undefined) callback(_xml.req);
+//return _this.responseXML;
+} else {
+alert("There was a problem retrieving the XML data:\n" +
+_xml.req.statusText);
+}
+}
+};
+
+_xml = new Sforce.XmlHttp();
+if (callback) {
+_xml.req.onreadystatechange = rsc;
+}
+_xml.req.open('GET', url, false);
+_xml.req.send( null );
+return _xml.req;
+};
+}
+
+function GeoCodeBean(bean) {
+
+this.AddGeoCode = function(xmlReq, bean) {
+function parseResponse(responseXML) {
+var rs = Sforce.DOM.GetElementsByName(responseXML, "ResultSet")[0];
+var result = Sforce.DOM.GetElementsByName(rs, "Result")[0];
+var obj = new Object();
+obj.Map_precision = Sforce.DOM.GetAttributeValue(result, "precision");
+obj.lat = Sforce.DOM.GetElementValue(result, "Latitude");
+obj.lon = Sforce.DOM.GetElementValue(result, "Longitude");
+obj.address = Sforce.DOM.GetElementValue(result, "Address");
+obj.city = Sforce.DOM.GetElementValue(result, "City");
+obj.state = Sforce.DOM.GetElementValue(result, "State");
+obj.zip = Sforce.DOM.GetElementValue(result, "Zip");
+obj.country = Sforce.DOM.GetElementValue(result, "Country");
+
+return obj;
+};
+
+var obj = parseResponse(xmlReq.responseXML);
+if (bean.definition.fieldMap.containsItem("lat__c") == true) {
+bean.set("lat__c", obj.lat);
+bean.set("lon__c", obj.lon);
+bean.save();
+bean.lat = bean.get("lat__c");
+bean.lon = bean.get("lon__c");
+} else {
+bean.lat = parseFloat(obj.lat);
+bean.lon = parseFloat(obj.lon);
+}
+
+bean.Map_precision = obj.Map_precision;
+return bean;
+}
+
+var hasLatLonFields = bean.definition.fieldMap.containsItem("lat__c");
+var doGeoCode = false;
+if (hasLatLonFields == true) {
+doGeoCode = bean.get("lat__c") == null || bean.get("lon__c") == null;
+} else {
+doGeoCode = true;
+}
+
+if (doGeoCode == true) {
+var street, city, state;
+switch (bean.name.toLowerCase()) {
+case "account":
+street = bean.get("BillingStreet");
+city = bean.get("BillingCity");
+state = bean.get("BillingState");
+break;
+case "lead":
+street = bean.get("Street");
+city = bean.get("City");
+state = bean.get("State");
+break;
+case "contact":
+street = bean.get("MailingStreet");
+city = bean.get("MailingCity");
+state = bean.get("MailingState");
+break;
+}
+
+var url = "http://api.local.yahoo.com/MapsService/V1/geocode?appid=salesforce.com";
+var addr = "";
+if (street != null) {
+addr += "&street=" + street;
+}
+if (city != null) {
+addr += "&city=" + city;
+}
+if (state != null) {
+addr += "&state=" + state;
+}
+if (addr.length == 0) {
+return null;
+} else {
+var req = Sforce.XMLDOMFile(url + addr);//, createMarker);
+bean = this.AddGeoCode(req, bean);
+}
+} else {
+bean.lat = bean.get("lat__c");
+bean.lon = bean.get("lon__c");
+bean.Map_precision = "address";
+}
+return bean;
+}
+
+function getPhoneFields(objDesc) {
+var fieldmap = objDesc.fieldMap;
+var ret = "";
+for (key in fieldmap.keys) {
+if (Sforce.Util.dltypeof(fieldmap.map[key]) == "Field") {
+if (fieldmap.map[key].type == "phone") {
+ret += ", " + fieldmap.map[key].name;
+}
+}
+}
+return ret;
+}
+
+//-->
+</script>
+<script language="javascript" id="callback functions">
+<!--
+
+var searchResults = new Array();
+
+function leadDescribe(desc) {
+waitbox.style.display = "none";
+
+leadPhones = getPhoneFields(desc);
+
+sforceClient.DescribeSObject(selType.options[selType.selectedIndex].value);
+waitbox.style.display = "block";
+sforceClient.DescribeSObject("Contact", contactDescribe, true);
+}
+
+function contactDescribe(desc) {
+waitbox.style.display = "none";
+
+contactPhones = getPhoneFields(desc);
+
+waitbox.style.display = "block";
+sforceClient.DescribeSObject("Account", accountDescribe, true);
+}
+
+function setInitialQuery() {
+//select the created date
+//selType.selectedIndex = 2;
+selType_onchange();
+
+for (var i=0;i<selField.options.length;i++) {
+if (selField.options[i].value.toLowerCase() == "lat__c") {
+selField.selectedIndex = i;
+break;
+}
+}
+selField_onchange();
+
+selOperation.selectedIndex = 1;
+//selOperation_onchange();
+txtValue.value = "null";
+
+//alert("selOperation_onChange");
+//set the calculated date option
+//document.getElementById("rbCalculated").checked = true;
+//set the interval to 2 hours
+//document.getElementById("txtInterval").value = "2";
+//set the unit of time to hours
+//document.getElementById("selUnit").selectedIndex = 4;
+waitbox.style.display = "none";
+}
+function accountDescribe(desc) {
+waitbox.style.display = "none";
+
+accountPhones = getPhoneFields(desc);
+
+waitbox.style.display = "block";
+includeFields();
+//setInitialQuery();
+//findData();
+waitbox.style.display = "none";
+}
+
+function retrieveCallback(sobjss) {
+if (bContinueMapping == false) {
+waitbox.style.display = "none";
+bMappingData = false;
+bContineMapping = true;
+document.getElementById("btnSearch").value = "Search";
+return;
+}
+
+waitbox.style.display = "none";
+for (var i=0;i<sobjss.length;i++) {
+var sobj = sobjss[i];
+switch (sobj.getName().toLowerCase()) {
+case "case":
+//Do a lookup on the contactid;
+break;
+case "account":
+plotOneAddress(sobj);
+break;
+case "lead":
+plotOneAddress(sobj);
+break;
+case "contact":
+plotOneAddress(sobj);
+break;
+}
+}
+processSearchRecords();
+}
+
+function processSearchRecords() {
+if (searchResults.length == 0) {
+bMappingData = false;
+bConinueMapping = true;
+document.getElementById("btnSearch").value = "Search";
+var msg = "Search Complete... ";
+if (account_count > 0) {
+msg += account_count + " accounts found, ";
+//show the account gif
+document.getElementById("divALabel").style.display = "block";
+document.getElementById("imgAccount").style.display = "block";
+}
+if (lead_count > 0) {
+msg += lead_count + " leads found, ";
+//show the lead gif
+document.getElementById("divLLabel").style.display = "block";
+document.getElementById("imgLead").style.display = "block";
+}
+if (contact_count > 0) {
+msg += contact_count + " contacts found ";
+//show the contact gif
+document.getElementById("divCLabel").style.display = "block";
+document.getElementById("imgContact").style.display = "block";
+}
+document.getElementById("divStatus").innerHTML = msg;
+return;
+}
+
+var sobj = searchResults.pop();
+document.getElementById("divStatus").innerHTML = "Processing " + (parseInt(searchTotal) - parseInt(searchResults.length)) + " of " + searchTotal + " results...";
+switch (sobj.getName().toLowerCase()) {
+case "case":
+processSearchRecords();
+break;
+case "account":
+waitbox.style.display = "block";
+sforceClient.Retrieve(accountSelect + accountPhones, "Account", [sobj.get("Id")], retrieveCallback, true);
+break;
+case "lead":
+waitbox.style.display = "block";
+sforceClient.Retrieve(leadSelect + leadPhones, "Lead", [sobj.get("Id")], retrieveCallback, true);
+break;
+case "contact":
+waitbox.style.display = "block";
+sforceClient.Retrieve(contactSelect + contactPhones, "Contact", [sobj.get("Id")], retrieveCallback, true);
+break;
+}
+}
+
+var searchTotal = 0;
+
+function searchCallback(sr) {
+waitbox.style.display = "none";
+if (sr.className == "SearchResult") {
+if (sr.searchRecords.length > 0) {
+map.clearOverlays();
+searchResults = new Array();
+for (var i=0;i<sr.searchRecords.length;i++) {
+searchResults.push(sr.searchRecords[i]);
+}
+searchTotal = parseInt(searchResults.length);
+bMappingData = true;
+bContinueMapping = true;
+document.getElementById("btnSearch").value = "Cancel Search";
+processSearchRecords();
+}
+} else {
+alert(sr.toString());
+alert("Search Result to String Error");
+}
+}
+//-->
+</script>
+<script language="javascript" id="query builder">
+<!--
+var selField, selPicklist, selType, selLogical, selOperation;
+var txtSearchTerm, txtSoqlSosl;
+var divDayLabel, divMonthLabel, divYearLabel;
+var txtDay, txtMonth, txtYear;
+var txtValue, divValueLabel;
+var bMappingData = false;
+var bContinueMapping = true;
+
+function btnSearch_onclick() {
+if (bMappingData == true) {
+if (document.getElementById("btnSearch").value == "Search") {
+alert("You must either wait for the current mapping operation to finish, or cancel the current mapping operation before performing a search.");
+return;
+} else {
+bContinueMapping = false;
+bMappingData = false;
+document.getElementById("btnSearch").value = "Search";
+return;
+}
+}
+
+searchTotal = 0;
+account_count = 0;
+lead_count = 0;
+contact_count = 0;
+acctMarkers = new Array();
+leadMarkers = new Array();
+contMarkers = new Array();
+document.getElementById("divALabel").style.display = "none";
+document.getElementById("imgAccount").style.display = "none";
+document.getElementById("divCLabel").style.display = "none";
+document.getElementById("imgContact").style.display = "none";
+document.getElementById("divLLabel").style.display = "none";
+document.getElementById("imgLead").style.display = "none";
+var ts = txtSearchTerm.value;
+if (ts.length == 0) {
+alert("Enter a term to search by, then click the search button!");
+} else {
+var searchString = "FIND {" + ts + "} RETURNING " + caseReturnFields + ", " +
+"Contact(Id), Account(ID), Lead(Id)";
+txtSoqlSosl.value += "\nSOSL: " + searchString + "\n";
+waitbox.style.display = "block";
+maxlat = 0;
+maxlon = 0;
+minlat = 500;
+minlon = 500;
+sforceClient.Search(searchString, searchCallback, true);
+}
+}
+function compareField(a, b) {
+if (a.label < b.label)
+return -1;
+else if (a.label > b.label)
+return 1;
+else
+return 0;
+}
+function fillFieldBox(obj) {
+clearSelect(selField);
+var flds = obj.fields;
+flds.sort(compareField);
+for (var i=0;i<flds.length;i++) {
+selField.options[i] = new Option(flds[i].label, flds[i].name);
+}
+selField_onchange();
+}
+
+function selType_onchange() {
+sforceClient.DescribeSObject(selType.options[selType.selectedIndex].value, fillFieldBox, true);
+}
+
+function showDateFields() {
+if (document.getElementById("rbStatic").checked) {
+document.getElementById("divCalcDate").style.display = "none";
+document.getElementById("divStaticDate").style.display = "block";
+selOperation.style.display = "block";
+} else {
+document.getElementById("divCalcDate").style.display = "block";
+document.getElementById("divStaticDate").style.display = "none";
+selOperation.style.display = "none";
+}
+document.getElementById("divDateType").style.display = "block";
+selPicklist.style.display = "none";
+txtValue.style.display = "none";
+}
+function showPicklistFields() {
+document.getElementById("divCalcDate").style.display = "none";
+document.getElementById("divStaticDate").style.display = "none";
+document.getElementById("divDateType").style.display = "none";
+selOperation.style.display = "none";
+txtValue.style.display = "none";
+
+selPicklist.style.display = "block";
+}
+function showTextFields() {
+document.getElementById("divCalcDate").style.display = "none";
+document.getElementById("divStaticDate").style.display = "none";
+document.getElementById("divDateType").style.display = "none";
+selPicklist.style.display = "none";
+
+txtValue.style.display = "block";
+selOperation.style.display = "block";
+}
+function selField_onchange() {
+var desc = sforceClient.DescribeSObject(selType.options[selType.selectedIndex].value);
+var fld = desc.fieldMap.map[selField.options[selField.selectedIndex].value.toLowerCase()];
+if (fld == null) return;
+
+if (fld.type == "picklist" || fld.type == "multipicklist") {
+showPicklistFields();
+clearSelect(selPicklist);
+var plv = fld.picklistValues;
+selPicklist.options[0] = new Option("-select one-", "x");
+for (var i=0;i<plv.length;i++) {
+selPicklist.options[i+1] = new Option(plv[i].label, plv[i].value);
+}
+} else if (fld.type.toLowerCase() == "date" || fld.type.toLowerCase() == "datetime" ) {
+showDateFields();
+} else {
+showTextFields();
+}
+}
+
+function getDelimeter(fldtype) {
+var retval = "";
+if (fldtype.toLowerCase() == "xsd:string" || fldtype.toLowerCase() == "tns:id") {
+retval = "'";
+}
+return retval;
+}
+
+function getOperation() {
+var selval = selOperation.options[selOperation.selectedIndex].value;
+switch (selval) {
+case "eq":
+return "=";
+break;
+case "lt":
+return "<";
+break;
+case "gt":
+return ">";
+break;
+case "lte":
+return "<=";
+break;
+case "gte":
+return ">=";
+break;
+case "ne":
+return "!=";
+break;
+}
+}
+
+function createCriteria() {
+var fld = selField.options[selField.selectedIndex].value;
+var obj = selType.options[selType.selectedIndex].value;
+var f = sforceClient.DescribeSObject(obj).fieldMap.map[fld.toLowerCase()];
+if (f == null) return;
+var fldType = f.soapType;
+var del = getDelimeter(fldType);
+var newCrit = "";
+var op = getOperation();
+if (selPicklist.style.display == "block") {
+if (selPicklist.selectedIndex > 0) {
+newCrit = fld + " = '" + selPicklist.options[selPicklist.selectedIndex].value + "'";
+}
+} else if (document.getElementById("divStaticDate").style.display == "block") {
+var dt = new Date();
+dt.setMonth(parseInt(txtMonth.value) -1);
+dt.setDate(txtDay.value);
+dt.setFullYear(txtYear.value);
+newCrit = fld + " " + op + " " + toIsoDateTime(dt);
+} else if (document.getElementById("divCalcDate").style.display == "block") {
+var interval = parseInt(document.getElementById("txtInterval").value);
+var unit = document.getElementById("selUnit").options[document.getElementById("selUnit").selectedIndex].value;
+//calculate the date to use
+var datetouse = Sforce.Util.DateAdd(unit, interval * -1 , new Date());
+newCrit = fld + " " + ">= " + Sforce.Util.ToIsoDateTime(datetouse);
+} else {
+if (txtValue.value.length == 0) return "";
+newCrit = fld + " " + op + " " + del + txtValue.value + del;
+}
+return newCrit;
+}
+
+function clearSelect(sel) {
+sel.options.length = 0;
+}
+
+function btnFind_onclick() {
+if (bMappingData == true) {
+bContinueMapping = false;
+bMappingData == false;
+document.getElementById("btnFind").value = "Find";
+} else {
+document.getElementById("divStatus").innerHTML = "Getting Data...";
+findData();
+}
+}
+
+//-->
+</script>
+<script language="javascript" id="Mapping functions">
+<!--
+
+var queryRunner;
+var maxlat = 0, maxlon = 0, minlat = 500, minlon = 500;
+var markerCount = 0;
+var markers = new Array();
+var map;
+var icons = new Array();
+
+function checkDup(fields, sfield) {
+var ax = fields.split(",");
+var ause = "";
+for (var i=0;i<ax;i++) {
+if (trim(ax[i]).toLowerCase == sfield.toLowerCase()) {
+ause = ", " + sfield;
+return ause;
+}
+}
+return "";
+}
+function findData() {
+var soql = "";
+var selectedType = selType.options[selType.selectedIndex].value;
+var selectedField = selField.options[selField.selectedIndex].value;
+if (selectedType == "Account") {
+soql = "Select " + accountSelect + accountPhones + checkDup(accountSelect + accountPhones, selectedField) + accountSoql;
+} else if (selectedType == "Contact") {
+soql = "Select " + contactSelect + contactPhones + checkDup(contactSelect + contactPhones, selectedField) + contactSoql;
+} else {
+soql = "Select " + leadSelect + leadPhones + checkDup(leadSelect + leadPhones, selectedField) + leadSoql;
+}
+
+var crit = createCriteria();
+if (crit != undefined) {
+soql += " and (" + crit + ")";
+}
+
+txtSoqlSosl.value += "\nSOQL: " + soql + "\n";
+maxlat = 0;
+maxlon = 0;
+minlat = 500;
+minlon = 500;
+__loadMap(soql, selectedField);
+}
+
+var account_count = 0;
+var lead_count = 0;
+var contact_count = 0;
+
+function plotOneAddress(sobj) {
+if (sobj == null) return;
+sobj = GeoCodeBean(sobj);
+if (sobj == null) return;
+
+sobj.getPhones();
+var centerPoint;
+var londif = 0;
+var latdif = 0;
+if (sobj != null) {
+var lat = sobj.lat;
+var lon = sobj.lon;
+if (lat > maxlat) maxlat = lat;
+if (lat < minlat) minlat = lat;
+if (Math.abs(lon) > Math.abs(maxlon)) maxlon = lon;
+if (Math.abs(lon) < Math.abs(minlon)) minlon = lon;
+londif = maxlon - minlon;
+latdif = maxlat - minlat;
+var point = new GPoint(lon, lat);
+markerCount = markerCount++;
+var marker = createMarkerHtml(point, markerCount + 1, sobj.makeHtml(), sobj.getName());
+if (sobj.getName().toLowerCase() == "account") {
+acctMarkers.push(marker);
+} else if (sobj.getName().toLowerCase() == "lead") {
+leadMarkers.push(marker);
+} else {
+contMarkers.push(marker);
+}
+centerPoint = new GPoint( ( (Math.abs(maxlon) + Math.abs(minlon)) / 2) * -1, (parseFloat(maxlat.toString()) + parseFloat(minlat.toString())) / 2);
+map.addOverlay(marker);
+var lonZ = calcZoomlon(Math.abs(londif)) ;
+var latZ = calcZoomlat(Math.abs(latdif)) ;
+map.centerAndZoom(centerPoint, lonZ > latZ ? lonZ : latZ);
+if (sobj.getName() == "Account") {
+account_count++;
+} else if (sobj.getName() == "Lead") {
+lead_count++;
+} else if (sobj.getName() == "Contact") {
+contact_count++;
+}
+} else {
+var objName = sobj.getName();
+}
+}
+
+function calcCenterPoint() {
+var lon1 = Math.abs(parseFloat(maxlon.toString()));
+var lon2 = Math.abs(parseFloat(minlon.toString()));
+var lat1 = Math.abs(parseFloat(maxlat.toString()));
+var lat2 = Math.abs(parseFloat(minlat.toString()));
+var lon = ((lon1 + lon2) / 2) * -1;
+var lat = (lat1 + lat2) / 2;
+return new GPoint(lon, lat);
+}
+function setMaxMin(sobj) {
+var lat = sobj.lat;
+var lon = sobj.lon;
+
+if (lat > maxlat) {
+maxlat = lat;
+}
+if (lat < minlat) {
+minlat = lat;
+}
+if (Math.abs(lon) > Math.abs(maxlon)) {
+maxlon = lon;
+}
+if (Math.abs(lon) < Math.abs(minlon)) {
+minlon = lon;
+}
+}
+
+function showMarkers(type) {
+map.clearOverlays();
+if (type == "lead") {
+for (var i=0;i<leadMarkers.length;i++) {
+map.addOverlay(leadMarkers[i]);
+}
+} else if (type == "contact") {
+for (var i=0;i<contMarkers.length;i++) {
+map.addOverlay(contMarkers[i]);
+}
+} else {
+for (var i=0;i<acctMarkers.length;i++) {
+map.addOverlay(acctMarkers[i]);
+}
+}
+}
+
+var totalRecords = 0;
+var maxRecords = 50;
+
+function plotAddresses(qr) {
+waitbox.style.display = "none";
+
+if (qr == null) return;
+if (Sforce.Util.dltypeof(qr).toLowerCase() == "soapfault" || qr.size == 0) {
+bMappingData = false;
+bContinueMapping = true;
+document.getElementById("btnFind").value = "Find";
+document.getElementById("divStatus").innerHTML = "Search complete, no records found.";
+return;
+}
+
+var centerPoint;
+var londif = 0;
+var latdif = 0;
+try {
+totalRecords = totalRecords + qr.records.length;
+document.getElementById("divStatus").innerHTML = totalRecords + " of " + qr.size + "...";
+if (qr.records.length > 0) {
+for (var i=0;i<qr.records.length;i++) {
+var thisObj = GeoCodeBean(qr.records[i]);
+if (thisObj != null) {
+thisObj.getPhones();
+var lat = thisObj.lat;
+var lon = thisObj.lon;
+setMaxMin(thisObj);
+londif = maxlon - minlon;
+latdif = maxlat - minlat;
+var point = new GPoint(lon, lat);
+if (thisObj.getName().toLowerCase() == "account") {
+acctMarkers.push(createMarkerHtml(point, i + 1, thisObj.makeHtml(), thisObj.getName()));
+map.addOverlay(acctMarkers[acctMarkers.length - 1]);
+} else if (thisObj.getName().toLowerCase() == "lead") {
+leadMarkers.push(createMarkerHtml(point, i + 1, thisObj.makeHtml(), thisObj.getName()));
+map.addOverlay(leadMarkers[leadMarkers.length - 1]);
+} else {
+contMarkers.push(createMarkerHtml(point, i + 1, thisObj.makeHtml(), thisObj.getName()));
+map.addOverlay(contMarkers[contMarkers.length - 1]);
+}
+}
+}
+var lonZ = calcZoomlon(Math.abs(londif));
+var latZ = calcZoomlat(Math.abs(latdif));
+txtSoqlSosl.value += "lat diff: " + latdif + ", max is " + maxlat + "\n";
+txtSoqlSosl.value += "lon diff: " + londif + ", max is " + maxlon + "\n\n";
+map.centerAndZoom(calcCenterPoint(), lonZ > latZ ? lonZ : latZ);
+}
+} catch (e) {
+alert(e.message);
+alert("Error Message Caught!");
+}
+
+var abort = false;
+if (totalRecords >= maxRecords) {
+if (!confirm(totalRecords + " out of " + qr.size + " records have been processed.\n\nWould you like to continue mapping more records?\n(I'll keep asking every 50 records.)")) {
+abort = true;
+} else {
+maxRecords = maxRecords + 50;
+}
+}
+
+if (qr.done == false && abort == false) {
+waitbox.style.display = "block";
+if (bContinueMapping == true) {
+sforceClient.QueryMore(qr.queryLocator, plotAddresses, true);
+} else {
+bMappingData = false;
+bContinueMapping = true;
+waitbox.style.display = "none";
+document.getElementById("btnFind").value = "Find";
+}
+} else {
+bMappingData = false;
+bContinueMapping = true;
+document.getElementById("btnFind").value = "Find";
+document.getElementById("divStatus").innerHTML = "Search complete, " + markerCount + " records mapped.";
+}
+}
+
+var acctMarkers = new Array();
+var leadMarkers = new Array();
+var contMarkers = new Array();
+
+function __loadMap(soqlText, selectedField) {
+acctMarkers = new Array();
+leadMarkers = new Array();
+contMarkers = new Array();
+map.sfield = selectedField;
+
+GEvent.addListener(map, "zoom",
+function(oldZoomLevel, newZoomLevel) {
+var center = map.getCenterLatLng();
+var latLngStr = '(' + center.y + ', ' + center.x + ')';
+var bounds = map.getBoundsLatLng();
+var latDiff = Math.abs(bounds.maxY) - Math.abs(bounds.minY);
+var lngDiff = Math.abs(bounds.maxX) - Math.abs(bounds.minX);
+var diffStr = "Lat width = " + latDiff + ", Lng width = " + lngDiff;
+}
+);
+
+//var qRunner = new QueryRunner();
+
+waitbox.style.display = "block";
+//qRunner.setSoql(soqlText);
+
+totalRecords = 0;
+maxRecords = 50;
+
+markerCount = 0;
+try {
+bMappingData = true;
+document.getElementById("btnFind").value = "Cancel Mapping";
+sforceClient.query(soqlText, plotAddresses);
+} catch(e) {
+bContinueMapping = true;
+bMappingData = false;
+document.getElementById("btnFind").value = "Find";
+alert(e);
+alert("Error Caught Two!");
+}
+}
+
+function makeIcon(type) {
+var icon = new GIcon();
+//if (document.location.href.indexOf("salesforce.com") > 0) {
+icon.image = "https://www.sforce.com/ajax/beta1/gm/img/marker_" + type.toLowerCase() + ".png";
+icon.shadow = "https://www.sforce.com/ajax/beta1/gm/img/shadow.png";
+//} else {
+// icon.image = "img/marker_" + type.toLowerCase() + ".png";
+// icon.shadow = "img/shadow.png";
+//}
+icon.iconSize = new GSize(20, 34);
+icon.shadowSize = new GSize(37, 34);
+icon.iconAnchor = new GPoint(6, 20);
+icon.infoWindowAnchor = new GPoint(5, 1);
+return icon;
+}
+
+function createMarkerHtml(point, number, html, type) {
+var marker;
+if (type != null) {
+marker = new GMarker(point, icons[type.toLowerCase()]);
+} else {
+marker = new GMarker(point);
+}
+
+var WINDOW_HTML = html;
+GEvent.addListener(marker, "click", function() {
+marker.openInfoWindowHtml(WINDOW_HTML);
+});
+
+markerCount++;
+return marker;
+}
+
+function createMarkerXml(point, number, xml, xmlText) {
+var marker = new GMarker(point);
+
+// Show this marker's index in the info window when it is clicked
+var html = "Marker #<b>" + number + "</b>";
+var thisXml = xml;
+var thisXmlText = xmlText;
+GEvent.addListener(marker, "click", function() {
+marker.openInfoWindowXslt(thisXml, "https://na1.salesforce.com/servlet/servlet.FileDownload?file=0156A000000hmLA");
+});
+
+return marker;
+}
+
+function calcZoomlon(londif) {
+if (londif < 0.08583) return 4;
+else if (londif > 0.08583 && londif <= 0.17166) return 5;
+else if (londif > 0.17166 && londif <= 0.34332) return 6;
+else if (londif > 0.34332 && londif <= 0.68664) return 7;
+else if (londif > 0.68664 && londif <= 1.37329) return 8;
+else if (londif > 1.37329 && londif <= 2.74658) return 9;
+else if (londif > 2.74658 && londif <= 5.49316) return 10;
+else if (londif > 5.49316 && londif <= 10.98632) return 11;
+else if (londif > 10.98632 && londif <= 21.97265) return 12;
+else if (londif > 21.97265 && londif <= 43.9453) return 13;
+else if (londif > 43.9453 && londif <= 87.8906) return 14;
+else if (londif > 87.8906 && londif <= 175.782) return 15;
+else return 17;
+}
+
+function calcZoomlat(latdif) {
+if (latdif < 0.05255) return 4;
+else if (latdif > 0.05255 && latdif <= 0.105086) return 5;
+else if (latdif > 0.105086 && latdif <= 0.210171) return 6;
+else if (latdif > 0.210171 && latdif <= 0.420338) return 7;
+else if (latdif > 0.420338 && latdif <= 0.840688) return 8;
+else if (latdif > 0.840688 && latdif <= 1.681363) return 9;
+else if (latdif > 1.681363 && latdif <= 3.362827) return 10;
+else if (latdif > 3.362827 && latdif <= 6.725632) return 11;
+else if (latdif > 6.725632 && latdif <= 13.4476) return 12;
+else if (latdif > 13.4476 && latdif <= 26.836288) return 13;
+else if (latdif > 26.836288 && latdif <= 53.108851) return 14;
+else if (latdif > 53.108851 && latdif <= 106.217702) return 15;
+else return 17;
+}
+
+//-->
+</script>
+<script language="javascript" id="miscellaneous">
+<!--
+
+var divDiagnostics;
+var waitbox;
+var userInfo;
+
+function btnShowDiagnostics_onclick() {
+if (divDiagnostics.style.display == "none") {
+divDiagnostics.style.top = "616px";
+divDiagnostics.style.display = "block";
+btnShowDiagnostics.value = "Hide Diagnostics";
+} else {
+divDiagnostics.style.display = "none";
+btnShowDiagnostics.value = "Show Diagnostics";
+}
+}
+
+//-->
+</script>
+<script language="javascript" id="page intialization">
+<!--
+function includeFields() {
+var leadDef = sforceClient.DescribeSObject("Lead");
+if (leadDef.contains("lat__c")) leadSelect += ", lat__c, lon__c";
+
+var contactDef = sforceClient.DescribeSObject("Contact");
+if (contactDef.contains("lat__c")) contactSelect += ", lat__c, lon__c";
+
+var acctDef = sforceClient.DescribeSObject("Account");
+if (acctDef.contains("lat__c")) accountSelect += ", lat__c, lon__c";
+}
+
+GMap.prototype.sfield = "";
+
+function initPage() {
+loadPrototypes();
+selField = document.getElementById("selField");
+selPicklist = document.getElementById("selPicklist");
+selType = document.getElementById("selType");
+selOperation = document.getElementById("selOperation");
+divDayLabel = document.getElementById("divDayLabel");
+divMonthLabel = document.getElementById("divMonthLabel");
+divYearLabel = document.getElementById("divYearLabel");
+txtDay = document.getElementById("txtDay");
+txtMonth = document.getElementById("txtMonth");
+txtYear = document.getElementById("txtYear");
+txtValue = document.getElementById("txtValue");
+divValueLabel = document.getElementById("divValueLabel");
+lb = document.getElementById("loginBox");
+mc = document.getElementById("mainContainer");
+txtSearchTerm = document.getElementById("txtSearch");
+divDiagnostics = document.getElementById("divDiagnostics");
+waitbox = document.getElementById("waitbox");
+txtSoqlSosl = document.getElementById("txtSoqlSosl");
+selLogical = document.getElementById("selLogical");
+btnShowDiagnostics = document.getElementById("btnShowDiagnostics");
+
+document.getElementById("divFilter").style.top = "0px";
+document.getElementById("divSearch").style.top = "0px";
+sforceClient.setBatchSize(10);
+
+icons["lead"] = makeIcon("lead");
+icons["account"] = makeIcon("account");
+icons["contact"] = makeIcon("contact");
+
+sforceClient.init("{!API.Session_ID}", "{!API.Partner_Server_URL_70}");
+
+if (sforceClient.getSessionId().indexOf("API_Session_ID") != -1) {
+sforceClient.setLoginUrl("https://www.salesforce.com/services/Soap/u/7.0");
+showLogin();
+document.getElementById("btnShowDiagnostics").style.display = "block";
+} else {
+if (diagnostics == "on") {
+document.getElementById("btnShowDiagnostics").style.display = "block";
+}
+initializeMap();
+}
+}
+
+//-->
+</script>
+<script language="javascript" id="clientEventHandlersJS">
+<!--
+var lb;
+var mc;
+var diagnostics = "on";
+var btnShowDiagnostics;
+
+function initializeMap() {
+//queryRunner = new QueryRunner();
+//sforceClient.timingDebugClear();
+//sforceClient.timingDebug("Initializing...");
+//time_object.StartTiming();
+map = new GMap(document.getElementById("map"));
+map.addControl(new GLargeMapControl());
+map.addControl(new GMapTypeControl());
+map.centerAndZoom(new GPoint(-95.1419, 37.4419), 13);
+var desc = sforceClient.DescribeSObject("Lead", leadDescribe);
+//sforceClient.DescribeSObject(selType.options[selType.selectedIndex].value, fillFieldBox, true);
+sforceClient.DescribeSObject("Account", fillFieldBox);
+document.getElementById("divFilter").style.display = "none";
+document.getElementById("divFilter").style.display = "block";
+}
+function loginHandler(lr) {
+if (lr.className.toLowerCase() != "loginresult") {
+alert(lr.faultcode + "\n\r" + lr.faultstring + "\n\r");
+} else {
+hideDiv(lb);
+showDiv(mc);
+userInfo = lr.userInfo;
+initializeMap();
+}
+}
+function btnLogin_onclick() {
+sforceClient.Login(document.getElementById("txtUsername").value, document.getElementById("txtPassword").value, loginHandler, true);
+}
+
+function showLogin() {
+hideDiv(mc);
+centerDiv(lb);
+showDiv(lb);
+}
+
+function moveDiv(div, x, y) {
+div.left = y;
+div.top = x;
+}
+
+function centerDiv(div) {
+var halfwidth = div.style.width.substring(0, div.style.width.indexOf("px")) / 2;
+try {
+div.style.left = Math.round((document.body.clientWidth / 2) - halfwidth) + "px";
+} catch (e) {
+div.style.left = Math.round((self.innerWidth /2) - halfwidth) + "px";
+}
+}
+
+function vcenterDiv(div) {
+var half_h = div.style.height.substring(0, div.style.height.indexOf("px")) / 2;
+try {
+div.style.top = Math.round((document.body.clientHeight / 2) - half_h) + "px";
+} catch (e) {
+div.style.left = Math.round((self.innerWidth /2) - halfwidth) + "px";
+}
+}
+
+function showDiv(div) {
+div.style.zorder = 300;
+div.style.display = "block";
+}
+
+function hideDiv(div) {
+div.style.zorder = 0;
+div.style.display = "none";
+}
+
+function rbFilter_onclick() {
+if (document.getElementById("rbFilter").checked) {
+document.getElementById("divSearch").style.display = "none";
+document.getElementById("divFilter").style.display = "block";
+document.getElementById("divDateType").style.display = "block";
+document.getElementById("divCalcDate").style.display = "block";
+selType.focus();
+} else {
+document.getElementById("divFilter").style.display = "none";
+document.getElementById("divSearch").style.display = "block";
+document.getElementById("divDateType").style.display = "none";
+document.getElementById("divCalcDate").style.display = "none";
+document.getElementById("txtSearch").focus();
+}
+}
+
+function selPicklist_onclick() {}
+
+function rbStatic_onclick() {
+showDateFields();
+}
+
+//-->
+</script>
+<STYLE>DIV { FONT-SIZE: 9pt; FONT-FAMILY: Arial }
+INPUT { FONT-SIZE: 9pt; FONT-FAMILY: Arial }
+SELECT { FONT-SIZE: 9pt; FONT-FAMILY: Arial }
+OPTION { FONT-SIZE: 9pt; FONT-FAMILY: Arial }
+</STYLE>
+</head>
+<BODY style="FONT-SIZE: 9pt; FONT-FAMILY: Arial" onload="initPage();">
+<DIV id="mainContainer" style="FONT-SIZE: 9pt; LEFT: 0px; WIDTH: 824px; FONT-FAMILY: Arial; POSITION: absolute; TOP: 0px; HEIGHT: 632px; BACKGROUND-COLOR: gainsboro"
+ms_positioning="GridLayout">
+<DIV id="map" style="BORDER-RIGHT: 2px groove; BORDER-TOP: 2px groove; Z-INDEX: 101; LEFT: 16px; BORDER-LEFT: 2px groove; WIDTH: 792px; BORDER-BOTTOM: 2px groove; POSITION: absolute; TOP: 104px; HEIGHT: 480px"
+ms_positioning="FlowLayout"></DIV>
+<DIV id="divDiagnostics" style="BORDER-RIGHT: 3px groove; BORDER-TOP: 3px groove; DISPLAY: none; Z-INDEX: 103; LEFT: 16px; BORDER-LEFT: 3px groove; WIDTH: 792px; BORDER-BOTTOM: 3px groove; POSITION: absolute; TOP: 312px; HEIGHT: 216px; BACKGROUND-COLOR: gainsboro"
+ms_positioning="GridLayout">
+<DIV id="divLabel1" style="FONT-WEIGHT: bold; FONT-SIZE: medium; LEFT: 16px; WIDTH: 200px; BORDER-TOP-STYLE: none; FONT-FAMILY: Tahoma; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; POSITION: absolute; TOP: 8px; HEIGHT: 24px; BACKGROUND-COLOR: transparent; BORDER-BOTTOM-STYLE: none">SOQL/SOSL
+Text:</DIV>
+<div id="divSoqlSosl" style="BORDER-RIGHT: black 1px solid; BORDER-TOP: black 1px solid; Z-INDEX: 103; LEFT: 8px; BORDER-LEFT: black 1px solid; WIDTH: 424px; BORDER-BOTTOM: black 1px solid; POSITION: absolute; TOP: 40px; HEIGHT: 166px; BACKGROUND-COLOR: white"><TEXTAREA id="txtSoqlSosl" style="LEFT: 0px; WIDTH: 100.55%; POSITION: absolute; TOP: 0px; HEIGHT: 100%"
+name="Textarea1" rows="10" cols="50"></TEXTAREA></div>
+<TEXTAREA id="timerArea" style="Z-INDEX: 100; LEFT: 440px; WIDTH: 336px; POSITION: absolute; TOP: 40px; HEIGHT: 160px"
+name="timerArea" rows="10" cols="39"></TEXTAREA>
+<DIV id="divLabel2" style="FONT-WEIGHT: bold; FONT-SIZE: medium; Z-INDEX: 101; LEFT: 448px; WIDTH: 232px; BORDER-TOP-STYLE: none; FONT-FAMILY: Tahoma; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; POSITION: absolute; TOP: 8px; HEIGHT: 24px; BACKGROUND-COLOR: transparent; BORDER-BOTTOM-STYLE: none">Web
+Service call timings:</DIV>
+</DIV>
+<INPUT language="javascript" id="btnShowDiagnostics" style="DISPLAY: none; Z-INDEX: 102; LEFT: 640px; WIDTH: 157px; POSITION: absolute; TOP: 552px; HEIGHT: 24px"
+onclick="return btnShowDiagnostics_onclick()" type="button" value="Show Diagnostics"
+name="btnShowDiagnostics">
+<DIV id="divFindArea" style="BORDER-RIGHT: 2px groove; BORDER-TOP: 2px groove; Z-INDEX: 104; LEFT: 16px; BORDER-LEFT: 2px groove; WIDTH: 792px; BORDER-BOTTOM: 2px groove; POSITION: absolute; TOP: 16px; HEIGHT: 88px; BACKGROUND-COLOR: darkgray"
+ms_positioning="GridLayout"><INPUT language="javascript" id="rbFilter" style="Z-INDEX: 103; LEFT: 680px; WIDTH: 16px; POSITION: absolute; TOP: 16px; HEIGHT: 16px"
+onclick="return rbFilter_onclick()" type="radio" CHECKED value="Radio1" name="filter">
+<INPUT language="javascript" id="rbSearch" style="Z-INDEX: 104; LEFT: 680px; WIDTH: 16px; POSITION: absolute; TOP: 40px; HEIGHT: 16px"
+onclick="return rbFilter_onclick()" type="radio" value="Radio2" name="filter">
+<DIV id="divFilterLabel" style="DISPLAY: inline; Z-INDEX: 105; LEFT: 704px; WIDTH: 70px; POSITION: absolute; TOP: 18px; HEIGHT: 15px"
+ms_positioning="FlowLayout"><FONT face="Arial" size="2"><STRONG>Filter</STRONG></FONT>
+</DIV>
+<DIV id="divSearchLabel" style="DISPLAY: inline; Z-INDEX: 106; LEFT: 704px; WIDTH: 70px; POSITION: absolute; TOP: 42px; HEIGHT: 15px"
+ms_positioning="FlowLayout"><FONT face="Arial" size="2"><STRONG>Search</STRONG></FONT></DIV>
+<DIV id="divSearch" style="DISPLAY: none; Z-INDEX: 101; LEFT: 8px; WIDTH: 472px; POSITION: absolute; TOP: 8px; HEIGHT: 77px"
+ms_positioning="GridLayout"><INPUT id="btnSearch" style="Z-INDEX: 100; LEFT: 152px; POSITION: absolute; TOP: 48px"
+onclick="return btnSearch_onclick()" type="button" value="Search" name="Button1">
+<INPUT id="txtSearch" style="Z-INDEX: 101; LEFT: 8px; POSITION: absolute; TOP: 48px" type="text"
+name="Text1">
+<DIV style="DISPLAY: inline; FONT-WEIGHT: bold; Z-INDEX: 102; LEFT: 8px; WIDTH: 96px; POSITION: absolute; TOP: 24px; HEIGHT: 16px"
+ms_positioning="FlowLayout"><FONT face="Arial" size="2">Search for:</FONT></DIV>
+<A href="javascript: showMarkers('lead');"><IMG id="imgLead" style="DISPLAY: none; Z-INDEX: 103; LEFT: 248px; POSITION: absolute; TOP: 8px"
+alt="Show only Leads" src="https://www.sforce.com/ajax/beta1/gm/img/marker_lead.png" border="0"></A>
+<A href="javascript: showMarkers('contact');"><IMG id="imgContact" style="DISPLAY: none; Z-INDEX: 104; LEFT: 312px; POSITION: absolute; TOP: 8px"
+alt="Show only Contacts" src="https://www.sforce.com/ajax/beta1/gm/img/marker_contact.png" border="0"></A><A href="javascript: showMarkers('account');"><IMG id="imgAccount" style="DISPLAY: none; Z-INDEX: 105; LEFT: 376px; POSITION: absolute; TOP: 8px"
+alt="Show only Accounts" src="https://www.sforce.com/ajax/beta1/gm/img/marker_account.png" border="0"></A>
+<div id="divLLabel" style="DISPLAY: none; Z-INDEX: 106; LEFT: 240px; WIDTH: 40px; BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; POSITION: absolute; TOP: 48px; HEIGHT: 21px; BACKGROUND-COLOR: transparent; BORDER-BOTTOM-STYLE: none">Leads</div>
+<div id="divCLabel" style="DISPLAY: none; Z-INDEX: 107; LEFT: 296px; WIDTH: 56px; BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; POSITION: absolute; TOP: 48px; HEIGHT: 21px; BACKGROUND-COLOR: transparent; BORDER-BOTTOM-STYLE: none">Contacts</div>
+<div id="divALabel" style="DISPLAY: none; Z-INDEX: 108; LEFT: 360px; WIDTH: 56px; BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; POSITION: absolute; TOP: 48px; HEIGHT: 21px; BACKGROUND-COLOR: transparent; BORDER-BOTTOM-STYLE: none">Accounts</div>
+</DIV>
+<DIV id="divFilter" style="Z-INDEX: 107; LEFT: 8px; WIDTH: 648px; POSITION: absolute; TOP: 8px; HEIGHT: 72px"
+ms_positioning="GridLayout"><SELECT language="javascript" id="selType" style="Z-INDEX: 102; LEFT: 8px; WIDTH: 112px; POSITION: absolute; TOP: 48px; HEIGHT: 24px"
+onchange="return selType_onchange()" name="selType">
+<OPTION value="Account" selected>Account</OPTION>
+<OPTION value="Contact">Contact</OPTION>
+<OPTION value="Lead">Lead</OPTION>
+</SELECT><SELECT language="javascript" id="selField" style="Z-INDEX: 116; LEFT: 128px; WIDTH: 168px; POSITION: absolute; TOP: 48px; HEIGHT: 24px"
+onchange="return selField_onchange()" name="selField">
+<OPTION selected></OPTION>
+</SELECT>
+<INPUT id="txtValue" style="DISPLAY: none; Z-INDEX: 110; LEFT: 416px; WIDTH: 112px; POSITION: absolute; TOP: 48px; HEIGHT: 22px"
+type="text" size="13" name="Text5">
+<SELECT language="javascript" id="selPicklist" style="DISPLAY: none; Z-INDEX: 108; LEFT: 304px; WIDTH: 104px; POSITION: absolute; TOP: 48px; HEIGHT: 24px"
+onclick="return selPicklist_onclick()" name="selPicklist">
+<option selected></option>
+</SELECT>
+<SELECT id="selOperation" style="DISPLAY: none; Z-INDEX: 105; LEFT: 304px; WIDTH: 104px; POSITION: absolute; TOP: 48px; HEIGHT: 24px"
+name="selOperation">
+<OPTION value="eq" selected>equals</OPTION>
+<option value="ne">not equal to</option>
+<option value="lt">less than</option>
+<option value="gt">greater than</option>
+<option value="gte">greater than or equal</option>
+<option value="lte">less than or equal</option>
+</SELECT>
+<div id="divSelectEntityLabel" style="FONT-WEIGHT: bold; FONT-SIZE: 9pt; Z-INDEX: 107; LEFT: 8px; BORDER-TOP-STYLE: none; FONT-FAMILY: Arial; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; POSITION: absolute; TOP: 24px; BACKGROUND-COLOR: transparent; BORDER-BOTTOM-STYLE: none">Select
+Entity to Map</div>
+<div id="divSelectFieldLabel" style="FONT-WEIGHT: bold; Z-INDEX: 109; LEFT: 136px; WIDTH: 40px; BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; POSITION: absolute; TOP: 24px; HEIGHT: 18px; BACKGROUND-COLOR: transparent; BORDER-BOTTOM-STYLE: none">Field:</div>
+<INPUT language="javascript" id="btnFind" style="Z-INDEX: 115; LEFT: 536px; WIDTH: 104px; POSITION: absolute; TOP: 48px; HEIGHT: 24px"
+onclick="return btnFind_onclick()" type="button" value="Find" name="btnFind">
+<DIV id="divCalcDate" style="DISPLAY: none; Z-INDEX: 117; LEFT: 304px; WIDTH: 216px; POSITION: absolute; TOP: 32px; HEIGHT: 40px"
+ms_positioning="GridLayout">
+<DIV style="DISPLAY: inline; Z-INDEX: 105; LEFT: 0px; WIDTH: 88px; POSITION: absolute; TOP: 21px; HEIGHT: 16px"
+ms_positioning="FlowLayout">Within the last</DIV>
+<INPUT id="txtInterval" style="Z-INDEX: 105; LEFT: 88px; WIDTH: 32px; POSITION: absolute; TOP: 16px; HEIGHT: 22px"
+type="text" maxLength="3" size="1" value="2" name="Text1">
+<SELECT id="selUnit" style="Z-INDEX: 105; LEFT: 128px; WIDTH: 88px; POSITION: absolute; TOP: 16px"
+name="Select1">
+<OPTION value="n">minutes</OPTION>
+<OPTION value="h" selected>hour(s)</OPTION>
+<OPTION value="d">day(s)</OPTION>
+<OPTION value="m">month(s)</OPTION>
+<OPTION value="y">year(s)</OPTION>
+</SELECT></DIV>
+</DIV>
+<div id="waitbox" style="BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #000000 1px solid; DISPLAY: none; FONT-SIZE: xx-small; Z-INDEX: 102; LEFT: 688px; VERTICAL-ALIGN: baseline; BORDER-LEFT: #000000 1px solid; WIDTH: 80px; BORDER-BOTTOM: #000000 1px solid; FONT-FAMILY: Tahoma; POSITION: absolute; TOP: 64px; HEIGHT: 16px; BACKGROUND-COLOR: #ffff99; TEXT-ALIGN: center">Getting
+data...</div>
+<DIV id="divStaticDate" style="DISPLAY: none; Z-INDEX: 108; LEFT: 416px; WIDTH: 120px; POSITION: absolute; TOP: 24px; HEIGHT: 48px"
+ms_positioning="GridLayout"><INPUT id="txtMonth" style="DISPLAY: block; Z-INDEX: 118; LEFT: 8px; WIDTH: 24px; POSITION: absolute; TOP: 24px; HEIGHT: 22px"
+type="text" maxLength="2" size="1" value="05" name="Text5"><INPUT id="txtDay" style="DISPLAY: block; Z-INDEX: 118; LEFT: 40px; WIDTH: 24px; POSITION: absolute; TOP: 24px; HEIGHT: 22px"
+type="text" maxLength="2" size="1" value="05" name="Text5"><INPUT id="txtYear" style="DISPLAY: block; Z-INDEX: 118; LEFT: 72px; WIDTH: 40px; POSITION: absolute; TOP: 24px; HEIGHT: 22px"
+type="text" maxLength="4" size="1" value="2005" name="Text5">
+<div id="divMonthLabel" style="DISPLAY: block; FONT-SIZE: xx-small; Z-INDEX: 118; LEFT: 8px; WIDTH: 16px; COLOR: #990000; BORDER-TOP-STYLE: none; FONT-FAMILY: Tahoma; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; POSITION: absolute; TOP: 8px; HEIGHT: 14px; BACKGROUND-COLOR: transparent; BORDER-BOTTOM-STYLE: none">mm</div>
+<div id="divDayLabel" style="DISPLAY: block; FONT-SIZE: xx-small; Z-INDEX: 118; LEFT: 40px; WIDTH: 16px; COLOR: #990000; BORDER-TOP-STYLE: none; FONT-FAMILY: Tahoma; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; POSITION: absolute; TOP: 8px; HEIGHT: 14px; BACKGROUND-COLOR: transparent; BORDER-BOTTOM-STYLE: none">dd</div>
+<div id="divYearLabel" style="DISPLAY: block; FONT-SIZE: xx-small; Z-INDEX: 118; LEFT: 72px; WIDTH: 32px; COLOR: #990000; BORDER-TOP-STYLE: none; FONT-FAMILY: Tahoma; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; POSITION: absolute; TOP: 8px; HEIGHT: 14px; BACKGROUND-COLOR: transparent; BORDER-BOTTOM-STYLE: none">yyyy</div>
+</DIV>
+<DIV id="divDateType" style="DISPLAY: block; Z-INDEX: 113; LEFT: 312px; WIDTH: 128px; POSITION: absolute; TOP: 8px; HEIGHT: 40px"
+ms_positioning="GridLayout"><INPUT language="javascript" id="rbStatic" style="Z-INDEX: 114; LEFT: 0px; POSITION: absolute; TOP: 0px"
+onclick="return rbStatic_onclick()" type="radio" value="Radio1" name="df"> <INPUT language="javascript" id="rbCalculated" style="Z-INDEX: 114; LEFT: 0px; POSITION: absolute; TOP: 16px"
+onclick="return rbStatic_onclick()" type="radio" CHECKED value="Radio2" name="df">
+<DIV style="DISPLAY: inline; Z-INDEX: 114; LEFT: 32px; WIDTH: 70px; POSITION: absolute; TOP: 0px; HEIGHT: 15px"
+ms_positioning="FlowLayout">Static Date</DIV>
+<DIV id="DIV1" style="DISPLAY: inline; Z-INDEX: 114; LEFT: 32px; WIDTH: 96px; POSITION: absolute; TOP: 16px; HEIGHT: 16px"
+ms_positioning="FlowLayout">Calulated Date</DIV>
+</DIV>
+</DIV>
+<DIV id="divStatus" style="BORDER-RIGHT: 2px groove; BORDER-TOP: 2px groove; FONT-WEIGHT: bold; Z-INDEX: 105; LEFT: 16px; BORDER-LEFT: 2px groove; WIDTH: 792px; COLOR: black; TEXT-INDENT: 5pt; BORDER-BOTTOM: 2px groove; POSITION: absolute; TOP: 584px; HEIGHT: 32px; BACKGROUND-COLOR: darkgray"
+ms_positioning="GridLayout"></DIV>
+</DIV>
+<DIV id="loginBox" style="BORDER-RIGHT: thin outset; BORDER-TOP: thin outset; DISPLAY: none; LEFT: 0px; BORDER-LEFT: thin outset; WIDTH: 368px; BORDER-BOTTOM: thin outset; POSITION: absolute; TOP: 128px; HEIGHT: 80px; BACKGROUND-COLOR: darkgray"
+ms_positioning="GridLayout">
+<DIV id="divPasswordLabel" style="DISPLAY: inline; FONT-WEIGHT: bold; FONT-SIZE: 10pt; LEFT: 16px; WIDTH: 70px; FONT-FAMILY: Arial; POSITION: absolute; TOP: 40px; HEIGHT: 15px"
+ms_positioning="FlowLayout">Password</DIV>
+<INPUT id="txtUsername" style="LEFT: 96px; WIDTH: 184px; POSITION: absolute; TOP: 16px; HEIGHT: 22px"
+type="text" size="25" value="dcarroll@onthebeach.com" name="Text1"><INPUT id="txtPassword" style="LEFT: 96px; WIDTH: 184px; POSITION: absolute; TOP: 40px; HEIGHT: 22px"
+type="password" size="25" value="123456" name="Password1"><INPUT language="javascript" id="btnLogin" style="LEFT: 288px; WIDTH: 64px; POSITION: absolute; TOP: 16px; HEIGHT: 24px"
+onclick="return btnLogin_onclick()" type="button" value="Login" name="Button1">
+<div id="divUsernameLabel" style="FONT-WEIGHT: bold; LEFT: 16px; WIDTH: 64px; BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; POSITION: absolute; TOP: 16px; HEIGHT: 22px; BACKGROUND-COLOR: transparent; BORDER-BOTTOM-STYLE: none">Username:</div>
+</DIV>
+<script language="javascript">
+<!--
+function Trim(TRIM_VALUE){
+if(TRIM_VALUE.length < 1){
+return"";
+}
+TRIM_VALUE = RTrim(TRIM_VALUE);
+TRIM_VALUE = LTrim(TRIM_VALUE);
+if(TRIM_VALUE==""){
+return "";
+} else {
+return TRIM_VALUE;
+}
+} //End Function
+
+function RTrim(VALUE){
+var w_space = String.fromCharCode(32);
+var v_length = VALUE.length;
+var strTemp = "";
+if(v_length < 0){
+return"";
+}
+var iTemp = v_length -1;
+
+while(iTemp > -1){
+if(VALUE.charAt(iTemp) == w_space){
+} else {
+strTemp = VALUE.substring(0,iTemp +1);
+break;
+}
+
+iTemp = iTemp-1;
+} //End While
+return strTemp;
+} //End Function
+
+function LTrim(VALUE){
+var w_space = String.fromCharCode(32);
+if(v_length < 1){
+return"";
+}
+
+var v_length = VALUE.length;
+var strTemp = "";
+var iTemp = 0;
+
+while(iTemp < v_length){
+if(VALUE.charAt(iTemp) == w_space){
+} else {
+strTemp = VALUE.substring(iTemp,v_length);
+break;
+}
+iTemp = iTemp + 1;
+} //End While
+
+return strTemp;
+} //End Function
+
+//-->
+</script>
+</BODY>
+</html>

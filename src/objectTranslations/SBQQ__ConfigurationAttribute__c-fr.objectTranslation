@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Attribut de configuration</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Attributs de configuration</value>
+    </caseValues>
+    <gender>Masculine</gender>
+    <nameFieldLabel>Nom de l&apos;attribut</nameFieldLabel>
+    <startsWith>Vowel</startsWith>
+</CustomObjectTranslation>

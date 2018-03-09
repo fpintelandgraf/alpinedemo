@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- KCS Article --></value>
+    </caseValues>
+    <fields>
+        <label>原因</label>
+        <name>Cause__c</name>
+    </fields>
+    <fields>
+        <label>环境</label>
+        <name>Environment__c</name>
+    </fields>
+    <fields>
+        <label>问题</label>
+        <name>Issue__c</name>
+    </fields>
+    <fields>
+        <label>解析度</label>
+        <name>Resolution__c</name>
+    </fields>
+    <nameFieldLabel><!-- KCS Article Name --></nameFieldLabel>
+</CustomObjectTranslation>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Call</masterLabel>
+        <translation>Llamada</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Other</masterLabel>
+        <translation>Otro</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Send Letter</masterLabel>
+        <translation>Enviar carta</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Send Quote</masterLabel>
+        <translation>Enviar cotización</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

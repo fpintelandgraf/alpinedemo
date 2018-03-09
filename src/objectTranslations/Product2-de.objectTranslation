@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>Catalog Product Layout</layout>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+        <sections>
+            <label>Produktkatalog - Attribute</label>
+            <section>Product Catalog - Attributes</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Product Layout</layout>
+        <sections>
+            <label><!-- CPQ Configuration --></label>
+            <section>CPQ Configuration</section>
+        </sections>
+        <sections>
+            <label><!-- CPQ Pricing --></label>
+            <section>CPQ Pricing</section>
+        </sections>
+        <sections>
+            <label><!-- Image --></label>
+            <section>Image</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

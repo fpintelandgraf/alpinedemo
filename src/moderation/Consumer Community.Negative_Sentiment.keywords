@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<KeywordList xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>A list of keywords that have negative sentiment.</description>
+    <keywords>
+        <keyword>hate</keyword>
+    </keywords>
+    <keywords>
+        <keyword>sucks</keyword>
+    </keywords>
+    <masterLabel>Negative Sentiment</masterLabel>
+</KeywordList>

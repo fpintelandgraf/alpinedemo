@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Cancelled</masterLabel>
+        <translation>中止</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Completed</masterLabel>
+        <translation>完了</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>In Progress</masterLabel>
+        <translation>進行中</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Planned</masterLabel>
+        <translation>計画済み</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

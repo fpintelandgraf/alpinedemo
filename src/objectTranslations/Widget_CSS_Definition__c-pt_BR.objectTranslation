@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Widget CSS Definition --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Widget CSS Definition --></value>
+    </caseValues>
+    <fields>
+        <label>CSS</label>
+        <name>CSS__c</name>
+    </fields>
+    <fields>
+        <label>Cor</label>
+        <name>Color__c</name>
+    </fields>
+    <fields>
+        <label>Rótulo de Exibição</label>
+        <name>Display_Label__c</name>
+    </fields>
+    <gender><!-- Feminine --></gender>
+    <nameFieldLabel><!-- Widget_Definition Name --></nameFieldLabel>
+</CustomObjectTranslation>

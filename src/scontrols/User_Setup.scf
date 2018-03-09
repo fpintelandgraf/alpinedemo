@@ -1,0 +1,672 @@
+<html>
+<head>
+    <script type="text/javascript" src="/js/functions.js"></script>
+    <script src="/soap/ajax/12.0/connection.js"></script>
+    
+<style type="text/css">
+	body {
+ 		background-color:#ffffff;
+		font-family: arial, verdana, tahoma, helvetica; 
+		font-size: 12px; 
+		color: black;
+		cursor:default;
+	}
+	a{
+		text-decoration:none;
+		color:#555555;
+	}
+	a:hover{
+		text-decoration:underline;
+		color:blue;
+	}
+	.header{
+		font-size:18px;
+		font-weight:bold;
+		text-align: center;
+	}
+	.ctitle 
+	{
+		font-size:11px;
+		font-weight:bold;
+		border-bottom:solid 1px #cccccc;
+		border-top:solid 1px #cccccc;
+		background-color:#efefff;
+	}
+	.cdetail
+	{
+		font-size:11px;
+		color:#333333;
+	}	
+	.small
+	{
+		font-size:10px;
+	}
+	.warning
+	{
+		color: red;
+		background-color:#efefff;
+		width: 100px;
+	}
+	.approw
+	{
+		background-color: #ffffff;
+	}
+	.sectionTop
+	{
+		border-top: 1px dotted #dddddd;
+		padding-top: 2px;
+		padding-left: 2px;
+		padding-right: 2px;
+		padding-bottom: 1px;
+		background-color: #eeeeee;
+		font-family: arial, verdana, tahoma, helvetica; 
+		font-size:12px;
+	}
+	.section
+	{
+		padding-top: 2px;
+		padding-left: 2px;
+		padding-right: 2px;
+		padding-bottom: 2px;
+		background-color: #eeeeee;
+		font-family: arial, verdana, tahoma, helvetica; 
+		font-size:12px;
+	}
+	.sectionTitle
+	{
+		text-align: center;
+		background-color: #ffffff;
+		
+		
+	}
+	.fieldLabel
+	{
+		width: 80px;
+		padding: 0 5 0 10;
+		background-color: #ffffff;
+		font-size: 12px;
+	}
+	.fieldData
+	{
+	    font-size: 12px;
+	}
+	
+	.fieldInput
+	{
+		float: right;
+	}
+	.padLeft
+	{
+		padding-left: 0px;
+	}
+	.dm
+	{
+		border: 1px solid #bbbbbb;
+		padding: 2 2 2 4;
+		background-color: #ffffff;
+	}
+	.dmLeft
+	{
+		border-left: 1px solid #bbbbbb;
+		border-top: 1px solid #bbbbbb;
+		border-right: 1px dotted #dddddd;
+		border-bottom: 1px solid #bbbbbb;
+		padding: 2 2 2 4;
+		background-color: #ffffff;
+		vertical-align: top;
+	}
+	.dmRight
+	{
+		border-top: 1px solid #bbbbbb;
+		border-right: 1px solid #bbbbbb;
+		border-bottom: 1px solid #bbbbbb;
+		padding: 2 2 2 4;
+		background-color: #ffffff;
+		vertical-align: top;
+	}
+	.dmCenter
+	{
+		text-align: center;
+	}
+	.spacer
+	{
+		height: 2px;
+		background-color: #eeeeee;
+	}
+	.block
+	{
+	    padding-bottom: 2px;
+	}
+	.fields
+	{
+	    padding-top: 4px;
+	    padding-bottom: 4px;
+	}
+</style>
+
+<script>
+	var Users = new Array();
+	
+	function pageInit() {
+		LoadActiveUsers();
+    }
+    
+    function LoadActiveUsers(){
+        var sql = "SELECT Id, " +
+        " FirstName, " +
+        " LastName, " +
+        " UserName, " +
+        " Email, " +
+        " p.Name, " + 
+        //" p.LicenseType, " + 
+        " r.Name " + 
+        " FROM User u, u.Profile p, u.UserRole r " + 
+        " WHERE IsActive=True " + 
+        " AND p.Name<>'System Administrator' " + 
+        " AND p.Name<>'Package License Manager' " + 
+        //" AND p.LicenseType='Salesforce' " + // ProfileLicenseType
+        " ORDER BY FirstName "; 
+       sforce.connection.query(sql,
+       { onSuccess : processResults,
+         onFailure : queryFailed,
+         source : { output : document.getElementById("userList"),
+                   startTime : new Date().getTime() }
+       } );
+    }
+    
+    function processResults(queryResult, source) {
+        try{
+            if (queryResult.size > 0) {
+                var records = queryResult.getArray('records');
+                
+                var html = "<table cellpadding=0 cellspacing=0 border=0 width=\"100%\">";
+                html += "<tr><td><i>Records Found: " + records.length + "</i></td></tr>";                
+                html += "<tr>";
+                // html += "<td class=\"ctitle\">Id</td>";
+                html += "<td class=\"ctitle\" align=center><input type=checkbox id=allcb onclick=\"allCheckBox()\" />"; // Selected</td>";
+				html += "<td class=\"ctitle\">First</td>";
+				html += "<td class=\"ctitle\">Last</td>";
+				// html += "<td class=\"ctitle \">Before</td>";
+				html += "<td class=\"ctitle \">Username</td>";
+				html += "<td class=\"ctitle\">Email</td>";
+				html += "<td class=\"ctitle\">Profile</td>";
+				html += "<td class=\"ctitle\">Role</td>";
+                html += "</tr>";
+                    
+                for (var i = 0; i < records.length; i++) {
+                
+                    var record = records[i];
+                    //if ( record.Profile.LicenseType=="Salesforce" )
+                    //{
+	                    var id = record.Id;
+	                    var first = record.FirstName;
+					    var last = record.LastName;
+					    var username = record.Username;
+					    // var before = getBeforeChar( username, "@" );
+					    var email = record.Email;
+					    var profile = record.Profile.Name; //  + "(" + record.Profile.LicenseType+")";
+					    var role = record.UserRole ? record.UserRole.Name : "-";
+					    // var un = "";
+					    // if ( first.length>0 ) un += first.substring(0,1);
+					    // if ( last.length>0 ) un += last.substring(0,1); // un += last;
+						var rowNum = i+1;
+						var rowid = "row_" + rowNum;
+	                    html += "<tr id=" + rowid + " class=approw ";
+	                    html += "onmouseover=\"rowover('" + rowid + "')\" ";
+	                    html += "onmouseout=\"rowout('" + rowid + "')\" >"; 
+	                    //html += "</td>";
+	                    
+	                    var checked = ""; // "checked";   // + " name=" + un 
+	                    html += "<td class=\"cdetail\" align=center ><input type=checkbox id=" + id + " " + checked + " /></td>";
+	                    html += "<td class=\"cdetail\">" + first + "</td>";
+	                    html += "<td class=\"cdetail\">" + last + "</td>";
+	                    // html += "<td class=\"cdetail\">" + before + "</td>";
+	                    html += "<td class=\"cdetail\" title=\"Edit user in SFDC\"><a href=\"javascript:parentUrl('/" + id + "')\">" + username + "</a></td>";
+	                    html += "<td class=\"cdetail\">" + email + "</td>";
+	                    html += "<td class=\"cdetail\">" + profile + "</td>";
+	                    html += "<td class=\"cdetail\">" + role + "</td>";
+	                    html += "<td></td>";
+	                    html += "</tr>";
+	                    user = {
+	                    	"id": id,
+	                    	"first": first,
+	                    	"last": last,
+	                    	"username": username,
+	                    	"email": email,
+	                    	"profile": profile,
+	                    	"role": role
+	                    }
+	                    Users[Users.length] = user;
+                    //}
+                }
+                html += "</table>";
+                source.output.innerHTML = html;
+            }
+            else
+            {
+                source.output.innerHTML = "No Users were found.";
+            }
+            CampaignTableLoaded = true;
+        } catch (e) {
+            document.body.innerHTML += "<font color='red'>Error:</font>";
+	        document.body.innerHTML += "<br>Message: " + e.message;
+	        document.body.innerHTML += "<br>Body: " + e.message;
+            document.body.innerHTML += "<br>Fault code: " + e.faultcode;
+            document.body.innerHTML += "<br>Fault string: " + e.faultstring ;
+        }
+        
+    }
+    
+    function getBeforeChar( sourceString, findCharacter )
+    {
+    	// example: getBeforechar("1234@salesforce.com", "@") returns "1234"
+    	// if findCharacter is not found then an empty string is returned
+    	var result = "";
+    	var position = sourceString.indexOf(findCharacter);
+	    if ( position >= 0 )
+	    {
+	    	result = sourceString.substr(0, position);
+	    }
+	    return result;
+    }
+    
+     
+    function getUserInfo( id, field )
+    {
+    	/*
+    	Users
+    	"id": id,
+        "first": first,
+        "last": last,
+        "username": username,
+        "email": email,
+        "profile": profile,
+        "role": role
+        */
+        var result = "";
+        for ( var i=0; i<Users.length; i++ )
+        {
+        	if ( Users[i].id == id )
+        	{
+        		result = Users[i][field];
+        	}
+        }
+        return result;
+    }
+    
+    function rowover(row)
+    {
+        document.getElementById(row).style.backgroundColor = "#dddddd";
+		// document.getElementById(row).style.borderBottom = "solid 1px #444444";
+		//document.getElementById("ref" + row).style.color = "blue";
+		//document.getElementById(row+"_span").style.visibility = "visible";
+    }
+    function rowout(row)
+    {
+        document.getElementById(row).style.backgroundColor = "#ffffff";
+		// document.getElementById(row).style.borderBottom = "solid 1px #ffffff";
+		//document.getElementById("ref" + row).style.color = "#555555";
+		//document.getElementById(row+"_span").style.visibility = "hidden";
+    }
+    
+    function parentUrl( _url )
+	{
+		window.top.location = _url;
+	}
+	
+	function refreshFrame()
+	{
+		document.location = document.location;
+	}
+	
+	function cleanValues ( s )
+    {
+    	if ( s==null ) s = "";
+    	if ( s=="undefined" ) s = "";
+    	if ( s=="null") s = "";
+    	return s;
+    }
+    
+    function queryFailed(error, source) {
+        document.body.innerHTML += "<font color='red'>An error has occurred:</font>" + error;
+    }
+    
+    var UsersToUpdate = new Array();
+    function updateUsers()
+    {
+ // debugger;
+    	try
+    	{
+    		UsersToUpdate = new Array(); // reset each time
+	    	var	theNewDomain = document.getElementById("newdomain").value;
+	    	var	theNewEmail = document.getElementById("newemail").value;
+	    	
+	    	var	theNewPassword = document.getElementById("newpassword").value;
+	    	var isResetPassword = false;
+	    	if ( theNewPassword!="" ) isResetPassword = true; // alert("isResetPassword: "+isResetPassword);
+	    	
+	    	var	EmailLoginAddress = document.getElementById("emailReportTo").value;
+	    	var isEmailReportTo = false;
+	    	if ( emailReportTo!="" ) isEmailReportTo = true;
+	    	
+	    	
+	    	if ( theNewDomain=="" && theNewEmail=="" && theNewPassword=="")
+	    	{
+	    		alert("To update the users you need to enter a Domain Name and/or an Email Address and/or a Password.");
+	    		return;
+	    	}
+	    	if ( theNewDomain!="" ) // has a value
+	    	{
+	    		// check for a .
+	    		var position = theNewDomain.indexOf(".");
+			    if ( position == -1 )
+			    {
+			    	alert('The Domain Name must contain a period "."');
+	    			return;
+			    }
+			    var pos = theNewDomain.indexOf("@");
+			    if ( pos >- 0 )
+			    {
+			    	alert('The Domain Name should not contain a "@".');
+	    			return;
+			    }
+	    	}
+	    	
+	    	/* if ( isEmailReportTo && EmailLoginAddress=="" )
+	    	{
+	    		alert("The Email Login Address is blank.\n\nEnter it or uncheck it.");
+	    		return;
+	    	} */
+	    	
+	    	// var SuccessUserIDs = new Array();
+	    	var cbs = document.getElementsByTagName("input"); // alert(cbs.length);
+	    	var s = "";
+	    	for ( var i=0; i<cbs.length; i++)
+	    	{
+	    		var obj = cbs[i];
+	    		if ( obj.type == "checkbox"  && obj.id!="resetPassword" && obj.id!="emailLogin" && obj.id!="allcb")
+	    		{
+		    		if ( obj.checked==true ) 
+		    		{
+		    			var _id = obj.id;
+		    			var user_name =  getUserInfo(_id, "username" ); // obj.name.toLowerCase();
+		    			var prefix = getBeforeChar( user_name, "@" );
+		    			var newUserName = "";
+		    			if ( theNewDomain!="" ) newUserName = prefix +"@" + theNewDomain;
+		    			s += obj.type + " - " + newUserName + " - " + obj.id +"\n";
+		    			// 
+		    			var user = new sforce.SObject("User");
+		    			user.Id = _id;
+						if ( newUserName!="" ) user.Username = newUserName;
+						if ( theNewEmail!="" ) user.Email = theNewEmail;
+						UsersToUpdate[UsersToUpdate.length] = user;
+		    		}
+		    	}
+	    	}
+	    	//alert(s);
+	    	if ( UsersToUpdate.length>0 )
+	    	{
+	    		var t = " user";
+	    		if ( UsersToUpdate.length>1 ) t = " users"
+	    		if ( confirm ( "Update " + UsersToUpdate.length + t +"?") ){
+					result = sforce.connection.update(UsersToUpdate);
+					var s = "";
+					var all_success = true;
+					var at_least_one_success = false;
+					for (var i=0; i<result.length; i++) 
+					{
+						if (result[i].getBoolean("success")) 
+						{
+							var __id = result[i].id;
+							s += "User updated " + __id + "<br>";
+							Update_UsersToUpdate_withSuccess(__id);
+							at_least_one_success = true;
+						} 
+						else 
+						{
+							s += "Failed: user update " + result[i] + "<br>";
+							all_success = false;
+						}
+					}
+					if ( isResetPassword && at_least_one_success )
+					{
+						var s = "<table border=1 style=\"font-size:11px;font-family:arial;\" cellpadding=3 cellspacing=0 >";
+						s += "<tr>";
+						s += "<td><b>Name</b></td>";
+						s += "<td><b>Username</b></td>";
+						s += "<td><b>Profile</b></td>";
+						s += "<td><b>Role</b></td>";
+						s += "</tr>";
+						for ( var i=0; i<UsersToUpdate.length; i++ )
+						{
+							var password = theNewPassword
+							var resetResult = "";
+							var updateSuccess = UsersToUpdate[i].updateSuccess;
+							if ( updateSuccess!=undefined && updateSuccess==true )
+							{
+								var user_id = UsersToUpdate[i].Id;
+								if ( theNewPassword!="" ) 
+								{
+									sforce.connection.setPassword(user_id, theNewPassword);
+								} else {
+									resetResult = sforce.connection.resetPassword(user_id);
+									password = resetResult.password;
+								}
+								// alert(resetResult);
+								var un = UsersToUpdate[i].Username;
+								var firstLast = getUserInfo(user_id, "first" ) + " " + getUserInfo(user_id, "last" );
+								var profile = getUserInfo(user_id, "profile" );
+								var role = getUserInfo(user_id, "role" );
+								s += "<tr>";
+								s += "<td nowrap>" + firstLast + "</td>";
+								s += "<td nowrap><a href='https://www.salesforce.com/login.jsp?pw="+password+"&un="+un+"'>"+un+"</a></td>";
+								s += "<td nowrap>" + profile + "</td>";
+								s += "<td nowrap>" + role + "</td>";
+								s += "</tr>";
+							}
+						}
+						s += "</table>";
+						if ( isEmailReportTo )
+				    	{
+				    		SendEmail( EmailLoginAddress, s );
+				    	}
+						
+					}
+					if ( all_success ) refreshFrame();
+					else document.getElementById("errors").innerHTML = s;
+					
+				}
+			} else {
+				alert("There are no users selected to update.")
+			}
+			
+		} catch (e) {
+            var err = "<font color='red'>Error:</font>";
+	        err += "<br>Message: " + e.message;
+	        err += "<br>Body: " + e.message;
+            err += "<br>Fault code: " + e.faultcode;
+            err += "<br>Fault string: " + e.faultstring ;
+            document.getElementById("errors").innerHTML = err;
+        }
+
+    }
+    
+    function Update_UsersToUpdate_withSuccess(id)
+    {
+    	var found = false;
+    	for ( var i=0; i<UsersToUpdate.length; i++ )
+		{
+			if ( UsersToUpdate[i].Id == id )
+			{
+				UsersToUpdate[i].updateSuccess = true;
+				found = true;
+			}
+		}
+		if ( !found ) alert("Error in success update: id not found in array.\n" + id);
+    }
+   
+    
+    function allCheckBox()
+    {
+    	if (document.getElementById("allcb").checked==true) checkAll( true );
+    	else checkAll( false );
+    	
+    }
+    function checkAll( truefalse )
+    {
+    	var cbs = document.getElementsByTagName("input");
+    	for ( var i=0; i<cbs.length; i++)
+    	{
+    		var obj = cbs[i];
+    		if ( obj.type == "checkbox" && obj.id!="resetPassword" && obj.id!="emailLogin" && obj.id!="allcb")
+    		{ 
+    			obj.checked=truefalse;
+    		}
+    	}
+    }
+    
+    function SendEmail( to, body )
+    {
+    	try {
+
+		    var m = new sforce.SingleEmailMessage();
+		    m.toAddresses = to;
+		    m.subject = "User Login for {!$Organization.Name}";
+		    m.htmlBody = body;
+		    m.plainTextBody = body
+		    var s = sforce.connection.sendEmail( [m] );		
+		    
+	    } catch (e) {
+            document.body.innerHTML += "<font color='red'>Error:</font>";
+	        document.body.innerHTML += "<br>Message.: " + e.message;
+            document.body.innerHTML += "<br>Fault code: " + e.faultcode;
+            document.body.innerHTML += "<br>Fault string: " + e.faultstring ;
+        }
+    }
+</script>
+
+</head>
+
+<body onload="pageInit();">
+<!--
+<div style="text-align:right"><a href="mailto:djeske@salesforce.com?subject=Portal License Increase for Org {!$Organization.Id}">Email Org Id {!$Organization.Id}</a></div>
+ -->
+<div id="errors" class="warning"></div>
+<div class="sectionTitle"><span class="header">User Setup</span> - <a href="javascript:refreshFrame()">refresh</a></div>
+
+<table cellpadding=0 cellspacing=0 border=0 class="sectionTop" width="100%">
+	<tr>
+        <td class="dmLeft block">
+	        <b>Username</b><!-- - <span class="small">use this section to change the username.</span>--><br />
+
+	        <div class="fields">
+	        	<table cellpadding=0 cellspacing=0 border=0 class="">
+		        	<tr>
+			        	<td nowrap class="fieldLabel" >Domain Name</span></td>
+			            <td><input class="fieldData" type="text" size=30 id=newdomain value="" /></td>
+		            </tr>
+	            </table>
+	        </div>
+
+	     </td>
+		 <td class="dmRight block small">
+		    Example: mydomain1234.com<br>
+		    The text before the '@' will be retained. <br>
+		    Enter a domain name that will be appended after the '@'.<br>
+		    Leave the Domain Name blank and the username will not be changed.
+		        
+		 </td>
+	</tr>
+
+	<tr><td colspan=2 class=spacer></td></tr>
+	
+	<tr>
+        <td class="dmLeft block">
+	        <b>User Email Address</b><!-- - <span class="small">use this section to change the user's email address.</span>--><br />
+	        <div class="fields">
+	        	<table cellpadding=0 cellspacing=0 border=0 class="">
+		        	<tr>
+			        	<td nowrap class="fieldLabel" >Email Address</span></td>
+
+			            <td><input class="fieldData" type="text" size=30 id=newemail value="{!$User.Email}"/></td>
+		            </tr>
+	            </table>
+	        </div>
+	     </td>
+		 <td class="dmRight block small">
+		    Typically this is your email address so all notifications will come to you.<br>
+		    Leave the Email Address blank and the user's email will not be changed.   
+		 </td>
+
+	</tr>
+	
+	<tr><td colspan=2 class=spacer></td></tr>
+	
+	<tr>
+        <td class="dmLeft block">
+	        <b>Password</b><!-- - <span class="small">use this section to change and reset a user's password.</span>--><br />
+	        <div class="fields">
+	        	<table cellpadding=0 cellspacing=0 border=0 class="">
+		        	<tr>
+
+			        	<td nowrap class="fieldLabel" >New Password</span></td>
+			            <td><input class="fieldData" type="text" size=30 id=newpassword value="" /></td>
+		            </tr>
+	            </table>
+	            <span style="display:none"><input checked type="checkbox" id="resetPassword" /><label for="resetPassword">Reset Password</label></span>
+	        </div>
+	     </td>
+		 <td class="dmRight block small">
+
+		    Leave the Password blank and it not be changed.<br>
+		    An email will be sent for each user who's password is changed.<br>
+		    Note: the first time you login as this user you will need to change the password.<br>
+		    You can enter the same password you used here.   
+		 </td>
+	</tr>
+	
+	<tr><td colspan=2 class=spacer></td></tr>
+	
+	<tr>
+
+        <td class="dmLeft block">
+	        <b>Email Login Report</b><!-- - <span class="small">use this section to email yourself a list all users with a login link.</span>--><br />
+	        <div class="fields">
+	        	<table cellpadding=0 cellspacing=0 border=0 class="">
+		        	<tr>
+			        	<td nowrap class="fieldLabel" >Send To</td>
+			            <td><input class="fieldData" type="text" size=30 id=emailReportTo value="{!$User.Email}" /></td>
+		            </tr>
+
+	            </table>
+		        <span style="display:none"><input checked type="checkbox" id="emailLogin" > <label for="emailLogin">Email Login</label></span>
+	        </div>
+	     </td>
+		 <td class="dmRight block small">
+		 	This report is for users who's passwords are being changed.<br>
+		    Leave the field 'Send To' blank and the report will not be sent.
+		 </td>
+
+	</tr>
+	
+	<tr><td colspan=2 class=spacer></td></tr>
+	
+	<tr>
+	    <td colspan="2" class="dm dmCenter">
+		    <input type=button onclick="javascript:updateUsers()" value=" Update Users " />
+		</td>
+	</tr>
+
+</table>
+<!-- 
+<div class="section">
+	<a href="javascript:checkAll(true)">check all</a>&nbsp;&nbsp;
+	<a href="javascript:checkAll(false)">uncheck all</a>
+</div>
+-->
+
+<div id="userList" class="section">Loading...</div>
+
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Business Contact</masterLabel>
+        <translation>ビジネスコンタクト</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Business Partner</masterLabel>
+        <translation>ビジネスパートナー</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Decision Maker</masterLabel>
+        <translation>意思決定者</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Household Partner</masterLabel>
+        <translation>配偶者</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Other</masterLabel>
+        <translation>その他</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Technical Contact</masterLabel>
+        <translation>テクニカルコンタクト</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

@@ -1,0 +1,23 @@
+<aura:component controller="MOCK_ScoringCtrl" extends="c:MOCK_EinsteinCard" implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    <aura:attribute name="componentLabel" type="String" default="Einstein Score"></aura:attribute>
+    <aura:attribute name="parentObjectType" type="String" default="Opportunity"></aura:attribute>
+    <aura:attribute name="recordId" type="String"></aura:attribute>
+    <aura:attribute name="score" type="Integer"></aura:attribute>
+    <aura:attribute name="reasons" type="Map[]"></aura:attribute>
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"></aura:handler>
+    <aura:handler event="force:refreshView" action="{!c.onInit}"></aura:handler>
+    
+    <div class="slds-scope">
+        <div class="slds-text-title_caps predictive-header" >{! 'Top ' + v.reasons.length + ' Predictive Factors'}</div>
+        <hr/>
+        <aura:iteration items="{!v.reasons}" var="reason" indexVar="idx">
+            <aura:if isTrue="{!reason.Reason__c != undefined &amp;&amp; reason.Reason__c != ''}">
+                <div class="prediction">
+                    <c:MOCK_svg xlinkHref="{!'/resource/einstein_indicators#' + (reason.Confidence__c >= 0 ? 'strength' : 'negative') + '-' + (reason.Confidence__c >= 0 ? reason.Confidence__c:-reason.Confidence__c)}" class="slds-icon"/>
+                    <ui:outputRichText class="slds-p-left_small slds-inline" value="{!reason.Reason__c}"></ui:outputRichText>
+                </div>
+            </aura:if>
+        </aura:iteration>
+    </div>
+    
+</aura:component>

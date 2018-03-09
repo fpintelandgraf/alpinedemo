@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Tracker Event</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Tracker Events</value>
+    </caseValues>
+    <fields>
+        <label><!-- error code --></label>
+        <name>error_code__c</name>
+    </fields>
+    <fields>
+        <label><!-- model --></label>
+        <name>model__c</name>
+    </fields>
+    <fields>
+        <label><!-- power output --></label>
+        <name>power_output__c</name>
+    </fields>
+    <fields>
+        <label><!-- rotation x --></label>
+        <name>rotation_x__c</name>
+    </fields>
+    <fields>
+        <label><!-- rotation z --></label>
+        <name>rotation_z__c</name>
+    </fields>
+    <fields>
+        <label><!-- serial no --></label>
+        <name>serial_no__c</name>
+    </fields>
+    <fields>
+        <label><!-- series --></label>
+        <name>series__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

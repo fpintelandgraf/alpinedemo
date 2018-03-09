@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Business User</masterLabel>
+        <translation>业务用户</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Decision Maker</masterLabel>
+        <translation>决策者</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Economic Buyer</masterLabel>
+        <translation>经济买家</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Economic Decision Maker</masterLabel>
+        <translation>经济决策者</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Evaluator</masterLabel>
+        <translation>计算器</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Executive Sponsor</masterLabel>
+        <translation>执行发起人</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Influencer</masterLabel>
+        <translation>影响者</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Other</masterLabel>
+        <translation>其他</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Technical Buyer</masterLabel>
+        <translation>技术买家</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

@@ -1,0 +1,4 @@
+<design:component label="Einstein Scoring - Lead/Opportunity">
+	<design:attribute name="componentLabel" label="Component Label"></design:attribute>
+	<design:attribute name="parentObjectType" label="Object Type" datasource="Lead, Opportunity"></design:attribute>
+</design:component>

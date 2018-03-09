@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Fall</masterLabel>
+        <translation>秋季</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Spring</masterLabel>
+        <translation>弹簧</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Summer</masterLabel>
+        <translation>夏季</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Winter</masterLabel>
+        <translation>冬季</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

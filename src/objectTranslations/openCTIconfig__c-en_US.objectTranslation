@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Lightning CTI Config</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Lightning CTI Configs</value>
+    </caseValues>
+    <fields>
+        <label><!-- AccountName --></label>
+        <name>AccountName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Account --></label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Lightning CTI Configs --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- ContactName --></label>
+        <name>ContactName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contact --></label>
+        <name>Contact__c</name>
+        <relationshipLabel><!-- Lightning CTI Configs --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Phone --></label>
+        <name>Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Title --></label>
+        <name>Title__c</name>
+    </fields>
+    <fields>
+        <label><!-- isActive --></label>
+        <name>isActive__c</name>
+    </fields>
+    <fields>
+        <label><!-- popContact --></label>
+        <name>popContact__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

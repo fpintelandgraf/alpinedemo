@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Competitor A</masterLabel>
+        <translation>竞争对手A</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Competitor B</masterLabel>
+        <translation>竞争对手B</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Competitor C</masterLabel>
+        <translation>竞争对手Ç</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ManagedTopics xmlns="http://soap.sforce.com/2006/04/metadata">
+    <managedTopic>
+        <fullName>Consumer Community.Featured:Events</fullName>
+        <managedTopicType>Featured</managedTopicType>
+        <name>Events</name>
+        <parentName></parentName>
+        <position>1</position>
+        <topicDescription>Find out about upcoming events and connect with others who plan on attending them.</topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Consumer Community.Featured:Getting Started</fullName>
+        <managedTopicType>Featured</managedTopicType>
+        <name>Getting Started</name>
+        <parentName></parentName>
+        <position>0</position>
+        <topicDescription>Get up and running quickly with advice from the Community.</topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Consumer Community.Featured:Philanthropy</fullName>
+        <managedTopicType>Featured</managedTopicType>
+        <name>Philanthropy</name>
+        <parentName></parentName>
+        <position>3</position>
+        <topicDescription>Engage with others to do good in your community.</topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Consumer Community.Featured:Regions</fullName>
+        <managedTopicType>Featured</managedTopicType>
+        <name>Regions</name>
+        <parentName></parentName>
+        <position>5</position>
+        <topicDescription>Find others in your region for meetups, user groups and events.</topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Consumer Community.Featured:Sustainability</fullName>
+        <managedTopicType>Featured</managedTopicType>
+        <name>Sustainability</name>
+        <parentName></parentName>
+        <position>4</position>
+        <topicDescription>Share your ideas to make the world a better place.</topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Consumer Community.Featured:Technology</fullName>
+        <managedTopicType>Featured</managedTopicType>
+        <name>Technology</name>
+        <parentName></parentName>
+        <position>2</position>
+        <topicDescription>A places for enthusiasts to discuss the technical aspects of our solutions.</topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Consumer Community.Navigational:Events</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Events</name>
+        <parentName></parentName>
+        <position>1</position>
+        <topicDescription>Find out about upcoming events and connect with others who plan on attending them.</topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Consumer Community.Navigational:Getting Started</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Getting Started</name>
+        <parentName></parentName>
+        <position>0</position>
+        <topicDescription>Get up and running quickly with advice from the Community.</topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Consumer Community.Navigational:Philanthropy</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Philanthropy</name>
+        <parentName></parentName>
+        <position>3</position>
+        <topicDescription>Engage with others to do good in your community.</topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Consumer Community.Navigational:Sustainability</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Sustainability</name>
+        <parentName></parentName>
+        <position>4</position>
+        <topicDescription>Share your ideas to make the world a better place.</topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Consumer Community.Navigational:Technology</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Technology</name>
+        <parentName></parentName>
+        <position>2</position>
+        <topicDescription>A places for enthusiasts to discuss the technical aspects of our solutions.</topicDescription>
+    </managedTopic>
+</ManagedTopics>

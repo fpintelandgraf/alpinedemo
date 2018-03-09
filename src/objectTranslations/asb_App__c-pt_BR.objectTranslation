@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- App --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- App --></value>
+    </caseValues>
+    <fields>
+        <help>O tipo de aplicação</help>
+        <label>Tipo</label>
+        <name>AppType__c</name>
+        <picklistValues>
+            <masterLabel>Android</masterLabel>
+            <translation>Android</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Web</masterLabel>
+            <translation>Web</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>iOS</masterLabel>
+            <translation>iOS</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>Categorias na qual um aplicativo está incluído na loja</help>
+        <label>Categorias</label>
+        <name>Categories__c</name>
+        <picklistValues>
+            <masterLabel>Analytics</masterLabel>
+            <translation>Analytics</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Collaboration</masterLabel>
+            <translation>Colaboração</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CustomerService</masterLabel>
+            <translation>Atendimento ao Consumidor</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ERP</masterLabel>
+            <translation>ERP</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Finance</masterLabel>
+            <translation>Finanças</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HumanResources</masterLabel>
+            <translation>Recursos Humanos</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IT</masterLabel>
+            <translation>TI</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Marketing</masterLabel>
+            <translation>Marketing</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sales</masterLabel>
+            <translation>Vendas</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>A listagem padrão é mostrada para os usuários nos quais a configuração de linguagem não condiz com nenhum outra listagem de linguagem específica para o aplicativo</help>
+        <label>Listagem Padrão</label>
+        <name>DefaultListing__c</name>
+        <relationshipLabel>Aplicativos</relationshipLabel>
+    </fields>
+    <fields>
+        <help>Data da primeira lista de publicação para o aplicativo</help>
+        <label>Data da primeira listagem</label>
+        <name>FirstListedDate__c</name>
+    </fields>
+    <fields>
+        <help>Url de instalação</help>
+        <label>URL de instalação</label>
+        <name>InstallUrl__c</name>
+    </fields>
+    <fields>
+        <help>Linguagens que o aplicativo suporta</help>
+        <label>Linguagens</label>
+        <name>Languages__c</name>
+        <picklistValues>
+            <masterLabel>da</masterLabel>
+            <translation>da</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>de</masterLabel>
+            <translation>de</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>en_US</masterLabel>
+            <translation>en_US</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>es</masterLabel>
+            <translation>es</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>fi</masterLabel>
+            <translation>fi</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>fr</masterLabel>
+            <translation>fr</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>it</masterLabel>
+            <translation>it</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ja</masterLabel>
+            <translation>ja</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ko</masterLabel>
+            <translation>ko</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>nl_NL</masterLabel>
+            <translation>nl_NL</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>pt_BR</masterLabel>
+            <translation>pt_BR</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ru</masterLabel>
+            <translation>ru</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>sv</masterLabel>
+            <translation>sv</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>th</masterLabel>
+            <translation>th</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>zh_CN</masterLabel>
+            <translation>zh_CN</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>zh_TW</masterLabel>
+            <translation>zh_TW</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>O número de listagem para o aplicativo que está publicado e disponível na loja</help>
+        <label>Lista de publicações</label>
+        <name>LiveListings__c</name>
+    </fields>
+    <fields>
+        <help>URL da imagem</help>
+        <label>LogoUrl</label>
+        <name>LogoUrl__c</name>
+    </fields>
+    <fields>
+        <help>Número de visualizações de página para o aplicativo desde o início</help>
+        <label>Visualizações da página (desde o início)</label>
+        <name>PageViewsAllTime__c</name>
+    </fields>
+    <fields>
+        <help>Número de visualizações de página para o aplicativo nos últimos 30 dias</help>
+        <label>Visualizações da página</label>
+        <name>PageViews__c</name>
+    </fields>
+    <fields>
+        <help>Popularidade por pedidos/instalações (dependendo do tipo de aplicativo) desde o início.</help>
+        <label>Instalados</label>
+        <name>PopularityAllTime__c</name>
+    </fields>
+    <fields>
+        <help>Popularidade por pedidos/instalações (dependendo do tipo de aplicativo) nos últimos 30 dias</help>
+        <label>Popularidade(30 dias)</label>
+        <name>Popularity__c</name>
+    </fields>
+    <fields>
+        <help>Status de publicação do aplicativo: se tiver qualquer lista publicada, está publicado, caso contrário escondido.</help>
+        <label>Status</label>
+        <name>Status__c</name>
+    </fields>
+    <fields>
+        <help>O loja na qual o aplicativo está listado</help>
+        <label>Armazenado</label>
+        <name>Store__c</name>
+        <relationshipLabel>Aplicativos</relationshipLabel>
+    </fields>
+    <fields>
+        <help>Indica se o aplicativo está disponível na loja e inclui as atividades do administrador</help>
+        <label>Ativo</label>
+        <name>isActive__c</name>
+    </fields>
+    <gender><!-- Feminine --></gender>
+    <nameFieldLabel><!-- App Name --></nameFieldLabel>
+</CustomObjectTranslation>
