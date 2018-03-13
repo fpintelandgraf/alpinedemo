@@ -634,7 +634,12 @@ public class Einstein_PredictionService {
     * An object of type Einstein_PredictionResult.
     */
     public Einstein_PredictionResult detectImageBase64(String modelId, String base64, Integer numResults, String sampleId) {
+        
+        //Detecting with model ID
+        modelId = 'ZHZWE7XYSZRDMFLWRR4SHWI2HY';
         System.debug('Starting detect call with model ' + modelId + ' for base64');
+        //Einstein_HttpBodyPartPrediction parts = new Einstein_HttpBodyPartPrediction('ZHQQ4OVEJZP4WEA2CXAWM2YK5Q', base64, numResults, sampleId, Einstein_HttpBodyPartPrediction.Types.BASE64);
+        
         Einstein_HttpBodyPartPrediction parts = new Einstein_HttpBodyPartPrediction(modelId, base64, numResults, sampleId, Einstein_HttpBodyPartPrediction.Types.BASE64);
         Einstein_HttpClient client = new Einstein_HttpClient(this, '/detect', parts.build());
         System.debug('Target URL is ' + client.getUrl());

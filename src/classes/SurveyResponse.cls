@@ -37,7 +37,8 @@ public with sharing class SurveyResponse {
             if(surveyDeliveryResponse != null && surveyDeliveryResponse.length() > 0) {
                 System.debug(surveyDeliveryResponse);
                 service = new Einstein_PredictionService(Einstein_PredictionService.Types.INTENT);
-                result = service.predictIntent('LHECCAZPOKEVC4SBA4WPMHIHMI', surveyDeliveryResponse, 0, '');
+                // Old Model LHECCAZPOKEVC4SBA4WPMHIHMI  
+                result = service.predictIntent('HRDMI2PBESEFVYTDJOKSKOP3O4', surveyDeliveryResponse, 0, '');
                 System.debug(result);
                 
                 einsteinIntent = result.probabilities[0].label;
@@ -47,7 +48,8 @@ public with sharing class SurveyResponse {
                     Case caseItem = new Case();
                     caseItem.ContactId =  con.id;
                     caseItem.Subject = surveyDeliveryResponse;
-                    caseItem.OwnerId = '0051I000001jK1IQAU';
+                    // Old Id 0051I000001jK1IQAU 
+                    caseItem.OwnerId = '0056A000001Tv5vQAC';
                     caseItem.Sentiment__c = 'negative';
                     insert caseItem;
                     st.Case__c = caseItem.id;
@@ -91,7 +93,8 @@ public with sharing class SurveyResponse {
         deptMap.put('Not Received', 'Shipping');        
         
         Einstein_PredictionService service = new Einstein_PredictionService(Einstein_PredictionService.Types.INTENT);
-        Einstein_PredictionResult result = service.predictIntent('LHECCAZPOKEVC4SBA4WPMHIHMI', newDeliveryResponse.Response__c, 0, '');
+        // Old Model LHECCAZPOKEVC4SBA4WPMHIHMI
+        Einstein_PredictionResult result = service.predictIntent('HRDMI2PBESEFVYTDJOKSKOP3O4', newDeliveryResponse.Response__c, 0, '');
         System.debug(result);
         String einsteinIntent = result.probabilities[0].label;
         

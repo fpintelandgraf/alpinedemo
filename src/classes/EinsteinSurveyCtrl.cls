@@ -92,7 +92,8 @@ public class EinsteinSurveyCtrl {
         deptMap.put('Not Received', 'Shipping');        
         
         Einstein_PredictionService service = new Einstein_PredictionService(Einstein_PredictionService.Types.INTENT);
-        Einstein_PredictionResult result = service.predictIntent('LHECCAZPOKEVC4SBA4WPMHIHMI', newDeliveryResponse.Response__c, 0, '');
+        // Old Model LHECCAZPOKEVC4SBA4WPMHIHMI
+        Einstein_PredictionResult result = service.predictIntent('HRDMI2PBESEFVYTDJOKSKOP3O4', newDeliveryResponse.Response__c, 0, '');
         System.debug(result);
         String einsteinIntent = result.probabilities[0].label;
         
