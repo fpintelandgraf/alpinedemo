@@ -4,7 +4,7 @@ public with sharing class SurveyResponse {
         Survey_Question__c sqOrder = [SELECT Id FROM Survey_Question__c WHERE Name =: 'Please describe your order experience' LIMIT 1];
         Survey_Question__c sqDelivery = [SELECT Id FROM Survey_Question__c WHERE Name =: 'Please describe your delivery experience' LIMIT 1];
         
-        Survey__c survey  = [SELECT Id FROM Survey__c WHERE Name =: 'Alpine Nutrition Survey' LIMIT 1];
+        Survey__c survey  = [SELECT Id FROM Survey__c WHERE Name =: 'Coca Cola Ordering Survey' LIMIT 1];
 
         SurveyQuestionResponse__c newOrderResponse = new SurveyQuestionResponse__c();
         SurveyQuestionResponse__c newDeliveryResponse = new SurveyQuestionResponse__c();
@@ -51,6 +51,7 @@ public with sharing class SurveyResponse {
                     // Old Id 0051I000001jK1IQAU 
                     caseItem.OwnerId = '0056A000001Tv5vQAC';
                     caseItem.Sentiment__c = 'negative';
+                    caseItem.createdDate = System.today();
                     insert caseItem;
                     st.Case__c = caseItem.id;
                 } 
