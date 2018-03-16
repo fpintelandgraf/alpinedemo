@@ -3,8 +3,8 @@
     <allowMembersToFlag>true</allowMembersToFlag>
     <allowedExtensions>jpg,docx,txt,png,gif,bmp,pdf,xlsx</allowedExtensions>
     <branding>
-        <loginFooterText>Cirrus Consumers</loginFooterText>
-        <loginLogo>Communities_Shared_Document_Folder/cirruslogo_png.png</loginLogo>
+        <loginFooterText>Mountain Beverages Consumers</loginFooterText>
+        <loginLogo>Communities_Shared_Document_Folder/mountainBeverages_png.png</loginLogo>
         <primaryColor>#1797C0</primaryColor>
         <primaryComplementColor>#FFFFFF</primaryComplementColor>
         <quaternaryColor>#B1BAC1</quaternaryColor>

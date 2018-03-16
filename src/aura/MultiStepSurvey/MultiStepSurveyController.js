@@ -1,6 +1,7 @@
 ({
     doInit : function(component, event, helper) {
         // console.log('Multi Step Survey doInit');
+        helper.doInit(component)
     },
     
     nextStep : function(component, event, helper) {

@@ -60,9 +60,11 @@
             </li>
             
         </ol>
+        <!--
         <span class="slds-wizard__progress">
             <span class="slds-wizard__progress-bar" style="{! 'width:' +  v.currentProgress + '%;'}"></span>
         </span>
+    -->
     </div>
     
     

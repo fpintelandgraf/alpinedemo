@@ -36,7 +36,7 @@
     <description>The audience articles in this category apply to.</description>
     <label>Audience</label>
     <objectUsage>
-        <object>KnowledgeArticleVersion</object>
         <object>Question</object>
+        <object>KnowledgeArticleVersion</object>
     </objectUsage>
 </DataCategoryGroup>
