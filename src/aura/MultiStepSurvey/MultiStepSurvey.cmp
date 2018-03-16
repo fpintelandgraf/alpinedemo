@@ -57,7 +57,7 @@
         <aura:if isTrue="{!v.initialized}">
             <div class="{! v.currentProgress == 0 ? 'slds-show' : 'slds-hide'}"> 
                 <div class="survey-background">
-                    <h2 class="slds-text-heading_large">Coca Cola Order Experience</h2>
+                    <h2 class="slds-text-heading_large">Mountain Beverages Order Experience</h2>
                     <h4 class="slds-p-top_medium">Complete this short survey to receive 5% off of your next order!</h4>
                 </div>
             </div>
