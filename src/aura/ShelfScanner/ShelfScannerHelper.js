@@ -73,7 +73,7 @@
       var polygon = document.createElementNS(svgNS, "polygon");
       polygon.setAttribute(
         "style",
-        "stroke:" + color + ";stroke-width:3;fill-opacity:0"
+        "stroke:" + color + ";stroke-width:12;fill-opacity:0.1"
       );
       var points = [];
       points.push(
@@ -119,7 +119,26 @@
     if (label === "MyLabel") {
       return "red";
     }
-    return "yellow";
+
+    if (label === "Fanta") {
+      return "orange";
+    }
+
+    if (label === "Sprite") {
+      return "green";
+    }
+
+    if (label === "Coca Cola zero") {
+      return "black";
+    }
+
+    if (label === "Coca Cola") {
+      return "red";
+    }
+
+    // Set the color of the marking border
+    //return "yellow";
+    return "green";
   },
   calculateShelfData: function(component) {
     var probabilities = component.get("v.predictions").probabilities;
