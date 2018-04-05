@@ -1,10 +1,51 @@
 ({
+  mock: function(component, fileName, base64Data) {
+    var imgContainer = component.find("imgContainer").getElement();
+
+    while (imgContainer.firstChild) {
+      imgContainer.removeChild(imgContainer.firstChild);
+    }
+
+    var div = document.createElement("div");
+    div.setAttribute(
+      "style",
+      "text-align:center;color:red" + ";"
+    );
+
+    var elem = document.createElement("img");
+//    elem.setAttribute("src", "https://coca-cola-basecamp.my.salesforce.com/sfc/p/6A000001hw0E/a/6A000000L0MY/KZz4Scnl.Q069S.c49oNMUX8.LV43zvytDBW5bQgEcM");
+ //   elem.setAttribute("src", "{!URLFOR($Resource.Mock, 'img/Mock.png')}");
+ // <img src="{!$Resource.RooftopPitched}"/>
+   // elem.setAttribute("src", "{!$Resource.Mock}/Mock.png");
+   // elem.setAttribute("src", "{!URLFOR($Resource.optimalDozenPlacement)}");
+    elem.setAttribute("src", !URLFOR($Resource.optimalDozenPlacement));
+    //elem.setAttribute("src", "{!$Resource.optimalDozenPlacement}");
+    console.log("#######################");
+    console.log("{!URLFOR($Resource.optimalDozenPlacement)}");
+    console.log('{!URLFOR($Resource.optimalDozenPlacement)}');
+    console.log(!URLFOR($Resource.optimalDozenPlacement));
+    //console.log('{!$Resource.Mock}/Mock.png');
+//console.log('!URLFOR($Resource.Mock)');
+
+  //  elem.setAttribute("src", "img/Mock.png");
+   // elem.setAttribute("src", "http://icon-park.com/imagefiles/apple_green.png");
+//    elem.setAttribute("height", "768");
+//    elem.setAttribute("width", "1024");
+    elem.setAttribute("alt", "MountainBeverages");
+
+
+
+    imgContainer.appendChild(div);
+    imgContainer.appendChild(elem);
+
+  }, 
   upload: function(component, fileName, base64Data) {
 
     var imgContainer = component.find("imgContainer").getElement();
     while (imgContainer.firstChild) {
       imgContainer.removeChild(imgContainer.firstChild);
     }
+    
     var action = component.get("c.detectShelfObjects");
     var modelId = component.get("v.modelId");
     action.setParams({
@@ -73,7 +114,7 @@
       var polygon = document.createElementNS(svgNS, "polygon");
       polygon.setAttribute(
         "style",
-        "stroke:" + color + ";stroke-width:12;fill-opacity:0.1"
+        "stroke:" + color + ";stroke-width:12;fill-opacity:0.5"
       );
       var points = [];
       points.push(

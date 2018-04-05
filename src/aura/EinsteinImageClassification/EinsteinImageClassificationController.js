@@ -11,7 +11,8 @@
         var dataURL = reader.result;
         component.set("v.pictureSrc", dataURL);
         component.set("v.fileName", file.name);
-        helper.upload(component, file.name, dataURL.match(/,(.*)$/)[1]);
+       // helper.upload(component, file.name, dataURL.match(/,(.*)$/)[1]);
+        //helper.mock(component, file.name, dataURL.match(/,(.*)$/)[1]);
       };
       reader.readAsDataURL(file);
     }

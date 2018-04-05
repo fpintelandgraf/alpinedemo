@@ -1058,14 +1058,17 @@ public static String getAccessToken() {
         jwt.exp = '3600';
        
         
-        if (!Test.isRunningTest()) {
+		//Test.isRunningTest();
+    	//if (!Test.isRunningTest()) {
             accessToken = Einstein_PredictionService.getAccessToken(OAUTH2, jwt);
-        }
+        //}
      	if( settings.CacheName__c != null) {  
             System.debug('-- Storing Einstein Platform token in cache --');
               DateTime tokenTime = DateTime.now();
     
+    System.debug('Cach.Org.getPartition before');
              Cache.OrgPartition orgPart = Cache.Org.getPartition(cachPartition);
+                 System.debug('Cach.Org.getPartition after');
              orgPart.put('accessToken', accessToken);
              orgPart.put('tokenTime', tokenTime);
       	}

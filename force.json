@@ -11,7 +11,7 @@
         "verbose": false,
         "ignoreWarnings": true
     },
-    "username": "fpintelandgraf@alpine.demo",
+    "username": "fpintelandgraf@mountain-beverages.demo",
     "password": "a1234567",
     "url": "https://login.salesforce.com",
     "autoCompile": true,
