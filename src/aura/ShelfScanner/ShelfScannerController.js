@@ -14,14 +14,29 @@
       if (file.size > 5000000) {
         return alert("The file exceeds the limit of 5MB.");
       }
+      //if (file.size > 2300000) {
+      //  return alert("The file exceeds the limit of 2MB.");
+      //}
       var reader = new FileReader();
       reader.onloadend = function() {
         var dataURL = reader.result;
-        component.set("v.pictureSrc", dataURL);
+        
+        //MOCK?
+        //var dataURL = "http://icon-park.com/imagefiles/apple_green.png";
+        //console.log("***Data URL   " + dataURL);
+        //console.log("***FileName" + file.name);
+        
+        //component.set("v.pictureSrc", dataURL);
         component.set("v.fileName", file.name);
-        //helper.mock(component, file.name, dataURL.match(/,(.*)$/)[1]);
-        // MORE COMMENTS
-        helper.upload(component, file.name, dataURL.match(/,(.*)$/)[1]);
+          
+        //MOCK?
+        //component.set("v.fileName", "apple_green.png");
+        //helper.upload(component, "apple_green.png", dataURL.match(/,(.*)$/)[1]);
+		
+        //Calling helper
+        helper.resize1(component, helper, file, dataURL);
+        //helper.upload(component, file.name, dataURL.match(/,(.*)$/)[1]);
+          
       };
       reader.readAsDataURL(file);
     }
@@ -52,4 +67,5 @@
     });
     $A.enqueueAction(action);
   }
+
 });
